@@ -22,10 +22,18 @@ namespace Blog
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                 "~/Scripts/customizer.js",
+                      "~/Scripts/hoverIntent.js",
+                        "~/Scripts/customizer.js",
+                          "~/Scripts/html5shiv.js",
+                            "~/Scripts/settings.js",
+                             "~/Scripts/superfish.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/style.css",
+                         "~/Content/athemes-symbols.css"));
         }
     }
 }

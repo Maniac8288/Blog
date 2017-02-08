@@ -3813,12 +3813,13 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li {
   position: relative;
   display: block;
+ 
 }
 
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 0px 15px;
 }
 
 .nav > li > a:hover,
