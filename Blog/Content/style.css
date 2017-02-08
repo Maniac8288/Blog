@@ -293,7 +293,7 @@ object {
 	}
 .sf-menu ul {
 	display: inline-block;
-    height:50px;
+    height:auto;
     
 	}
 * html .sf-menu ul {
@@ -649,6 +649,8 @@ object {
 	}
 .entry-summary {
 	margin: 0 0 30px;
+    max-height:120px;
+    overflow-y:hidden;
 	}
 .entry-footer {
 	clear: both;

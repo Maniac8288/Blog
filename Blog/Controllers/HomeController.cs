@@ -6,11 +6,11 @@ using System.Web.Mvc;
 
 namespace Blog.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
-            return View();
+            return View(db.Posts.OrderByDescending(x => x.dateAddPost));
         }
 
        public ActionResult News()

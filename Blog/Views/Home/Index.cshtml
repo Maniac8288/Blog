@@ -1,31 +1,48 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using PostModel.Models;
+@model IEnumerable<Post>
+@{
+    ViewBag.Title = "Главная";
 }
+@foreach(var item in Model){
+    <article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
+        <header class="entry-header">
+            <h3 class="site-title"><a href="#" rel="bookmark">@item.NamePost</a></h3>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+            <div class="entry-meta">
+                <span class="posted-on"><a href="#" rel="bookmark"><time class="entry-date published updated">@item.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a class="url fn n" href="#">Author Post</a></span></span>
+                <!-- .entry-meta -->
+            </div>
+            <!-- .entry-header -->
+        </header>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+        <div class="entry-thumbnail">
+            <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" title="Template: Sticky">
+                <img width="600" height="270" src="~/img/@item.PostID/@item.upload" alt="@item.NamePost" title="@item.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">
+            </a>
+        </div>
+
+
+        <div class="entry-summary">
+            <p>@item.contentPost</p>
+            <!-- .entry-summary -->
+        </div>
+        <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" class="more-link">Continue Reading <span class="meta-nav">→</span></a>
+        <footer class="entry-meta entry-footer">
+            <span class="cat-links">
+                <i class="ico-folder"></i> <a href="#" rel="category tag">@item.selectedCategory</a>
+            </span>
+
+            <span class="tags-links">
+                <i class="ico-tags"></i>@{ PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(item);}
+                @foreach (string tag in PostDataStorage.collectionsTags)
+                {
+                    <a class="btn btn-default btn-sm" href="@Url.Action("Tag","Home", new { tags = tag })">
+                        @tag
+                    </a>
+                }
+            </span>
+            <!-- .entry-meta -->
+        </footer>
+        <!-- #post-1241-->
+    </article>
+}

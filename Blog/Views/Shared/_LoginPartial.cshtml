@@ -1,0 +1,26 @@
+﻿@if (User.IsAuth)
+{
+  
+        <form method="get" action="~/Account/LogOut">
+
+
+           <p class="widget-title">
+    <a>@User.UserName</a>
+
+    <span class="pull-right"> <input type="submit" value="Выйти"></span>
+        </p>
+
+        </form>
+      
+
+
+
+        }
+        else
+        {
+
+        <ul class="nav">
+            <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
+            <li>@Html.ActionLink("Выполнить вход", "Login", "Account")</li>
+        </ul>
+        }

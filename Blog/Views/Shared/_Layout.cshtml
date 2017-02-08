@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using PostModel.Models;
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -15,39 +16,20 @@
         <div class="clearfix container">
             <div class="sf-menu">
                 <ul id="menu-main-menu" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li id="menu-item-1662" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1662"><a href="#/">Home</a></li>
-                    <li id="menu-item-1663" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1663">
-                        <a href="http://demo.athemes.com/fashionista/about" class="sf-with-ul">About The Tests</a>
-                        <ul class="sub-menu sf-js-enabled sf-arrows" style="display: none; touch-action: pan-y;">
-                            <li id="menu-item-1664" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1664"><a href="#">Page Image Alignment</a></li>
-                            <li id="menu-item-1665" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1665"><a href="#">Page Markup And Formatting</a></li>
-                            <li id="menu-item-1666" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1666"><a href="#">Clearing Floats</a></li>
-                            <li id="menu-item-1667" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1667"><a href="#">Page with comments</a></li>
-                            <li id="menu-item-1668" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1668"><a href="#">Page with comments disabled</a></li>
-                        </ul>
-                    </li>
-                    <li id="menu-item-1669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1669">
-                        <a href="http://demo.athemes.com/fashionista/level-1" class="sf-with-ul">Level 1</a>
-                        <ul class="sub-menu sf-js-enabled sf-arrows" style="display: none; touch-action: pan-y;">
-                            <li id="menu-item-1670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1670">
-                                <a href="http://demo.athemes.com/fashionista/level-1/level-2" class="">Level 2</a>
-                                <ul class="sub-menu sf-js-enabled sf-arrows" style="display: none; touch-action: pan-y;">
-                                    <li id="menu-item-1671" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1671"><a href="#">Level 3</a></li>
-                                    <li id="menu-item-1672" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1672"><a href="#">Level 3a</a></li>
-                                    <li id="menu-item-1673" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1673"><a href="#">Level 3b</a></li>
-                                </ul>
-                            </li>
-                            <li id="menu-item-1674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1674"><a href="#">Level 2a</a></li>
-                            <li id="menu-item-1675" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1675"><a href="#">Level 2b</a></li>
-                        </ul>
-                    </li>
-                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676"><a href="#">Lorem Ipsum</a></li>
+                    <li id="menu-item-1662" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1662">@Html.ActionLink("Блог", "Index", "Home")</li>
+                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">@Html.ActionLink("Новости", "News", "Home")</li>
+                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Контакты", "Contact", "Home")</li>
+                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Личный кабинет", "Cabinet", "Home")</li>
+                
                 </ul>
+             
             </div>
+      
         </div>
+  
         <!-- #top-navigation -->
     </nav>
-    </div>
+    
     <div class="container body-content">
        
         <header id="masthead" class="clearfix container site-header" role="banner">
@@ -68,13 +50,25 @@
             <a href="#main-navigation" class="nav-open">Menu</a>
             <a href="#" class="nav-close">Close</a>
             <div class="sf-menu">
-                <ul id="menu-short" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629"><a href="#">Кино</a></li>
-                    <li id="menu-item-1638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1638"><a href="#">Сериалы</a></li>
-                    <li id="menu-item-1639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1639">
-                        <a href="#" class="sf-with-ul">Новости</a></li>
-                </ul>
-            </div>	<!-- #main-navigation -->
+    <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
+
+
+        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629 "><a href="#">Кино</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
+            @foreach (var element in PostDataStorage.Category)
+            {
+                foreach (var item in element.Childrens)
+                {
+            <li><a>@item.Name</a></li>
+                }
+            }
+            </ul> </li>
+        <li id="menu-item-1638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1638"><a href="#">Сериалы</a></li>
+        <li id="menu-item-1639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1639">
+            <a href="#" class="sf-with-ul">Новости</a>
+        </li>
+    </ul>
+   
+    </div>	<!-- #main-navigation -->
         </nav>
      
         <div id="main" class="site-main">
@@ -86,6 +80,12 @@
                         </div>
                     </div>
                         <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
+                            
+                                <h3 class="widget-title">Личный кабинет</h3>
+                                @Html.Partial("_LoginPartial")
+                               
+                         
+                            
                             <aside id="search-3" class="widget widget_search">
                                 <form role="search" method="get" class="search-form" action="http://demo.athemes.com/fashionista/">
                                     <label>
@@ -229,10 +229,21 @@
                 </div>
          
         </div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
+        
+       
     </div>
+    <footer id="colophon" class="site-footer" role="contentinfo">
+        <div class="clearfix container">
+            <div class="site-info">
+                © 2017 Cinema-Blog. All rights reserved.
+            </div><!-- .site-info -->
+
+            <div class="site-credit">
+                <a href="#">TirScript</a>
+            </div><!-- .site-credit -->
+        </div>
+        <!-- #colophon -->
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
