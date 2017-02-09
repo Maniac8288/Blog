@@ -1,11 +1,12 @@
 ﻿@using PostModel.Models;
-
 @model IEnumerable<Post>
-
 @{
-    ViewBag.Title = "Главная";
+    ViewBag.Title = "Поиск по категориям";
 }
-@foreach(var item in Model){
+
+
+@foreach (var item in Model)
+{
     <article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
         <header class="entry-header">
             <h3 class="site-title"><a href="#" rel="bookmark">@item.NamePost</a></h3>
@@ -28,14 +29,10 @@
             <p>@item.contentPost</p>
             <!-- .entry-summary -->
         </div>
-        <a href="@Url.Action("Post","Home", new { id = item.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>
+        <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" class="more-link">Continue Reading <span class="meta-nav">→</span></a>
         <footer class="entry-meta entry-footer">
             <span class="cat-links">
-                <i class="ico-folder"></i><a class="btn btn-default btn-sm" href="@Url.Action("Category","Home", new { category = item.selectedCategory})">
-   
-                  @item.selectedCategory
-              
-    </a>
+                <i class="ico-folder"></i> <a href="#" rel="category tag">@item.selectedCategory</a>
             </span>
 
             <span class="tags-links">
@@ -51,4 +48,4 @@
         </footer>
         <!-- #post-1241-->
     </article>
-}
+                    }

@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201702081127025_startDB.Designer.cs">
       <DependentUpon>201702081127025_startDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702092258348_AddDataBird.cs" />
+    <Compile Include="Migrations\201702092258348_AddDataBird.Designer.cs">
+      <DependentUpon>201702092258348_AddDataBird.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
@@ -66,6 +70,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702081127025_startDB.resx">
       <DependentUpon>201702081127025_startDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702092258348_AddDataBird.resx">
+      <DependentUpon>201702092258348_AddDataBird.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

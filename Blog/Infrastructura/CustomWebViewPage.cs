@@ -1,4 +1,5 @@
 ﻿using IServices.Models;
+using PostModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace Blog.Infrastructura
             User = WebUser.CurrentUser;
         }
         public new ModelUser User { get; set; }
+        public PostContext db = new PostContext();
+        public DataContext Userdb = new DataContext();
 
         public override void Execute()
         {

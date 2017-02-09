@@ -38,6 +38,7 @@ namespace PostModel.Models
         /// </summary>
         public string upload { get; set; }
         public int PostID { get; set; }
+        public string Author { get; set; }
        
     }
    

@@ -65,9 +65,9 @@ namespace Blog.Infrastructura
             HttpContext.Current.Session.Remove("user");
             HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Expires = DateTime.Now.AddDays(-1) });
         }
-        public static void Register(string userName, string password)
+        public static void Register(string userName, string password, string dataBird)
         {
-            Services.Register.Register(userName,password);
+            Services.Register.Register(userName,password,dataBird);
         }
 
         #region Криптография

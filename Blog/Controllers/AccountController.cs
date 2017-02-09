@@ -38,10 +38,10 @@ namespace Blog.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(string userName, string pw1)
+        public ActionResult Register(string userName, string pw1,string dataBird)
         {
 
-            WebUser.Register(userName, pw1);
+            WebUser.Register(userName, pw1, dataBird);
             return RedirectToAction("index", "home");
         }
     }

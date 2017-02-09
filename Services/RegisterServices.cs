@@ -13,18 +13,20 @@ namespace Services
 {
     class RegisterServices : IRegisterServices
     {
-    public void Register(string userName, string password)
+    public void Register(string userName, string password,string dataBird)
         {
             string sha256 = password.ToSHA(Crypto.SHA_Type.SHA256);
             string salt = Security.instance.getSalt();
             using (var db = new DataContext())
             {
                 User user = new User()
-            {
-                   UserName = userName,
-                  Password = salt+sha256,
-                 Salt = salt
-                     };
+                {
+                    UserName = userName,
+                    Password = salt + sha256,
+                    Salt = salt,
+                    dataBird = dataBird,
+                Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
+                };
                          db.Users.Add(user);
                          db.SaveChanges();
             }

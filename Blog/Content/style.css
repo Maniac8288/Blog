@@ -97,7 +97,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
-	height: 26px;
+	height: 34px;
 	color: #333;
 	line-height: 26px;
 	-webkit-border-radius: 0;
@@ -830,16 +830,16 @@ body.search .page .entry-footer {
 	display: none;
 	}
 .site-content .post-navigation .nav-next {
-	width: 35%;
+	width: 45%;
 	margin-left: 5%;
 	padding-right: 10%;
 	text-align: left;
 	}
 .site-content .post-navigation .nav-previous {
-	width: 35%;
+	width: 45%;
 	margin-right: 5%;
 	padding-left: 10%;
-	text-align: right;
+	text-align: left;
 	}
 
 /* COMMENTS

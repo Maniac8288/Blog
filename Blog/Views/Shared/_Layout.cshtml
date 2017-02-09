@@ -1,4 +1,6 @@
 ﻿@using PostModel.Models;
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +38,7 @@
             <div class="site-branding">
 
                 <h1 class="site-title">
-                    <a href="#" title="Fashionista" rel="home">
-                        Cinema Blog
-                    </a>
+                 @Html.ActionLink("Cinema Blog", "Index", "Home")
                 </h1>
                 <div class="site-description">Блог для кинолюбителей</div>
                
@@ -52,20 +52,18 @@
             <div class="sf-menu">
     <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
 
-
-        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629 "><a href="#">Кино</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
-            @foreach (var element in PostDataStorage.Category)
+@foreach (var element in PostDataStorage.Category)
             {
-                foreach (var item in element.Childrens)
+        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629 "><a href="#">@element.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
+            
+                @foreach (var item in element.Childrens)
                 {
-            <li><a>@item.Name</a></li>
-                }
-            }
-            </ul> </li>
-        <li id="menu-item-1638" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1638"><a href="#">Сериалы</a></li>
-        <li id="menu-item-1639" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1639">
-            <a href="#" class="sf-with-ul">Новости</a>
-        </li>
+        <li><a href="@Url.Action("Category","Home", new { category = item.Name })">@item.Name</a></li> }
+           
+           
+            </ul> </li> }
+     
+       
     </ul>
    
     </div>	<!-- #main-navigation -->
@@ -79,14 +77,14 @@
                         @RenderBody()
                         </div>
                     </div>
+
                         <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
                             
                                 <h3 class="widget-title">Личный кабинет</h3>
                                 @Html.Partial("_LoginPartial")
                                
                          
-                            
-                            <aside id="search-3" class="widget widget_search">
+                            <aside id="search-3" class="widget">
                                 <form role="search" method="get" class="search-form" action="http://demo.athemes.com/fashionista/">
                                     <label>
                                         <span class="screen-reader-text">Search for:</span>
@@ -94,7 +92,9 @@
                                     </label>
                                     <input type="submit" class="search-submit" value="Search">
                                 </form>
-                            </aside><aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
+                            </aside>
+                            
+                            <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
                                 <ul id="widget-tab" class="clearfix widget-tab-nav">
                                     <li class="active"><a href="#widget-tab-popular">Popular</a></li>
                                     <li><a href="#widget-tab-latest">Latest</a></li>
@@ -104,44 +104,10 @@
                                 <div class="widget-tab-content">
                                     <div class="tab-pane active" id="widget-tab-popular">
                                         <ul>
-
-                                            <li class="clearfix">
-                                                <div class="widget-entry-content">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2012/01/template-comments" title="Template: Comments" rel="bookmark">Template: Comments</a></h4>
-                                                    <span>19 Comments</span>
-                                                </div>
-                                            </li>
-
-                                            <li class="clearfix">
-                                                <div class="widget-entry-content">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2012/01/template-pingbacks-an-trackbacks" title="Template: Pingbacks And Trackbacks" rel="bookmark">Template: Pingbacks And Trackbacks</a></h4>
-                                                    <span>5 Comments</span>
-                                                </div>
-                                            </li>
-
-                                            <li class="clearfix">
-                                                <div class="widget-entry-content">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2009/08/edge-case-no-content" title="Edge Case: No Content" rel="bookmark">Edge Case: No Content</a></h4>
-                                                    <span>1 Comment</span>
-                                                </div>
-                                            </li>
-
-                                            <li class="clearfix">
-                                                <div class="widget-entry-content">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2012/01/template-password-protected" title="Protected: Template: Password Protected (the password is “enter”)" rel="bookmark">Protected: Template: Password Protected (the password is “enter”)</a></h4>
-                                                    <span>1 Comment</span>
-                                                </div>
-                                            </li>
-
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/markup-html-tags-and-formatting" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-36-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/markup-html-tags-and-formatting" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
-                                                    <span>No Comments</span>
-                                                </div>
-                                            </li>
+                                            @foreach(var item in db.Posts )
+                                            {
+                                                <li><a href="@Url.Action("Post","Home", new { id = item.PostID })">@item.NamePost</a></li>
+                                            }
                                         </ul>
                                         <!-- #widget-tab-popular -->
                                     </div>
@@ -150,77 +116,20 @@
                                         <ul>
                                             <li class="clearfix">
                                                 <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/markup-html-tags-and-formatting" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-36-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
+                                                    <a href="" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
                                                 </div>
                                                 <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/markup-html-tags-and-formatting" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
+                                                    <h4><a href="" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
                                                     <span>January 11, 2013</span>
                                                 </div>
                                             </li>
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/markup-image-alignment" title="Markup: Image Alignment"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-14-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: Image Alignment"></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/markup-image-alignment" title="Markup: Image Alignment" rel="bookmark">Markup: Image Alignment</a></h4>
-                                                    <span>January 10, 2013</span>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/markup-text-alignment" title="Markup: Text Alignment"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-32-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-32" title="Markup: Text Alignment"></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/markup-text-alignment" title="Markup: Text Alignment" rel="bookmark">Markup: Text Alignment</a></h4>
-                                                    <span>January 09, 2013</span>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/title-with-special-characters" title="Markup:"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-11-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-11" title="Markup: "></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/title-with-special-characters" title="Markup:>" rel="bookmark">Markup</a></h4>
-                                                    <span>January 05, 2013</span>
-                                                </div>
-                                            </li>
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="http://demo.athemes.com/fashionista/2013/01/markup-title-with-markup" title="Markup: Title With Markup"><img width="50" height="50" src="http://demo.athemes.com/fashionista/wp-content/uploads/sites/2/2013/01/preview-22-50x50.jpg" class="attachment-thumb-small size-thumb-small wp-post-image" alt="preview-22" title="Markup: Title With Markup"></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="http://demo.athemes.com/fashionista/2013/01/markup-title-with-markup" title="Markup: Title With Markup" rel="bookmark">Markup: Title With Markup</a></h4>
-                                                    <span>January 05, 2013</span>
-                                                </div>
-                                            </li>
+                                           
                                         </ul>
                                         <!-- #widget-tab-latest -->
                                     </div>
-
                                     <div class="tab-pane" id="widget-tab-tags">
-                                        <a href="#" class="tag-link-196 tag-link-position-1" title="16 topics" style="font-size: 1.6em;">Post Formats</a>
-                                        <a href="#" class="tag-link-159 tag-link-position-2" title="12 topics" style="font-size: 1.4857142857143em;">template</a>
-                                        <a href="#" class="tag-link-79 tag-link-position-3" title="12 topics" style="font-size: 1.4857142857143em;">content</a>
-                                        <a href="#" class="tag-link-86 tag-link-position-4" title="8 topics" style="font-size: 1.3333333333333em;">edge case</a>
-                                        <a href="#" class="tag-link-106 tag-link-position-5" title="7 topics" style="font-size: 1.2857142857143em;">image</a>
-                                        <a href="#" class="tag-link-81 tag-link-position-6" title="7 topics" style="font-size: 1.2857142857143em;">css</a>
-                                        <a href="#" class="tag-link-145 tag-link-position-7" title="6 topics" style="font-size: 1.2380952380952em;">shortcode</a>
-                                        <a href="#" class="tag-link-116 tag-link-position-8" title="6 topics" style="font-size: 1.2380952380952em;">markup</a>
-                                        <a href="#" class="tag-link-105 tag-link-position-9" title="5 topics" style="font-size: 1.1714285714286em;">html</a>
-                                        <a href="#" class="tag-link-164 tag-link-position-10" title="5 topics" style="font-size: 1.1714285714286em;">title</a>
-                                        <a href="#" class="tag-link-78 tag-link-position-11" title="4 topics" style="font-size: 1.0952380952381em;">comments</a>
-                                        <a href="#" class="tag-link-111 tag-link-position-12" title="4 topics" style="font-size: 1.0952380952381em;">layout</a>
-                                        <a href="#" class="tag-link-87 tag-link-position-13" title="4 topics" style="font-size: 1.0952380952381em;">embeds</a>
-                                        <a href="#" class="tag-link-99 tag-link-position-14" title="3 topics" style="font-size: 1em;">gallery</a>
-                                        <a href="#" class="tag-link-109 tag-link-position-15" title="3 topics" style="font-size: 1em;">jetpack</a>
-                                        <a href="#" class="tag-link-169 tag-link-position-16" title="3 topics" style="font-size: 1em;">video</a>
-                                        <a href="#" class="tag-link-93 tag-link-position-17" title="3 topics" style="font-size: 1em;">featured image</a>
-                                        <a href="#" class="tag-link-91 tag-link-position-18" title="3 topics" style="font-size: 1em;">excerpt</a>
-                                        <a href="#" class="tag-link-67 tag-link-position-19" title="3 topics" style="font-size: 1em;">alignment</a>
-                                        <a href="#" class="tag-link-77 tag-link-position-20" title="3 topics" style="font-size: 1em;">Codex</a>			<!-- #widget-tab-tags -->
                                     </div>
                                 </div>
-
                             </aside><!-- #widget-area-2 -->
                         </div>
                      

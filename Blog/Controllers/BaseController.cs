@@ -14,6 +14,7 @@ namespace Blog.Controllers
     {
         public IMainServices Services { get; set; }
         public PostContext db = new PostContext();
+        public DataContext Userdb = new DataContext();
         public BaseController()
         {
             Services = DependencyResolver.Current.GetService<IMainServices>();

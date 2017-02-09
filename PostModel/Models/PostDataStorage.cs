@@ -27,22 +27,6 @@ namespace PostModel.Models
             new Category
             {
                 Id = 1,
-                Name = "Новости",
-                Childrens = new List<Category>()
-                {
-                    new Category
-                    {
-                        Name = "Спорт"
-                    },
-                    new Category
-                    {
-                        Name = "Политика"
-                    }
-                }
-            },
-            new Category
-            {
-                Id = 2,
                 Name = "Кино",
                 Childrens = new List<Category>()
                 {
@@ -65,21 +49,45 @@ namespace PostModel.Models
                 }
             },
              new Category
+            {Id = 2,
+                Name = "Сериалы",
+                Childrens = new List<Category>()
+                {
+                        new Category
+                    {
+                        Name = "Драма"
+                    },
+                        new Category
+                    {
+                        Name = "Фантастика"
+                    },
+                            new Category
+                    {
+                        Name = "Ужасы"
+                    },
+                                new Category
+                    {
+                        Name = "Триллер"
+                    }
+                }
+            },
+
+            new Category
             {
-                Id = 1,
-                Name = "Медицниа",
+                Id = 3,
+                Name = "Новости",
                 Childrens = new List<Category>()
                 {
                     new Category
                     {
-                        Name = "Народная медицина"
+                        Name = "Спорт"
                     },
                     new Category
                     {
-                        Name = "Советы от врачей"
+                        Name = "Политика"
                     }
                 }
-            },
+            }
         };
 
     }
