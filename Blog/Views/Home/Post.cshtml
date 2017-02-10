@@ -54,7 +54,7 @@
     <div class="nav-previous"><span>Предыдущий пост</span><a href="@Url.Action("Post", "Home", new { id = Model.PostID - 1 })" rel="prev"><span class="meta-nav">←</span>
                                                                @{try
                                                                    {
-                                                                       Post oldmodel = Model; Post newModel = db.Posts.Find(Model.PostID - 1);   @newModel.NamePost
+                                                                       Post newModel = db.Posts.Find(Model.PostID - 1);   @newModel.NamePost
                                                                    }
                                                                    catch (Exception ex)
                                                                    {
@@ -68,7 +68,7 @@
         <span>Следующий пост</span><a href="@Url.Action("Post", "Home", new { id = Model.PostID + 1 })" rel="prev"><span class="meta-nav">←</span>
         @{try
             {
-                 Post oldmodel = Model; Post newModel = db.Posts.Find(Model.PostID+1);   @newModel.NamePost
+                 Post newModel = db.Posts.Find(Model.PostID+1);   @newModel.NamePost
             }
             catch (Exception ex)
             {
