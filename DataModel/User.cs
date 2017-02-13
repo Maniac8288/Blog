@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DataModel.Models;
+using System.Collections.Generic;
 
 namespace DataModel
 {
@@ -12,5 +13,6 @@ namespace DataModel
 
         public string Salt { get; set; }
         public List<Role> Roles { get; set; }
+        public List<Post> Posts { get;set;}
     }
 }

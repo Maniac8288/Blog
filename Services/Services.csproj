@@ -38,10 +38,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Rework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rework.1.0.12\lib\net45\Rework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -53,8 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exextension\Security.cs" />
     <Compile Include="MainServices.cs" />
-    <Compile Include="Models\Security.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterServices.cs" />
     <Compile Include="UserServices.cs" />

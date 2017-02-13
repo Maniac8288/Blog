@@ -9,9 +9,8 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
-using Rework;
 using System.Numerics;
-
+using Services.Exextension;
 
 namespace Blog.Infrastructura
 {
@@ -19,7 +18,9 @@ namespace Blog.Infrastructura
     public class WebUser
     {
         private static IMainServices Services = DependencyResolver.Current.GetService<IMainServices>();
-        
+        /// <summary>
+        ///  Модель пользователя содержащия сессию и куки в которой находится информация о состояние пользователя
+        /// </summary>
         public static ModelUser CurrentUser
         {
             get
@@ -47,11 +48,16 @@ namespace Blog.Infrastructura
                 HttpContext.Current.Session["user"] = value;
             }
         }
-
+        /// <summary>
+        /// Метод выполняющий авторизацю на сайте
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <param name="RememberMe">Галочка-Запомнить меня</param>
         public static void Login(string userName, string password, bool RememberMe = false)
         {
-            string sha256 = password.ToSHA(Crypto.SHA_Type.SHA256);
-            if (Services.Users.Login(userName, sha256))
+           
+            if (Services.Users.Login(userName, password.sha256()))
             {
                 CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password };
                 if (RememberMe)
@@ -60,12 +66,20 @@ namespace Blog.Infrastructura
                 }
             }
         }
-
+        /// <summary>
+        /// Удаляет сессию и куки содержащию информацию о состояние авторизации пользователя
+        /// </summary>
         public static void LogOff()
         {
             HttpContext.Current.Session.Remove("user");
             HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Expires = DateTime.Now.AddDays(-1) });
         }
+        /// <summary>
+        /// Выполняет регистрацию пользователя на сайте
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <param name="dataBird">Дата рождения пользователя</param>
         public static void Register(string userName, string password, string dataBird)
         {
             Services.Register.Register(userName,password,dataBird);

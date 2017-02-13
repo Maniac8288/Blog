@@ -93,10 +93,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Rework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rework.1.0.12\lib\net45\Rework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -262,10 +258,6 @@
     <ProjectReference Include="..\IServices\IServices.csproj">
       <Project>{946aa3a8-fee4-4614-923d-d7ad249e72d8}</Project>
       <Name>IServices</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PostModel\PostModel.csproj">
-      <Project>{e42e49ac-80ce-4c37-85ee-61fdd5790bf3}</Project>
-      <Name>PostModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{7bf6a722-a5b2-4155-8563-02c5cd91a4e4}</Project>

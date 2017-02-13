@@ -1,13 +1,10 @@
-﻿using PostModel;
-using PostModel.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Web;
+using System.Threading.Tasks;
 
-namespace PostModel.Models
+namespace DataModel.Models
 {
     public class PostDataStorage
     {
@@ -15,10 +12,14 @@ namespace PostModel.Models
         /// Экземпляр хранилища товаров
         /// </summary>
         public static PostDataStorage Storage = new PostDataStorage();
-
+        /// <summary>
+        /// Метод, который убирает запятую в тэгах
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Возвращает коллекцию тэгов</returns>
         public List<string> TagsSplit(Post model)
         {
-            return model.Tags.Split(new string[] { ","}, StringSplitOptions.RemoveEmptyEntries).ToList();
+            return model.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
         public static List<string> collectionsTags = new List<string>();
 
@@ -91,5 +92,4 @@ namespace PostModel.Models
         };
 
     }
-
 }

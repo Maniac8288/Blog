@@ -1,7 +1,7 @@
 ﻿using Blog.Infrastructura;
 using IServices;
 using IServices.Models;
-using PostModel;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +16,13 @@ namespace Blog.Controllers
     public class BaseController : Controller
     {
         public IMainServices Services { get; set; }
-        public PostContext db = new PostContext();
-        public DataContext Userdb = new DataContext();
+       
+        public DataContext db = new DataContext();
         public BaseController()
         {
             Services = DependencyResolver.Current.GetService<IMainServices>();
             User = WebUser.CurrentUser;
-
+           
         }
 
         public new ModelUser User { get; set; }

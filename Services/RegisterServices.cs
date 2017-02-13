@@ -5,24 +5,32 @@ using System.Text;
 using System.Threading.Tasks;
 using IServices;
 using DataModel;
-using Services.Models;
-using Rework;
 using Blog;
+using Services.Exextension;
 
 namespace Services
 {
+    /// <summary>
+    /// Класс реализующий регистрацию на сайте
+    /// </summary>
     class RegisterServices : IRegisterServices
     {
-    public void Register(string userName, string password,string dataBird)
+        /// <summary>
+        /// Метод реализующий регистрацию 
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <param name="dataBird">Дата рождения пользователя</param>
+        public void Register(string userName, string password,string dataBird)
         {
-            string sha256 = password.ToSHA(Crypto.SHA_Type.SHA256);
-            string salt = Security.instance.getSalt();
+           
+            string salt = Security.getSalt();
             using (var db = new DataContext())
             {
                 User user = new User()
                 {
                     UserName = userName,
-                    Password = salt + sha256,
+                    Password = salt + password.sha256(),
                     Salt = salt,
                     dataBird = dataBird,
                 Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()

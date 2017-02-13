@@ -9,8 +9,17 @@ using System.Threading.Tasks;
 
 namespace Services
 {
+    /// <summary>
+    /// Класс реализующий вход на сайте
+    /// </summary>
     public class UserServices : IUserServices
     {
+        /// <summary>
+        /// Метод проверяет совпадает ли логин и пароль с данными из БД
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <returns>Возвращает совпадает ли данные с БД</returns>
         public bool Login(string userName, string password)
         {
             using (var db = new DataContext())

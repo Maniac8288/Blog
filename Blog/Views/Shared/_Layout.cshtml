@@ -1,4 +1,4 @@
-﻿@using PostModel.Models;
+﻿@using DataModel.Models;
 
 
 <!DOCTYPE html>
@@ -54,7 +54,7 @@
 
 @foreach (var element in PostDataStorage.Category)
             {
-        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629 "><a href="#">@element.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
+        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629"><a href="#">@element.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
             
                 @foreach (var item in element.Childrens)
                 {
@@ -80,19 +80,20 @@
 
                         <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
                             
-                                <h3 class="widget-title">Личный кабинет</h3>
-                                @Html.Partial("_LoginPartial")
+                             
                                
                          
                             <aside id="search-3" class="widget">
-                                <form role="search" method="get" class="search-form" action="http://demo.athemes.com/fashionista/">
+                                <form role="search" method="get" class="search-form" action="#">
                                     <label>
                                         <span class="screen-reader-text">Search for:</span>
                                         <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
                                     </label>
-                                    <input type="submit" class="search-submit" value="Search">
+                                    <input type="submit" class="search-submit pull-right" value="Search">
                                 </form>
                             </aside>
+
+                            @Html.Partial("_LoginPartial")
                             
                             <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
                                 <ul id="widget-tab" class="clearfix widget-tab-nav">

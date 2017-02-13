@@ -54,9 +54,6 @@
       <DependentUpon>201702092022492_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\PostDataStorage.cs" />
     <Compile Include="PostContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -68,6 +65,9 @@
     <EmbeddedResource Include="Migrations\201702092022492_FirstMigration.resx">
       <DependentUpon>201702092022492_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

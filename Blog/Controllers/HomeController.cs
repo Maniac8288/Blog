@@ -1,5 +1,5 @@
 ﻿using Blog.Infrastructura;
-using PostModel.Models;
+using DataModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
