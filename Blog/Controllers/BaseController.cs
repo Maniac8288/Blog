@@ -10,6 +10,9 @@ using System.Web.Mvc;
 
 namespace Blog.Controllers
 {
+    /// <summary>
+    /// Базовый контролер 
+    /// </summary>
     public class BaseController : Controller
     {
         public IMainServices Services { get; set; }

@@ -15,10 +15,11 @@ using System.Numerics;
 
 namespace Blog.Infrastructura
 {
+  
     public class WebUser
     {
         private static IMainServices Services = DependencyResolver.Current.GetService<IMainServices>();
-
+        
         public static ModelUser CurrentUser
         {
             get
