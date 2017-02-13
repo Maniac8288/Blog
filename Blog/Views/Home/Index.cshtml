@@ -8,17 +8,17 @@
 @foreach(var item in Model){
     <article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
         <header class="entry-header">
-            <h3 class="site-title"><a href="#" rel="bookmark">@item.NamePost</a></h3>
+            <h3 class="site-title"><a href="@Url.Action("Post","Home", new { id = item.PostID })" rel="bookmark">@item.NamePost</a></h3>
 
             <div class="entry-meta">
-                <span class="posted-on"><a href="#" rel="bookmark"><time class="entry-date published updated">@item.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a class="url fn n" href="#">@item.Author</a></span></span>
+                <span class="posted-on"><a ><time class="entry-date published updated">@item.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a>@item.Author</a></span></span>
                 <!-- .entry-meta -->
             </div>
             <!-- .entry-header -->
         </header>
 
         <div class="entry-thumbnail">
-            <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" title="Template: Sticky">
+            <a href="@Url.Action("Post","Home", new { id = item.PostID })" title="Template: Sticky">
                 <img width="600" height="270" src="~/img/@item.PostID/@item.upload" alt="@item.NamePost" title="@item.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">
             </a>
         </div>

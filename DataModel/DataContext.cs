@@ -21,22 +21,22 @@ namespace Blog
         public DbSet<Role> Roles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
 
 
-        //    modelBuilder.Entity<User>().HasKey(_ => _.Id);
-        //    modelBuilder.Entity<User>().HasMany(t => t.Roles)
-        //                              .WithMany(t => t.Users)
-        //                                .Map(m =>
-        //                                {
-        //                                    m.ToTable("CourseInstructor");
-        //                                    m.MapLeftKey("CourseID");
-        //                                    m.MapRightKey("InstructorID");
-        //                                });
-           
-        //    base.OnModelCreating(modelBuilder);
-        //}
+            modelBuilder.Entity<User>().HasKey(_ => _.Id);
+            modelBuilder.Entity<User>().HasMany(t => t.Roles)
+                                      .WithMany(t => t.Users)
+                                        .Map(m =>
+                                        {
+                                            m.ToTable("CourseInstructor");
+                                            m.MapLeftKey("CourseID");
+                                            m.MapRightKey("InstructorID");
+                                        });
+
+            base.OnModelCreating(modelBuilder);
+        }
 
     }
 }
