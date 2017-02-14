@@ -80,5 +80,47 @@ namespace Blog.Controllers
             PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(db.Posts.Find(id));
             return View(db.Posts.Find(id));
         }
+        /// <summary>
+        /// Страница добовления поста на сайт
+        /// </summary>
+        /// <returns>Новый объект модели</returns>
+        [HttpGet]
+        public ActionResult AddPost()
+        {
+
+            return View();
+        }
+        /// <summary>
+        /// Добовление поста в коллекцию
+        /// </summary>
+        /// <param name="model">Модель поста</param>
+        /// <param name="upload">Добавление картинки</param>
+        /// <returns></returns>
+
+        [HttpPost]
+        public ActionResult AddPost(Post model, HttpPostedFileBase upload)
+        {
+
+
+            if (upload != null)
+            {
+                // получаем имя файла
+                string fileName = System.IO.Path.GetFileName(upload.FileName);
+                model.upload = fileName;
+                // сохраняем файл в папку img в проекте
+                //System.IO.Directory.CreateDirectory(Server.MapPath("~/img/") + model.PostID);
+                upload.SaveAs(Server.MapPath("~/img/"  + "/" + fileName));
+
+
+
+            }
+            db.Posts.Add(model);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult TestImage()
+        {
+            return View();
+        }
     }
 }

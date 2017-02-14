@@ -166,6 +166,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -181,6 +183,10 @@
     <Content Include="Content\athemes-symbols.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Jcrop.gif" />
+    <Content Include="Content\jquery.Jcrop.css" />
+    <Content Include="Content\jquery.Jcrop.min.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\afonts.svg" />
@@ -194,13 +200,22 @@
     <Content Include="fonts\afonts.eot" />
     <Content Include="fonts\afonts.ttf" />
     <Content Include="fonts\afonts.woff" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\customizer.js" />
     <Content Include="Scripts\hoverIntent.js" />
     <Content Include="Scripts\html5shiv.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery.color.js" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.Jcrop.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -235,10 +250,19 @@
     <Content Include="Views\Home\Tag.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Home\AddPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Metrionic\admin\layout4\" />
+    <Folder Include="Areas\Admin\Metrionic\global\css\" />
+    <Folder Include="Areas\Admin\Metrionic\global\img\" />
+    <Folder Include="Areas\Admin\Metrionic\global\plugins\" />
+    <Folder Include="Areas\Admin\Metrionic\global\scripts\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Images\" />
     <Folder Include="img\Users\" />
+    <Folder Include="Jcrop-v0.9.12\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -248,7 +272,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataModel\DataModel.csproj">

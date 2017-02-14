@@ -9,7 +9,7 @@ namespace Blog
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-1.11.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -28,12 +28,15 @@ namespace Blog
                         "~/Scripts/customizer.js",
                           "~/Scripts/html5shiv.js",
                             "~/Scripts/settings.js",
+                           "~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js",
+                            "~/Scripts/jquery.color.js",
                              "~/Scripts/superfish.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/style.css",
-                         "~/Content/athemes-symbols.css"));
+                         "~/Content/athemes-symbols.css",
+                         "~/Jcrop-v0.9.12/css/jquery.Jcrop.min.css"));
         }
     }
 }

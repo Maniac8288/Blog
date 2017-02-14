@@ -50,26 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201702081127025_startDB.cs" />
-    <Compile Include="Migrations\201702081127025_startDB.Designer.cs">
-      <DependentUpon>201702081127025_startDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702092258348_AddDataBird.cs" />
-    <Compile Include="Migrations\201702092258348_AddDataBird.Designer.cs">
-      <DependentUpon>201702092258348_AddDataBird.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702130845393_DataContext.cs" />
-    <Compile Include="Migrations\201702130845393_DataContext.Designer.cs">
-      <DependentUpon>201702130845393_DataContext.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702131001039_testa.cs" />
-    <Compile Include="Migrations\201702131001039_testa.Designer.cs">
-      <DependentUpon>201702131001039_testa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702131010514_authorUser.cs" />
-    <Compile Include="Migrations\201702131010514_authorUser.Designer.cs">
-      <DependentUpon>201702131010514_authorUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
@@ -81,23 +61,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702081127025_startDB.resx">
-      <DependentUpon>201702081127025_startDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702092258348_AddDataBird.resx">
-      <DependentUpon>201702092258348_AddDataBird.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702130845393_DataContext.resx">
-      <DependentUpon>201702130845393_DataContext.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702131001039_testa.resx">
-      <DependentUpon>201702131001039_testa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702131010514_authorUser.resx">
-      <DependentUpon>201702131010514_authorUser.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IServices\IServices.csproj">

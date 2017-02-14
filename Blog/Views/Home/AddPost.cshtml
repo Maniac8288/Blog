@@ -1,0 +1,90 @@
+﻿@using DataModel.Models;
+@model Post
+
+@{
+    ViewBag.Title = "Добавление поста";
+}
+<article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
+   
+    
+        <form class="form-horizontal  col-md-10 " name="Post" method="post" enctype="multipart/form-data">
+            <div class="form-group  ">
+                <label for="NamePost" class="col-sm-3 control-label">Название</label>
+
+                <div class="col-md-7">
+                    <input type="text" class="form-control" id="NamePost" name="NamePost" required placeholder="Заголовок" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Category" class="col-sm-3 control-label">Категория</label>
+                <div class="col-md-7">
+                    <select class="form-control" required name="selectedCategory">
+                        @foreach (var element in PostDataStorage.Category)
+                        {
+                            <optgroup label="@element.Name">
+                                @foreach (var item in element.Childrens)
+                                {
+                                    <option> @item.Name</option>
+                                }
+                            </optgroup>
+
+                        }
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-md-10">
+                    <textarea class="form-control col-lg-50" cols="150" rows="25" id="contentPost" required name="contentPost"></textarea>
+                </div>
+            </div>
+            <hr />
+            <div class="form-group col-xs-12 ">
+                <label for="Tags" class="col-sm-2 control-label">Тэги</label>
+                <div class="col-xs-10">
+                    <textarea cols="150" rows="3" class="form-control" id="Tags" name="Tags" required placeholder="Введите тэги через запятую"></textarea>
+                </div>
+
+            </div>
+            <div class="form-group ">
+                <label for="dateAddPost" class="col-sm-3 control-label">Дата создания</label>
+                <div class="col-md-7">
+                    <input type="date" class="form-control" required name="dateAddPost" id="dateAddPost" />
+                </div>
+
+                <label for="File" class="col-sm-5 control-label">Прикрепить файл</label>
+                <div class="addbut col-md-4">
+                    <input type="file" class="form-control " name="upload" id="upload" />
+                    <br />
+                </div>
+                @*<a class="addLink btn btn-default">Добавить новый файл</a>*@
+                
+                    <br />
+                    <br />
+                    <input type="submit" class="btn btn-info  " name="save" />
+              
+            </div>
+
+
+        </form>
+ 
+    <hr />
+    </article>
+    @section scripts {
+        <script>
+
+
+            $(function () {
+                var i = 0;
+                $('.addLink').click(function () {
+                    i++;
+                    var html2Add = "<div class='addfile'>" +
+                 "<h4>Файл №" + (i + 1) + "</h4>" +
+                         "<input type='file' class='form-control' name='upload' />" +
+                     "</div></div></div>";
+                    $('.addbut').append(html2Add);
+                })
+            })
+        </script>
+    }
