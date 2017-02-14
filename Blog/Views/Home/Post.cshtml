@@ -1,6 +1,4 @@
-﻿@using DataModel.Models;
-
-@model Post
+﻿@model IServices.Models.ModelPost
 @{
     ViewBag.Title = "Post";
 }
@@ -25,13 +23,15 @@
     </div>
 
     <footer class="entry-meta entry-footer">
-        <span class="cat-links"><i class="ico-folder"></i> <a href="#" rel="category tag">@Model.selectedCategory</a></span><span class="tags-links"><i class="ico-tags"></i> 
-        @foreach (var tags in PostDataStorage.collectionsTags)
+        <span class="cat-links"><i class="ico-folder"></i> <a href="#" rel="category tag">@Model.selectedCategory</a></span>
+        <span class="tags-links"><i class="ico-tags"></i> 
+        @*@foreach (var tags in PostDataStorage.collectionsTags)
         {
             <a class="btn btn-default btn-sm" href="@Url.Action("Tag", "Home", new { tags = tags })">
                 @tags
             </a>
-        }	<!-- .entry-meta -->
+        }*@	<!-- .entry-meta -->
+        </span>
     </footer>
     <!-- #post-1241 -->
 </article>
@@ -49,7 +49,7 @@
     </div>
     <!-- .author-info -->
 </div>
-<nav role="navigation" id="nav-below" class="post-navigation">
+@*<nav role="navigation" id="nav-below" class="post-navigation">
     <h1 class="screen-reader-text">Post navigation</h1>
     <div class="nav-previous"><span>Предыдущий пост</span><a href="@Url.Action("Post", "Home", new { id = Model.PostID - 1 })" rel="prev"><span class="meta-nav">←</span>
                                                                @{try
@@ -78,7 +78,7 @@
         </a>
     </div>
 
-</nav>
+</nav>*@
 <div id="comments" class="comments-area">
 
 

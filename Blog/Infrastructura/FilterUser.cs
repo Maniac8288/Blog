@@ -1,4 +1,4 @@
-﻿using DataModel;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,11 +38,11 @@ namespace Blog.Infrastructura
             if (role != "")
             {
                 /// Проверка соответствия роли пользователя 
-                using (var db = new DataContext())
-                {
-                    var t = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
-                    u = t.Any(x => x.UserName == WebUser.CurrentUser.UserName);
-                }
+                //using (var db = new DataContext())
+                //{
+                //    var t = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
+                //    u = t.Any(x => x.UserName == WebUser.CurrentUser.UserName);
+                //}
             }
             if (user == UserName || u)
             {

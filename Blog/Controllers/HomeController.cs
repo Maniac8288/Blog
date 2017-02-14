@@ -1,5 +1,4 @@
 ﻿using Blog.Infrastructura;
-using DataModel.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,8 @@ namespace Blog.Controllers
         /// <returns>Вывод постов из БД отсоротированные по дате</returns>
         public ActionResult Index()
         {
-            return View(db.Posts.OrderByDescending(x => x.dateAddPost));
+            var posts = Services.Post.PostPreview();
+            return View(posts);
         }
         /// <summary>
         /// Страница с новостями
@@ -55,7 +55,9 @@ namespace Blog.Controllers
             {
                 return HttpNotFound();
             }
-            return View(db.Posts.Where(x=>x.Tags.Contains(tags)));
+            var posts = Services.Post.PostPreview();
+            var tag = posts.Where(x => x.Tags.Contains(tags));
+            return View(tag);
         }
         /// <summary>
         /// Страница с постами по выбранной категории
@@ -64,7 +66,9 @@ namespace Blog.Controllers
         /// <returns>Вывод постов из БД по выбранной категории</returns>
         public ActionResult Category(string category)
         {
-            return View(db.Posts.Where(x => x.selectedCategory == category));
+            var posts = Services.Post.PostPreview();
+            var Category = posts.Where(x => x.selectedCategory == category);
+            return View(Category);
         }
         /// <summary>
         /// Страница с определенным постом
@@ -73,54 +77,18 @@ namespace Blog.Controllers
         /// <returns>Вывод поста по определенному ID</returns>
         public ActionResult Post(int? id)
         {
-            if (db.Posts.Find(id) == null)
+            if (id == null)
             {
                 return HttpNotFound();
             }
-            PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(db.Posts.Find(id));
-            return View(db.Posts.Find(id));
-        }
-        /// <summary>
-        /// Страница добовления поста на сайт
-        /// </summary>
-        /// <returns>Новый объект модели</returns>
-        [HttpGet]
-        public ActionResult AddPost()
-        {
-
-            return View();
-        }
-        /// <summary>
-        /// Добовление поста в коллекцию
-        /// </summary>
-        /// <param name="model">Модель поста</param>
-        /// <param name="upload">Добавление картинки</param>
-        /// <returns></returns>
-
-        [HttpPost]
-        public ActionResult AddPost(Post model, HttpPostedFileBase upload)
-        {
-
-
-            if (upload != null)
+            var posts = Services.Post.PostDetails();
+            var post = posts.FirstOrDefault(x => x.PostID == id);
+            if (post != null)
             {
-                // получаем имя файла
-                string fileName = System.IO.Path.GetFileName(upload.FileName);
-                model.upload = fileName;
-                // сохраняем файл в папку img в проекте
-                //System.IO.Directory.CreateDirectory(Server.MapPath("~/img/") + model.PostID);
-                upload.SaveAs(Server.MapPath("~/img/"  + "/" + fileName));
-
-
-
+                return View(post);
             }
-            db.Posts.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View("Error");
         }
-        public ActionResult TestImage()
-        {
-            return View();
-        }
+
     }
 }

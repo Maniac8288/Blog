@@ -30,7 +30,7 @@ namespace Blog.Infrastructura
         }
         public new ModelUser User { get; set; }
    
-        public DataContext db = new DataContext();
+       
 
         public override void Execute()
         {

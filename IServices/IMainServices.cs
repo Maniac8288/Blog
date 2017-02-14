@@ -1,4 +1,5 @@
 ﻿
+using IServices.Sublntefac;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace IServices
     {
         IUserServices Users { get; set; }
         IRegisterServices Register { get;set; }
-        
-      
-       
-     
+        IPostServices Post { get; set; }
+
+
+
     }
 }

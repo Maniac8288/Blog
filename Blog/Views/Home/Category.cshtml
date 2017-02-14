@@ -1,5 +1,4 @@
-﻿@using DataModel.Models;
-@model IEnumerable<Post>
+﻿@model IEnumerable<IServices.Models.ModelPostPreview>
 @{
     ViewBag.Title = "Поиск по категориям";
 }
@@ -35,7 +34,7 @@
                 <i class="ico-folder"></i> <a href="#" rel="category tag">@item.selectedCategory</a>
             </span>
 
-            <span class="tags-links">
+            @*<span class="tags-links">
                 <i class="ico-tags"></i>@{ PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(item);}
                 @foreach (string tag in PostDataStorage.collectionsTags)
                 {
@@ -43,7 +42,7 @@
                         @tag
                     </a>
                 }
-            </span>
+            </span>*@
             <!-- .entry-meta -->
         </footer>
         <!-- #post-1241-->

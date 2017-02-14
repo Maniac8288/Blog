@@ -50,8 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMainServices.cs" />
+    <Compile Include="Models\ModelPostPreview.cs" />
     <Compile Include="Models\ModelUser.cs" />
+    <Compile Include="Models\ModelPost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sublntefac\IPostServices.cs" />
     <Compile Include="Sublntefac\IRegisterServices.cs" />
     <Compile Include="Sublntefac\IUserServices.cs" />
   </ItemGroup>
