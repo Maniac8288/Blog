@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataModel.Models;
+using IServices.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -25,14 +27,14 @@ namespace Services.Exextension
             }
             return hash.ToString();
         }
-
       
-        
-            /// <summary>
-            /// Метод создающий соль
-            /// </summary>
-            /// <returns>Возвращает соль</returns>
-            public static string getSalt()
+
+
+        /// <summary>
+        /// Метод создающий соль
+        /// </summary>
+        /// <returns>Возвращает соль</returns>
+        public static string getSalt()
             {
                 var random = new RNGCryptoServiceProvider();
 

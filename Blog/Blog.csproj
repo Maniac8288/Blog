@@ -260,7 +260,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Images\" />
     <Folder Include="img\Users\" />
-    <Folder Include="Jcrop-v0.9.12\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

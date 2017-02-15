@@ -27,5 +27,15 @@ namespace Services
                 return db.Users.Any(_ => _.UserName == userName && _.Password == _.Salt+password);
             }
         }
+        public static bool check(bool u, string role, string UserName)
+        {
+            using (var db = new DataContext())
+            {
+                var t = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
+                u = t.Any(x => x.UserName == UserName);
+            }
+            return u;
+        }   
+        }
     }
-}
+

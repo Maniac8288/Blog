@@ -37,15 +37,15 @@
     </a>
             </span>
 
-            @*<span class="tags-links">
-                <i class="ico-tags"></i>@{ PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(item);}
-                @foreach (string tag in PostDataStorage.collectionsTags)
+            <span class="tags-links">
+                <i class="ico-tags"></i>@{ Services.PostServices.collectionsTags = Services.PostServices.TagsSplit(item);}
+                @foreach (string tag in Services.PostServices.collectionsTags)
                 {
                     <a class="btn btn-default btn-sm" href="@Url.Action("Tag","Home", new { tags = tag })">
                         @tag
                     </a>
                 }
-            </span>*@
+            </span>
             <!-- .entry-meta -->
         </footer>
         <!-- #post-1241-->

@@ -37,12 +37,8 @@ namespace Blog.Infrastructura
             bool u = false;
             if (role != "")
             {
-                /// Проверка соответствия роли пользователя 
-                //using (var db = new DataContext())
-                //{
-                //    var t = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
-                //    u = t.Any(x => x.UserName == WebUser.CurrentUser.UserName);
-                //}
+             u= Services.UserServices.check(u, role, WebUser.CurrentUser.UserName);
+             
             }
             if (user == UserName || u)
             {

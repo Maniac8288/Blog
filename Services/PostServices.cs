@@ -64,5 +64,10 @@ namespace Services
                 Author = post.Author
             };
         }
+        public static List<string> collectionsTags = new List<string>();
+        public static List<string> TagsSplit(ModelPostPreview model)
+        {
+            return model.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        }
     }
 }

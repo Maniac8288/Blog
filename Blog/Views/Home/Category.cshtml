@@ -28,21 +28,21 @@
             <p>@item.contentPost</p>
             <!-- .entry-summary -->
         </div>
-        <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" class="more-link">Continue Reading <span class="meta-nav">→</span></a>
+        <a href="@Url.Action("Post","Home", new { id = item.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>
         <footer class="entry-meta entry-footer">
             <span class="cat-links">
                 <i class="ico-folder"></i> <a href="#" rel="category tag">@item.selectedCategory</a>
             </span>
 
-            @*<span class="tags-links">
-                <i class="ico-tags"></i>@{ PostDataStorage.collectionsTags = PostDataStorage.Storage.TagsSplit(item);}
-                @foreach (string tag in PostDataStorage.collectionsTags)
-                {
-                    <a class="btn btn-default btn-sm" href="@Url.Action("Tag","Home", new { tags = tag })">
-                        @tag
-                    </a>
-                }
-            </span>*@
+            <span class="tags-links">
+        <i class="ico-tags"></i>@{ Services.PostServices.collectionsTags = Services.PostServices.TagsSplit(item);}
+        @foreach (string tag in Services.PostServices.collectionsTags)
+        {
+            <a class="btn btn-default btn-sm" href="@Url.Action("Tag","Home", new { tags = tag })">
+                @tag
+            </a>
+        }
+    </span>
             <!-- .entry-meta -->
         </footer>
         <!-- #post-1241-->

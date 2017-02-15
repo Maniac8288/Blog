@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IServices
+namespace ImageUpload
 {
-   public  interface IUserServices
+    public class Class1
     {
-        bool Login(string userName, string password);
-      
     }
 }
