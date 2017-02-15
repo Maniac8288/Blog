@@ -80,7 +80,7 @@ namespace Blog.Infrastructura
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-        public static void Register(string userName, string password, string dataBird)
+        public static void Register(string userName, string password, DateTime dataBird)
         {
             Services.Register.Register(userName,password,dataBird);
         }

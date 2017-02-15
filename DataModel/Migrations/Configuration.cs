@@ -14,21 +14,14 @@ namespace DataModel.Migrations
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Blog.DataContext context)
+       
+       protected override void Seed(Blog.DataContext context)
         {
-            var admin = new User { UserName = "Max", Password = "123456" };
-            var user = new User { UserName = "Petr", Password = "123456" };
-            context.Users.AddOrUpdate(
-              p => p.Id,
-              admin,
-              user,
-              new User { UserName = "Vladimir", Password = "123456" }
-            );
 
             context.Roles.AddOrUpdate(p => p.Id,
-                new Role { Id = TypeRoles.Admin, Name = "Admin", Users = new List<User> { admin } },
-                new Role { Id = TypeRoles.User, Name = "User", Users = new List<User> { user } },
-                  new Role { Id = TypeRoles.Admin, Name = "Admin", Users = new List<User> { new User { UserName = "Rowan Miller", Password = "123456" } } }
+                new Role { Id = TypeRoles.Admin, Name = "Admin" },
+                new Role { Id = TypeRoles.User, Name = "User"}
+        
                 );
             context.Posts.AddOrUpdate(
              p => p.PostID,

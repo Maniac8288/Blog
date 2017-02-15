@@ -34,13 +34,13 @@ namespace Blog.Infrastructura
             {
                 UserName = WebUser.CurrentUser.UserName;
             }
-            bool u = false;
+            bool check = false;
             if (role != "")
             {
-             u= Services.UserServices.check(u, role, WebUser.CurrentUser.UserName);
+                check = Services.UserServices.check(check, role, WebUser.CurrentUser.UserName);
              
             }
-            if (user == UserName || u)
+            if (user == UserName || check)
             {
                 return WebUser.CurrentUser.IsAuth;
             }

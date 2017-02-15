@@ -27,14 +27,21 @@ namespace Services
                 return db.Users.Any(_ => _.UserName == userName && _.Password == _.Salt+password);
             }
         }
-        public static bool check(bool u, string role, string UserName)
+        /// <summary>
+        /// Проверяет роль пользователя
+        /// </summary>
+        /// <param name="check">Совпадает ли роль с БД</param>
+        /// <param name="role">Роль пользователя</param>
+        /// <param name="UserName">Имя пользователя</param>
+        /// <returns>Возвращает совпадает ли роль с БД</returns>
+        public static bool check(bool check, string role, string UserName)
         {
             using (var db = new DataContext())
             {
                 var t = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
-                u = t.Any(x => x.UserName == UserName);
+                check = t.Any(x => x.UserName == UserName);
             }
-            return u;
+            return check;
         }   
         }
     }

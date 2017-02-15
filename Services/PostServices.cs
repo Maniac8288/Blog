@@ -14,8 +14,10 @@ using DataModel.Models;
 
 namespace Services
 {
+   
     public class PostServices : IPostServices
     {
+        public static DataContext db = new DataContext();
         public List<ModelPostPreview> PostPreview()
         {
             using (var db = new DataContext())

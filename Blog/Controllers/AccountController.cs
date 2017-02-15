@@ -38,7 +38,7 @@ namespace Blog.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(string userName, string pw1,string dataBird)
+        public ActionResult Register(string userName, string pw1,DateTime dataBird)
         {
 
             WebUser.Register(userName, pw1, dataBird);

@@ -21,7 +21,7 @@ namespace Services
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-        public void Register(string userName, string password,string dataBird)
+        public void Register(string userName, string password,DateTime dataBird)
         {
            
             string salt = Security.getSalt();
@@ -32,7 +32,7 @@ namespace Services
                     UserName = userName,
                     Password = salt + password.sha256(),
                     Salt = salt,
-                    dataBird = dataBird,
+                    Datebirth = dataBird,
                 Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
                 };
                          db.Users.Add(user);
