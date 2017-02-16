@@ -13,6 +13,7 @@ namespace IServices
         IUserServices Users { get; set; }
         IRegisterServices Register { get;set; }
         IPostServices Post { get; set; }
+        IAdminServices Admin { get; set; }
 
 
 

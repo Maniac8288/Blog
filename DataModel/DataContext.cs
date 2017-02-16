@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Blog
+namespace DataModel
 {
     public class DataContext:DbContext
     { 
@@ -19,7 +19,7 @@ namespace Blog
 
         
         public DbSet<User> Users { get; set; }
-
+        public DbSet<CheckEmail> ChecksEmail{get;set;}
         public DbSet<Role> Roles { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -35,6 +35,16 @@ namespace Blog
                   .HasColumnType("datetime2")
                   .HasPrecision(0)
                   .IsRequired();
+            modelBuilder.Entity<User>().
+                Property(p => p.DateRegister)
+                .HasColumnType("datetime2")
+                .HasPrecision(0)
+                .IsRequired();
+            modelBuilder.Entity<Post>().
+                Property(p => p.dateAddPost)
+                .HasColumnType("datetime2")
+                .HasPrecision(0)
+                .IsRequired();
         }
   
 

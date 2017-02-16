@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -208,6 +209,8 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\NewPost.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -249,6 +252,7 @@
     <Content Include="Views\Home\Tag.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
+    <Content Include="Views\Account\Confrimed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -258,6 +262,7 @@
     <Folder Include="Areas\Admin\Metrionic\global\plugins\" />
     <Folder Include="Areas\Admin\Metrionic\global\scripts\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Images\" />
     <Folder Include="img\Users\" />
     <Folder Include="Models\" />

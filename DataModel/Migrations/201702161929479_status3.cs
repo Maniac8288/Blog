@@ -3,7 +3,7 @@ namespace DataModel.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newTable : DbMigration
+    public partial class status3 : DbMigration
     {
         public override void Up()
         {
@@ -28,7 +28,7 @@ namespace DataModel.Migrations
                         selectedCategory = c.String(),
                         contentPost = c.String(),
                         Tags = c.String(),
-                        dateAddPost = c.String(),
+                        dateAddPost = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
                         upload = c.String(),
                         Author = c.String(),
                         Category_Id = c.Int(),
@@ -49,6 +49,8 @@ namespace DataModel.Migrations
                         Salt = c.String(),
                         Email = c.String(),
                         LastVisit = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
+                        DateRegister = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
+                        Status = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

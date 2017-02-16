@@ -1,4 +1,4 @@
-﻿using Blog;
+﻿
 using DataModel;
 using IServices;
 using System;
@@ -24,7 +24,14 @@ namespace Services
         {
             using (var db = new DataContext())
             {
-                return db.Users.Any(_ => _.UserName == userName && _.Password == _.Salt+password);
+                var auth = db.Users.Any(_ => _.UserName == userName && _.Password == _.Salt + password && _.Status==true);
+                 if (auth)
+                {
+                 var user =  db.Users.FirstOrDefault(_ => _.UserName == userName);
+                    user.LastVisit = DateTime.Now; 
+                    db.SaveChanges();
+                }
+                return auth;
             }
         }
         /// <summary>

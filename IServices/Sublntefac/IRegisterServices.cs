@@ -9,6 +9,6 @@ namespace IServices
 {
     public interface IRegisterServices
     {
-        void Register(string userName, string password,DateTime dataBird);
+        bool Register(string userName, string password,DateTime dataBird, string email);
     }
 }

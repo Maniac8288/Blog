@@ -18,11 +18,13 @@ namespace Services
             Users = new UserServices();
             Register = new RegisterServices();
             Post = new PostServices();
+            Admin = new AdminServices();
          
         }
         public IUserServices Users { get; set; }
         public IRegisterServices Register { get; set; }
         public IPostServices Post { get; set; }
+        public IAdminServices Admin { get; set; }
       
 
     }

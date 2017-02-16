@@ -9,7 +9,6 @@ using System.Data.Entity;
 using IServices.Models;
 using System.Linq.Expressions;
 using IServices.Sublntefac;
-using Blog;
 using DataModel.Models;
 
 namespace Services
@@ -17,7 +16,7 @@ namespace Services
    
     public class PostServices : IPostServices
     {
-        public static DataContext db = new DataContext();
+       
         public List<ModelPostPreview> PostPreview()
         {
             using (var db = new DataContext())

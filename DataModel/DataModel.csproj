@@ -50,13 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201702151043582_newTable.cs" />
-    <Compile Include="Migrations\201702151043582_newTable.Designer.cs">
-      <DependentUpon>201702151043582_newTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702151057411_post1.cs" />
-    <Compile Include="Migrations\201702151057411_post1.Designer.cs">
-      <DependentUpon>201702151057411_post1.cs</DependentUpon>
+    <Compile Include="Migrations\201702161929479_status3.cs" />
+    <Compile Include="Migrations\201702161929479_status3.Designer.cs">
+      <DependentUpon>201702161929479_status3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -78,11 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702151043582_newTable.resx">
-      <DependentUpon>201702151043582_newTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702151057411_post1.resx">
-      <DependentUpon>201702151057411_post1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702161929479_status3.resx">
+      <DependentUpon>201702161929479_status3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace IServices.Models
 {
-    public class ModelUser
+ public   class ModelUserInfo
     {
         public int Id { get; set; }
-
+        
         public string UserName { get; set; }
         public string dateBird { get; set; }
-        public string Password { get; set; }
-        public string Photo { get; set; }
+        public DateTime DateRegister { get; set; }
         public string Email { get; set; }
-        /// <summary>
-        /// Авторизован пользователь или нет
-        /// </summary>
-        public bool IsAuth { get; set; }
+        public string Role { get; set; }
+        public DateTime LastVisit { get; set; }
+        public bool Status { get; set; }
     }
 }

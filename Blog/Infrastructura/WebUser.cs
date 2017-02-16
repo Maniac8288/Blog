@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using System.Globalization;
 using System.Numerics;
 using Services.Exextension;
+using System.Net.Mail;
 
 namespace Blog.Infrastructura
 {
@@ -59,7 +60,8 @@ namespace Blog.Infrastructura
            
             if (Services.Users.Login(userName, password.sha256()))
             {
-                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password };
+                
+                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password};
                 if (RememberMe)
                 {
                     HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Value = Encrypt(CurrentUser), Expires = DateTime.Now.AddDays(1) });
@@ -80,11 +82,23 @@ namespace Blog.Infrastructura
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-        public static void Register(string userName, string password, DateTime dataBird)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public static void Register(string userName, string password, DateTime dataBird,string email)
         {
-            Services.Register.Register(userName,password,dataBird);
+           
+            if (Services.Register.Register(userName, password, dataBird, email)) {
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress("testshop2018@gmail.com");
+                msg.To.Add(email);
+                msg.Subject = "2";
+                msg.Body = ("Для завершения регистрации перейдите по "+ "<a href=\"http://localhost:62712/Account/Confrimed\" title=\"Подтвердить регистрацию\">ссылке</a>");
+                msg.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Send(msg);
+            };
         }
-
+        
         #region Криптография
 
         static byte[] key = Encoding.UTF8.GetBytes("Some salt value0Some salt value0");

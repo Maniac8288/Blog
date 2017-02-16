@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using IServices;
 using DataModel;
-using Blog;
 using Services.Exextension;
 
 namespace Services
@@ -21,23 +20,39 @@ namespace Services
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-        public void Register(string userName, string password,DateTime dataBird)
+        public bool Register(string userName, string password,DateTime dataBird,string email)
         {
-           
-            string salt = Security.getSalt();
-            using (var db = new DataContext())
+            try
             {
-                User user = new User()
+                string salt = Security.getSalt();
+                using (var db = new DataContext())
                 {
-                    UserName = userName,
-                    Password = salt + password.sha256(),
-                    Salt = salt,
-                    Datebirth = dataBird,
-                Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
-                };
-                         db.Users.Add(user);
-                         db.SaveChanges();
+                    User user = new User()
+                    {
+                        UserName = userName,
+                        Password = salt + password.sha256(),
+                        Salt = salt,
+                        Datebirth = dataBird,
+                        Email = email,
+                        Status = true,
+                        CheckEmail = new CheckEmail
+                        {
+                            ConfirmedEmail = false,
+                            ConfirmationCode = salt
+                        },
+                        Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
+                    };
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                return true;
             }
+            catch 
+            {
+                return false;
+            }
+            
         }
+
     }
 }

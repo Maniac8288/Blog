@@ -14,9 +14,11 @@ namespace DataModel
         public string Salt { get; set; }
         public string Email { get; set; }
         public DateTime LastVisit { get; set; }
-
+        public DateTime DateRegister { get; set;}
         public List<Role> Roles { get; set; }
         public List<Post> Posts { get; set; }
         public CheckEmail CheckEmail { get; set; }
+        public bool Status { get; set; }
+
     }
 }

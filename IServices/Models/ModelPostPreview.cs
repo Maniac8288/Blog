@@ -32,7 +32,7 @@ namespace IServices.Models
         /// <summary>
         /// Дата создания
         /// </summary>
-        public string dateAddPost { get; set; }
+        public DateTime dateAddPost { get; set; }
         /// <summary>
         /// Название картинки
         /// </summary>
