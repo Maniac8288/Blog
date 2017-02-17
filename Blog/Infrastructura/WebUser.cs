@@ -13,9 +13,10 @@ using System.Numerics;
 using Services.Exextension;
 using System.Net.Mail;
 
+
 namespace Blog.Infrastructura
 {
-  
+
     public class WebUser
     {
         private static IMainServices Services = DependencyResolver.Current.GetService<IMainServices>();
@@ -57,11 +58,11 @@ namespace Blog.Infrastructura
         /// <param name="RememberMe">Галочка-Запомнить меня</param>
         public static void Login(string userName, string password, bool RememberMe = false)
         {
-           
+
             if (Services.Users.Login(userName, password.sha256()))
             {
-                
-                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password};
+
+                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password };
                 if (RememberMe)
                 {
                     HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Value = Encrypt(CurrentUser), Expires = DateTime.Now.AddDays(1) });
@@ -82,23 +83,26 @@ namespace Blog.Infrastructura
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public static void Register(string userName, string password, DateTime dataBird,string email)
+       
+        public static string Register(string userName, string password, DateTime dataBird, string email)
         {
-           
-            if (Services.Register.Register(userName, password, dataBird, email)) {
-                MailMessage msg = new MailMessage();
-                msg.From = new MailAddress("testshop2018@gmail.com");
-                msg.To.Add(email);
-                msg.Subject = "2";
-                msg.Body = ("Для завершения регистрации перейдите по "+ "<a href=\"http://localhost:62712/Account/Confrimed\" title=\"Подтвердить регистрацию\">ссылке</a>");
-                msg.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient();
-                smtp.Send(msg);
-            };
+          string salt= Services.Register.Register(userName, password, dataBird, email);
+            return salt;
         }
+        /// <summary>
+        /// Потверждения Email
+        /// </summary>
+        /// <param name="salt">Случайное слово</param>
+        /// <param name="userName">Никнейм</param>
+        public static void Confrimed(string salt,string userName)
+        {
+             Services.Register.ConfrimedEmail(salt,userName);
+            }
+            
+                
         
+
+
         #region Криптография
 
         static byte[] key = Encoding.UTF8.GetBytes("Some salt value0Some salt value0");

@@ -13,8 +13,13 @@ namespace Services
 {
     public class AdminServices:IAdminServices
     {
+        /// <summary>
+        /// Вывод всех пользовотелей 
+        /// </summary>
+        /// <returns></returns>
         public List<ModelUserInfo> Users()
         {
+           
             using (var db = new DataContext())
             {
                
@@ -23,6 +28,10 @@ namespace Services
             }
 
         }
+        /// <summary>
+        /// Удаление из бд выбраного пользователя
+        /// </summary>
+        /// <param name="id">Список пользователй</param>
         public void Delete(List<int> id)
         {
             using (var db = new DataContext())
@@ -37,6 +46,10 @@ namespace Services
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Изменяет статус в бд на false
+        /// </summary>
+        /// <param name="id">Список пользователй </param>
         public void Block(List<int> id)
         {
             using (var db = new DataContext())
@@ -49,10 +62,12 @@ namespace Services
                 db.SaveChanges();
             }
         }
-            
+            /// <summary>
+            /// Изменяет модель "ModelUserInfo" на "User"
+            /// </summary>
+            /// <returns></returns>
         public static Expression<Func<User, ModelUserInfo>> ShowUsers()
         {
-
 
             return user => new ModelUserInfo()
             {
@@ -61,9 +76,7 @@ namespace Services
                 Email = user.Email,
                 LastVisit = user.LastVisit,
                 Status = user.Status
-                
-
-
+               
         };
            
         }
