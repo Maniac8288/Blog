@@ -15,7 +15,7 @@ namespace Blog.Areas.Admin.Controllers
         }
         public ActionResult Users()
         {
-            var usres = Services.Admin.Users();
+            var usres = AdminServices.Users.Users();
             return View(usres);
         }
         public ActionResult NewPost()
@@ -25,13 +25,13 @@ namespace Blog.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Delete( List<int> Select)
         {
-            Services.Admin.Delete(Select);
+            AdminServices.Users.Delete(Select);
             return RedirectToAction("Users");
         }
         [HttpPost]
         public ActionResult Block(List<int> Select)
         {
-            Services.Admin.Block(Select);
+            AdminServices.Users.Block(Select);
             return RedirectToAction("Users");
 
         }

@@ -1,7 +1,8 @@
 ﻿
 
+
 using IServices;
-using IServices.Sublntefac;
+using IServices.Sublntefac.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,14 @@ namespace Services
         public MainServices()
         {
             Users = new UserServices();
-            Register = new RegisterServices();
             Post = new PostServices();
-            Admin = new AdminServices();
-         
+       
+        
         }
         public IUserServices Users { get; set; }
-        public IRegisterServices Register { get; set; }
+ 
         public IPostServices Post { get; set; }
-        public IAdminServices Admin { get; set; }
+        
       
 
     }

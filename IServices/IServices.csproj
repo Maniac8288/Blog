@@ -50,20 +50,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMainServices.cs" />
-    <Compile Include="Models\ModelPostPreview.cs" />
-    <Compile Include="Models\ModelUser.cs" />
-    <Compile Include="Models\ModelPost.cs" />
-    <Compile Include="Models\ModelUserInfo.cs" />
+    <Compile Include="Models\Post\ModelPostPreview.cs" />
+    <Compile Include="Models\User\ModelUser.cs" />
+    <Compile Include="Models\Post\ModelPost.cs" />
+    <Compile Include="Models\User\ModelUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sublntefac\IAdminServices.cs" />
-    <Compile Include="Sublntefac\IPostServices.cs" />
-    <Compile Include="Sublntefac\IRegisterServices.cs" />
-    <Compile Include="Sublntefac\IUserServices.cs" />
+    <Compile Include="IAdminServices.cs" />
+    <Compile Include="Sublntefac\Admin\IAdminUsersServices.cs" />
+    <Compile Include="Sublntefac\Public\IPostServices.cs" />
+    <Compile Include="Sublntefac\Public\IUserServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

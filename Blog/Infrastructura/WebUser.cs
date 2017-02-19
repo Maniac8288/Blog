@@ -1,5 +1,4 @@
 ﻿using IServices;
-using IServices.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,7 @@ using System.Globalization;
 using System.Numerics;
 using Services.Exextension;
 using System.Net.Mail;
-
+using IServices.Models.User;
 
 namespace Blog.Infrastructura
 {
@@ -59,7 +58,7 @@ namespace Blog.Infrastructura
         public static void Login(string userName, string password, bool RememberMe = false)
         {
 
-            if (Services.Users.Login(userName, password.sha256()))
+            if (Services.Users.Login(userName, password)) 
             {
 
                 CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password };
@@ -86,7 +85,7 @@ namespace Blog.Infrastructura
        
         public static string Register(string userName, string password, DateTime dataBird, string email)
         {
-          string salt= Services.Register.Register(userName, password, dataBird, email);
+          string salt= Services.Users.Register(userName, password, dataBird, email);
             return salt;
         }
         /// <summary>
@@ -96,11 +95,21 @@ namespace Blog.Infrastructura
         /// <param name="userName">Никнейм</param>
         public static void Confrimed(string salt,string userName)
         {
-             Services.Register.ConfrimedEmail(salt,userName);
+             Services.Users.ConfrimedEmail(salt,userName);
             }
-            
-                
-        
+
+        public static void SendMail(string subject, string email, string body)
+        {
+            MailMessage msg = new MailMessage();
+            msg.To.Add(email);
+            msg.Subject = subject;
+            msg.Body = body;
+            msg.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Send(msg);
+        }
+
+
 
 
         #region Криптография

@@ -1,6 +1,6 @@
 ﻿using Blog.Infrastructura;
 using IServices;
-using IServices.Models;
+using IServices.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace Blog.Areas.Admin.Controllers
     public class BaseController : Controller
     {
         public IMainServices Services { get; set; }
+        public IAdminServices AdminServices { get; set; }
 
         public BaseController()
         {
@@ -25,4 +26,4 @@ namespace Blog.Areas.Admin.Controllers
 
         public new ModelUser User { get; set; }
     }
-}
+} 

@@ -43,20 +43,13 @@ namespace Blog.Controllers
         public ActionResult Register(string userName, string pw1,DateTime dataBird,string email)
         {
 
+       var salt = WebUser.Register(userName, pw1, dataBird, email);
+            WebUser.SendMail("Подтвердите регистрацию", email, 
+                $@"Для завершения регистрации перейдите по 
+                 <a href='{Url.Action("Confrimed", "Account", new { salt = salt, userName = userName }, Request.Url.Scheme)}'
+                 title='Подтвердить регистрацию'>ссылке</a>");
+            return RedirectToAction("login");
 
-            string salt =  WebUser.Register(userName, pw1, dataBird,email);
-            MailMessage msg = new MailMessage();
-            msg.From = new MailAddress("testshop2018@gmail.com");
-            msg.To.Add(email);
-            msg.Subject = "2";
-            msg.Body = string.Format("Для завершения регистрации перейдите по " +
-                        "<a href=\"{0}\" title=\"Подтвердить регистрацию\">ссылке</a>",
-            Url.Action("Confrimed", "Account", new { salt = salt,userName =userName }, Request.Url.Scheme));
-            msg.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Send(msg);
-            return RedirectToAction("index", "home");
-          
         }
         
         public ActionResult Confrimed(string salt,string userName)

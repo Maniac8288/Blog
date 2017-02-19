@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminServices.cs" />
+    <Compile Include="Admin\AdminUsersServices.cs" />
     <Compile Include="Exextension\Security.cs" />
     <Compile Include="MainServices.cs" />
     <Compile Include="PostServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterServices.cs" />
     <Compile Include="UserServices.cs" />
   </ItemGroup>
   <ItemGroup>

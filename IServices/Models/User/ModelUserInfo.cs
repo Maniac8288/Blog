@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IServices.Models
+namespace IServices.Models.User
 {
  public   class ModelUserInfo
     {

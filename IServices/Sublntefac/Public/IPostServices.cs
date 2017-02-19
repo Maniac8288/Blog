@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IServices.Models;
+using IServices.Models.Post;
 
-namespace IServices.Sublntefac
+
+namespace IServices.Sublntefac.Public
 {
     public interface IPostServices
     {
