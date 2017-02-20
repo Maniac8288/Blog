@@ -11,18 +11,17 @@ namespace DataModel.Models
     /// </summary>
     public class Category
     {
-        /// <summary>
-        /// Ид категории
-        /// </summary>
         public int Id { get; set; }
-        /// <summary>
-        /// Имя категории
-        /// </summary>
+
         public string Name { get; set; }
-        /// <summary>
-        /// Коллекция наследников категорий
-        /// </summary>
-        public List<Category> Childrens { get; set; }
+
+        public Category Parent { get; set; }
+
+        public int? ParentId { get; set; }
+
+        public List<Category> Сhild { get; set; }
+
         public List<Post> Posts { get; set; }
+
     }
 }

@@ -24,6 +24,7 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <param name="id"></param>
         void Block(List<int> id);
+        void roleUsers(List<int> id, string role);
 
 
     }

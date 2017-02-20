@@ -86,6 +86,9 @@
         <div class="col-md-10 col-sm-10">
             <button id="deleteUsers" class="btn btn-danger">Удалить</button>
             <button id="blockUsers" class="btn btn-danger">Заблокировать</button>
+            <button id="sample_editable_1_new" class="btn blue" data-toggle="modal" data-target="#roleModal">
+                Изменить роль 
+            </button>
            
         </div>
     </div>
@@ -94,6 +97,36 @@
 </div>
 
 
+<div id="roleModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Выбор роли</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+
+                    
+                        <input type="button" class="btn btn-info" id="Admin" name="Admin" value="Admin" style="width:200px;margin:10px;">
+
+
+
+
+                        <input type="button" class="btn btn-info" id="User" name="User" value="User" style="width:200px; margin:10px;  ">
+                    
+               
+            </div>
+           
+
+                <div class="modal-footer text-center">
+                    
+                    <button class="btn btn-default" type="button" data-dismiss="modal"style="width:200px;margin:10px;">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
         $(document).ready(function () {
@@ -138,6 +171,62 @@
                 formaData.append("list", values);
                 $.ajax({
                     url: 'BlockUsers',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formaData,
+                    beforeSend: function () { console.log(values); },
+                    success: function (data) {
+                        updateUsers();
+                        console.log(data);
+                    }
+                });
+
+            });
+            $('#Admin').click(function () {
+                var formaData = new FormData();
+                var list = $('#delete').attr("name");
+                var listVal = $('#delete').attr("value");
+                values = $("input[name=list]").map(function () {
+                    if ($(this)[0].checked) {
+                        return $(this).val();
+                    }
+
+                }).get();
+                var role =  $("#Admin").val();
+
+                formaData.append("list", values);
+                formaData.append("role",role);
+                $.ajax({
+                    url: 'roleUsers',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formaData,
+                    beforeSend: function () { console.log(values); },
+                    success: function (data) {
+                        updateUsers();
+                        console.log(data);
+                    }
+                });
+
+            });
+            $('#User').click(function () {
+                var formaData = new FormData();
+                var list = $('#delete').attr("name");
+                var listVal = $('#delete').attr("value");
+                values = $("input[name=list]").map(function () {
+                    if ($(this)[0].checked) {
+                        return $(this).val();
+                    }
+
+                }).get();
+                var role = $("#User").val();
+
+                formaData.append("list", values);
+                formaData.append("role", role);
+                $.ajax({
+                    url: 'roleUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,

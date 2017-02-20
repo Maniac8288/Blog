@@ -13,11 +13,11 @@ namespace DataModel.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
-                        Category_Id = c.Int(),
+                        ParentId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Categories", t => t.Category_Id)
-                .Index(t => t.Category_Id);
+                .ForeignKey("dbo.Categories", t => t.ParentId)
+                .Index(t => t.ParentId);
             
             CreateTable(
                 "dbo.Posts",
@@ -111,14 +111,14 @@ namespace DataModel.Migrations
             DropForeignKey("dbo.UserPosts", "Post_PostID", "dbo.Posts");
             DropForeignKey("dbo.UserPosts", "User_Id", "dbo.Users");
             DropForeignKey("dbo.CheckEmails", "UserId", "dbo.Users");
-            DropForeignKey("dbo.Categories", "Category_Id", "dbo.Categories");
+            DropForeignKey("dbo.Categories", "ParentId", "dbo.Categories");
             DropIndex("dbo.RoleUsers", new[] { "User_Id" });
             DropIndex("dbo.RoleUsers", new[] { "Role_Id" });
             DropIndex("dbo.UserPosts", new[] { "Post_PostID" });
             DropIndex("dbo.UserPosts", new[] { "User_Id" });
             DropIndex("dbo.CheckEmails", new[] { "UserId" });
             DropIndex("dbo.Posts", new[] { "Category_Id" });
-            DropIndex("dbo.Categories", new[] { "Category_Id" });
+            DropIndex("dbo.Categories", new[] { "ParentId" });
             DropTable("dbo.RoleUsers");
             DropTable("dbo.UserPosts");
             DropTable("dbo.Roles");

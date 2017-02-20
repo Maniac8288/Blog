@@ -29,46 +29,46 @@ namespace DataModel.Models
             {
                 Id = 1,
                 Name = "Кино",
-                Childrens = new List<Category>()
+                Сhild = new List<Category>()
                 {
                         new Category
                     {
-                        Name = "Драма"
+                        Name = "Драма", ParentId =1
                     },
                         new Category
                     {
-                        Name = "Фантастика"
+                        Name = "Фантастика",ParentId =1
                     },
                             new Category
                     {
-                        Name = "Ужасы"
+                        Name = "Ужасы",ParentId =1
                     },
                                 new Category
                     {
-                        Name = "Триллер"
+                        Name = "Триллер",ParentId =1
                     }
                 }
             },
              new Category
             {Id = 2,
                 Name = "Сериалы",
-                Childrens = new List<Category>()
+                Сhild = new List<Category>()
                 {
                         new Category
                     {
-                        Name = "Драма"
+                        Name = "Драма",ParentId =2
                     },
                         new Category
                     {
-                        Name = "Фантастика"
+                        Name = "Фантастика",ParentId =2
                     },
                             new Category
                     {
-                        Name = "Ужасы"
+                        Name = "Ужасы",ParentId =2
                     },
                                 new Category
                     {
-                        Name = "Триллер"
+                        Name = "Триллер",ParentId =2
                     }
                 }
             },
@@ -77,15 +77,15 @@ namespace DataModel.Models
             {
                 Id = 3,
                 Name = "Новости",
-                Childrens = new List<Category>()
+                Сhild = new List<Category>()
                 {
                     new Category
                     {
-                        Name = "Спорт"
+                        Name = "Спорт",ParentId =3
                     },
                     new Category
                     {
-                        Name = "Политика"
+                        Name = "Политика",ParentId =3
                     }
                 }
             }

@@ -82,25 +82,50 @@ namespace Services
             string salt = Security.getSalt();
             using (var db = new DataContext())
             {
-                User user = new User()
-                {
-                    UserName = userName,
-                    Password = (salt + password).sha256(),
-                    Salt = salt,
-                    Datebirth = dataBird,
-                    Email = email,
-                    StatusUserId = EnumStatusUser.NConfirmed,
-                    CheckEmail = new CheckEmail
-                    { 
-                        ConfirmedEmail = false,
-                        ConfirmationCode = salt
-                    },
-                    Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
-                };
-                db.Users.Add(user);
-                db.SaveChanges();
+              
+                
+                    User NewUser = new User()
+                    {
+                        UserName = userName,
+                        Password = (salt + password).sha256(),
+                        Salt = salt,
+                        Datebirth = dataBird,
+                        Email = email,
+                        StatusUserId = EnumStatusUser.NConfirmed,
+                        CheckEmail = new CheckEmail
+                        {
+                            ConfirmedEmail = false,
+                            ConfirmationCode = salt
+                        },
+                        Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
+                    };
+                    db.Users.Add(NewUser);
+                    db.SaveChanges();
+                    return salt;
+                
+               
+               
             }
-            return salt;
+            
+        }
+        /// <summary>
+        /// Проверка существует ли пользователь
+        /// </summary>
+        /// <param name="userName">Логин пользователя</param>
+        /// <param name="email">Почта пользователя</param>
+        /// <returns></returns>
+        public bool CheckExistUser(string userName, string email)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.UserName == userName || x.Email == email);
+                if (user == null)
+                {
+                    return false;
+                }
+                else return true;
+
+            }
         }
         /// <summary>
         /// Изменяет в БД Статус и потверждение емайла на true

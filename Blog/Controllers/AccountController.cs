@@ -69,14 +69,21 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Register(string userName, string pw1,DateTime dataBird,string email)
         {
-
-       var salt = WebUser.Register(userName, pw1, dataBird, email);
-            WebUser.SendMail("Подтвердите регистрацию", email, 
-                $@"Для завершения регистрации перейдите по 
+          var check =  WebUser.CheckExistUser(userName, email);
+            if (check == false)
+            {
+                var salt = WebUser.Register(userName, pw1, dataBird, email);
+                WebUser.SendMail("Подтвердите регистрацию", email,
+                    $@"Для завершения регистрации перейдите по 
                  <a href='{Url.Action("Confrimed", "Account", new { salt = salt, userName = userName }, Request.Url.Scheme)}'
                  title='Подтвердить регистрацию'>ссылке</a>");
-            return RedirectToAction("login");
+                return RedirectToAction("login");
+            }
 
+            else
+            {
+                ViewData["Message"] = "Пользователь с данным логином или почтой уже существует";
+                return View(); }
         }
         /// <summary>
         /// Потверждение почты пользователя

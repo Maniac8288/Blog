@@ -1,4 +1,4 @@
-﻿
+﻿using System.Data.Entity;
 using IServices.Models;
 using System;
 using System.Collections.Generic;
@@ -64,10 +64,40 @@ namespace Services.Admin
                 db.SaveChanges();
             }
         }
-            /// <summary>
-            /// Изменяет модель "ModelUserInfo" на "User"
-            /// </summary>
-            /// <returns></returns>
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="role"></param>
+        public void roleUsers(List<int> id,string role)
+        {
+            using (var db = new DataContext())
+            {
+                
+                foreach (int item in id)
+                {
+                    var user = db.Users.Include(x=>x.Roles).FirstOrDefault(_ => _.Id == item);
+                    if (role == "User")
+                    {
+                
+                        user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList();
+                     
+                    }
+                    if (role == "Admin")
+                    {
+                      
+                        user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.Admin).ToList();
+                    }
+                  
+                }
+                try { db.SaveChanges(); }
+                catch(Exception ex) { }
+            }
+        }
+        /// <summary>
+        /// Изменяет модель "ModelUserInfo" на "User"
+        /// </summary>
+        /// <returns></returns>
         public static Expression<Func<User, ModelUserInfo>> ShowUsers()
         {
 

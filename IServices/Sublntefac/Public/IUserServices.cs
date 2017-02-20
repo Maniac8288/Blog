@@ -28,7 +28,19 @@ namespace IServices.Sublntefac.Public
         /// <param name="userName">Никнейм</param>
         /// <returns></returns>
         bool ConfrimedEmail(string salt, string userName);
+        /// <summary>
+        /// Заменяет старый пароль в БД на новый
+        /// </summary>
+        /// <param name="email">Почта пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
         void ForgotPW(string email, string password);
+        /// <summary>
+        /// Проверяет существует ли пользователь с данным логином или почтой в БД
+        /// </summary>
+        /// <param name="userName">Логин пользователя</param>
+        /// <param name="email">Почта пользователя</param>
+        /// <returns></returns>
+        bool CheckExistUser(string userName, string email);
         #endregion
     }
 }

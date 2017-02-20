@@ -77,17 +77,29 @@ namespace Blog.Infrastructura
             HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Expires = DateTime.Now.AddDays(-1) });
         }
         /// <summary>
+        /// Проверяет существует ли пользователь с данным логином или почтой в БД
+        /// </summary>
+        /// <param name="userName">Логин пользователя</param>
+        /// <param name="email">Почта пользовтеля</param>
+        /// <returns></returns>
+        public static bool CheckExistUser(string userName,string email)
+        {
+            return Services.Users.CheckExistUser(userName, email);
+          
+        }
+        /// <summary>
         /// Выполняет регистрацию пользователя на сайте
         /// </summary>
         /// <param name="userName">Имя пользователя</param>
         /// <param name="password">Пароль пользователя</param>
         /// <param name="dataBird">Дата рождения пользователя</param>
-       
+
         public static string Register(string userName, string password, DateTime dataBird, string email)
         {
           string salt= Services.Users.Register(userName, password, dataBird, email);
             return salt;
         }
+
         /// <summary>
         /// Потверждения Email
         /// </summary>
