@@ -211,6 +211,7 @@
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\NewPost.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\upUsers.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -253,6 +254,8 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\Post.cshtml" />
     <Content Include="Views\Account\Confrimed.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\NewPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

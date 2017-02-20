@@ -59,7 +59,7 @@ namespace Services.Admin
                 foreach (int item in id)
                 {
                     var user = db.Users.FirstOrDefault(_ => _.Id == item);
-                    user.Status = false;
+                    user.StatusUserId = EnumStatusUser.Locked;
                 }
                 db.SaveChanges();
             }
@@ -77,9 +77,10 @@ namespace Services.Admin
                 UserName = user.UserName,
                 Email = user.Email,
                 LastVisit = user.LastVisit,
-                Status = user.Status
-               
-        };
+                Status = user.StatusUserId,
+                Roles = user.Roles.Select(role => new ModelRole { Id = (ModelEnumTypeRoles)role.Id, Name = role.Name }).ToList()
+
+            };
            
         }
         

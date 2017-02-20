@@ -20,6 +20,7 @@ namespace Blog.Areas.Admin.Controllers
         public BaseController()
         {
             Services = DependencyResolver.Current.GetService<IMainServices>();
+            AdminServices = DependencyResolver.Current.GetService<IAdminServices>();
             User = WebUser.CurrentUser;
 
         }

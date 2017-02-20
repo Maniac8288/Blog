@@ -22,6 +22,7 @@ namespace Blog.App_Start
 
             // регистрируем споставление типов
             builder.RegisterType<MainServices>().As<IMainServices>();
+            builder.RegisterType<AdminServices>().As<IAdminServices>();
 
             // создаем новый контейнер с теми зависимостями, которые определены выше
             var container = builder.Build();

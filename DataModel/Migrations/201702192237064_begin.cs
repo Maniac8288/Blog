@@ -3,7 +3,7 @@ namespace DataModel.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class status3 : DbMigration
+    public partial class begin : DbMigration
     {
         public override void Up()
         {
@@ -50,7 +50,7 @@ namespace DataModel.Migrations
                         Email = c.String(),
                         LastVisit = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
                         DateRegister = c.DateTime(nullable: false, precision: 0, storeType: "datetime2"),
-                        Status = c.Boolean(nullable: false),
+                        StatusUserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

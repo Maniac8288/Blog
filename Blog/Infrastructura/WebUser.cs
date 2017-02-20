@@ -109,6 +109,10 @@ namespace Blog.Infrastructura
             smtp.Send(msg);
         }
 
+        public static void ForgotPW(string email, string password)
+        {
+            Services.Users.ForgotPW(email, password);
+        }
 
 
 

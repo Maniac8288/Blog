@@ -28,6 +28,7 @@ namespace IServices.Sublntefac.Public
         /// <param name="userName">Никнейм</param>
         /// <returns></returns>
         bool ConfrimedEmail(string salt, string userName);
+        void ForgotPW(string email, string password);
         #endregion
     }
 }

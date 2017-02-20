@@ -26,7 +26,10 @@ namespace Services
         {
             using (var db = new DataContext())
             {
-                var auth = db.Users.Any(_ => _.UserName == userName && _.Password == (_.Salt + password).sha256() && _.Status==true);
+                var sha = db.Users.FirstOrDefault(_ => _.UserName == userName);
+                string ShaPassword = (sha.Salt + password).sha256();
+
+                var auth = db.Users.Any(_ => _.UserName == userName && _.Password == ShaPassword && _.StatusUserId != EnumStatusUser.Locked);
                  if (auth)
                 {
                  var user =  db.Users.FirstOrDefault(_ => _.UserName == userName);
@@ -52,6 +55,19 @@ namespace Services
             }
             return check;
         }
+        /// <summary>
+        /// Заменяет старый пароль в БД на новый
+        /// </summary>
+        /// <param name="email">Почта пользователя</param>
+        /// <param name="password">Новый пароль</param>
+        public void ForgotPW(string email, string password)
+        {
+            using ( var db = new DataContext()){
+                var user = db.Users.FirstOrDefault(_ => _.Email == email);
+                user.Password = (user.Salt+password).sha256();
+                db.SaveChanges();
+            }
+        }
         #endregion
         #region Регистрация
         /// <summary>
@@ -73,9 +89,9 @@ namespace Services
                     Salt = salt,
                     Datebirth = dataBird,
                     Email = email,
-                    Status = false,
+                    StatusUserId = EnumStatusUser.NConfirmed,
                     CheckEmail = new CheckEmail
-                    {
+                    { 
                         ConfirmedEmail = false,
                         ConfirmationCode = salt
                     },
@@ -100,7 +116,7 @@ namespace Services
                 var check = db.ChecksEmail.FirstOrDefault(x => x.UserId == user.Id);
                 if (db.ChecksEmail.Any(x => x.ConfirmationCode == salt))
                 {
-                    user.Status = true;
+                    user.StatusUserId = EnumStatusUser.Confirmed;
                     check.ConfirmedEmail = true;
                     db.SaveChanges();
                     return true;

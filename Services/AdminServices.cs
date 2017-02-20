@@ -9,7 +9,7 @@ using Services.Admin;
 
 namespace Services
 {
-    class AdminServices : IAdminServices
+    public class AdminServices : IAdminServices
     {
         public AdminServices()
         {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using DataModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +15,8 @@ namespace IServices.Models.User
         public string dateBird { get; set; }
         public DateTime DateRegister { get; set; }
         public string Email { get; set; }
-        public string Role { get; set; }
+        public List<ModelRole> Roles { get; set; }
         public DateTime LastVisit { get; set; }
-        public bool Status { get; set; }
+        public EnumStatusUser Status { get; set; }
     }
 }

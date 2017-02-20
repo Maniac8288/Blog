@@ -50,9 +50,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201702161929479_status3.cs" />
-    <Compile Include="Migrations\201702161929479_status3.Designer.cs">
-      <DependentUpon>201702161929479_status3.cs</DependentUpon>
+    <Compile Include="Migrations\201702192237064_begin.cs" />
+    <Compile Include="Migrations\201702192237064_begin.Designer.cs">
+      <DependentUpon>201702192237064_begin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702192238215_start2.cs" />
+    <Compile Include="Migrations\201702192238215_start2.Designer.cs">
+      <DependentUpon>201702192238215_start2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -68,14 +72,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IServices\IServices.csproj">
-      <Project>{946aa3a8-fee4-4614-923d-d7ad249e72d8}</Project>
-      <Name>IServices</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702161929479_status3.resx">
-      <DependentUpon>201702161929479_status3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702192237064_begin.resx">
+      <DependentUpon>201702192237064_begin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702192238215_start2.resx">
+      <DependentUpon>201702192238215_start2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
