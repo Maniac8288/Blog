@@ -13,10 +13,15 @@ using IServices.Models.Post;
 
 namespace Services
 {
-
+    /// <summary>
+    /// Реализует методы необходимые для отображения постов
+    /// </summary>
     public class PostServices : IPostServices
     {
-
+        /// <summary>
+        /// Выводит пост с информацией "Preview"
+        /// </summary>
+        /// <returns></returns>
         public List<ModelPostPreview> PostPreview()
         {
             using (var db = new DataContext())
@@ -25,7 +30,10 @@ namespace Services
                 return posts;
             }
         }
-
+        /// <summary>
+        /// Выводит пост с информацией "Детальней"
+        /// </summary>
+        /// <returns></returns>
         public List<ModelPost> PostDetails()
         {
             using (var db = new DataContext())
@@ -34,7 +42,10 @@ namespace Services
                 return products;
             }
         }
-
+        /// <summary>
+        /// Перезапись модели Post  из модели ModelPostPreview
+        /// </summary>
+        /// <returns></returns>
         public static Expression<Func<Post, ModelPostPreview>> Preview()
         {
             return post => new ModelPostPreview()
@@ -50,6 +61,10 @@ namespace Services
             };
         }
 
+        /// <summary>
+        /// Перезапись модели Post из ModelPost
+        /// </summary>
+        /// <returns></returns>
         public static Expression<Func<Post, ModelPost>> Details()
         {
             return post => new ModelPost()
@@ -70,69 +85,19 @@ namespace Services
         {
             return model.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
-        public void AddCategory()
-        {
-            using (var db = new DataContext())
-            {
-                db.Categories.Add(new Category() { Name = "" });
-                db.Categories.Add(new Category() { Name = "", ParentId = 1 });
-                db.SaveChanges();
-            }
-        }
-
+       
+        /// <summary>
+        /// Вывод всех категорий
+        /// </summary>
+        /// <returns>Коллекция всех категорий</returns>
         public static List<Category>  GetCategory()
         {
             using (var db = new DataContext())
             {
-              var  categories = db.Categories.Where(_ => !_.ParentId.HasValue).Include(_ => _.Сhild).ToList();
+              var  categories = db.Categories.Where(_ => !_.ParentId.HasValue).Include(_ => _.Child).ToList();
                 return categories;
             }
         }
 
-
-        public void UpdateCategory(int id)
-        {
-            using (var db = new DataContext())
-            {
-                var category = db.Categories.Include(_ => _.Сhild).FirstOrDefault(_ => _.Id == id);
-                category.Сhild.Add(new Category() { Name = "sd1" });
-                category.Сhild.Add(new Category() { Name = "sd2" });
-                db.SaveChanges();
-
-            }
-        }
-
-        public void UpdateCategoryParent(int parentId, string name)
-        {
-            using (var db = new DataContext())
-            {
-                db.Categories.Add(new Category() { Name = name, ParentId = parentId });
-                db.SaveChanges();
-
-            }
-        }
-
-        public void Update(int id, string name)
-        {
-            using (var db = new DataContext())
-            {
-                var category = db.Categories.FirstOrDefault(_ => _.Id == id);
-                category.Name = name;
-                db.SaveChanges();
-            }
-
-        }
-
-        public void Update2(int id, string name)
-        {
-            using (var db = new DataContext())
-            {
-                var category = new Category() { Id = id };
-                db.Categories.Attach(category);
-                category.Name = name;
-                db.Entry(category).Property(_ => _.Name).IsModified = true;
-                db.SaveChanges();
-            }
-        }
     }
 }

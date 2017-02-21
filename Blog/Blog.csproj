@@ -213,6 +213,7 @@
     <Content Include="Areas\Admin\Views\Admin\NewPost.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\upUsers.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Categories.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\upCategories.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

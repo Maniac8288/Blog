@@ -13,6 +13,9 @@ using IServices.Models.User;
 
 namespace Services.Admin
 {
+    /// <summary>
+    /// Управления пользователями
+    /// </summary>
     public class AdminUsersServices : IAdminUsersServices
     {
         /// <summary>
@@ -65,10 +68,10 @@ namespace Services.Admin
             }
         }
         /// <summary>
-        /// 
+        /// Добавляет роль пользователю 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="role"></param>
+        /// <param name="id">Список пользователй</param>
+        /// <param name="role">Выбранная роль</param>
         public void roleUsers(List<int> id,string role)
         {
             using (var db = new DataContext())

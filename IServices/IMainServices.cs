@@ -9,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace IServices
 {
+    /// <summary>
+    /// Интерфейс публичной части сайта
+    /// </summary>
     public interface IMainServices
     {
+        /// <summary>
+        /// Реализация авторизации и регистрации на сайте
+        /// </summary>
         IUserServices Users { get; set; }
+        /// <summary>
+        /// Отображение постов на сайте
+        /// </summary>
         IPostServices Post { get; set; }
        
-
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DataModel;
+using System.Data.Entity;
 using DataModel.Models;
 using IServices.Sublntefac.Admin;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Services.Admin
 {
     /// <summary>
-    /// Реализует методы связанные с категорями
+    /// Управление категорями 
     /// </summary>
   public  class AdminCategoriesServices : IAdminCategoriesServices
     {
@@ -41,16 +42,71 @@ namespace Services.Admin
                 db.SaveChanges();
             }
         }
-
-        public void Update(int id)
+        /// <summary>
+        /// Удаления родительской категории, а также содержимое родительской категории
+        /// </summary>
+        /// <param name="name">Имя родительской категории</param>
+        public void DeletePareant(string name)
         {
-            using (var db = new DataContext())
+            using (var db = new DataContext())  
             {
-                var category = db.Categories.FirstOrDefault(_ => _.Id == id);
-
+                var category = db.Categories.Include(x=> x.Child).FirstOrDefault(_ => _.Name==name);
+                db.Categories.RemoveRange(category.Child);
+                db.Categories.Remove(category);
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Удаляет дочернию категорию
+        /// </summary>
+        /// <param name="NamePareant">Имя родительской категории</param>
+        /// <param name="NameChildren">Имя дочерний категории</param>
+        public void DeleteChild (string NamePareant,string NameChildren)
+        {
+            using (var db = new DataContext())
+            {
+                var Pareant = db.Categories.Include(x => x.Child).FirstOrDefault(_ => _.Name == NamePareant);
+                var Child = Pareant.Child.FirstOrDefault(_ => _.Name == NameChildren);
+                db.Categories.Remove(Child);
+                db.SaveChanges();
+            }
+
+        }
+        /// <summary>
+        /// Изменяет название родительской категории
+        /// </summary>
+        /// <param name="namePareant">Выбраная родительская категория</param>
+        /// <param name="newName">Новое название катеогрии</param>
+        public void ChangeNamePareant(string namePareant, string newName)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.FirstOrDefault(_ => _.Name == namePareant);
+                category.Name = newName;
+                db.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// Изменяет название дочерней категории
+        /// </summary>
+        /// <param name="NamePareant">Имя родительской категории</param>
+        /// <param name="nameChild">Имя дочерний категории</param>
+        /// <param name="newName">Новое имя</param>
+        public void ChangeNameChild(string NamePareant, string nameChild, string newName)
+        {
+            using (var db = new DataContext())
+            {
+                var Pareant = db.Categories.Include(x => x.Child).FirstOrDefault(_ => _.Name == NamePareant);
+                var Child = Pareant.Child.FirstOrDefault(_ => _.Name == nameChild);
+                Child.Name = newName;
+                db.SaveChanges();
+            }
+
+        }
+        /// <summary>
+        /// Вывод всех родительских категорий
+        /// </summary>
+        /// <returns></returns>
         public static List<Category> GetCategoryPareants()
         {
             using (var db = new DataContext())

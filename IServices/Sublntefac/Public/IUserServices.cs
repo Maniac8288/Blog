@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace IServices.Sublntefac.Public
 {
+    /// <summary>
+    /// Реализация авторизации и регистрации
+    /// </summary>
    public  interface IUserServices
     {
         #region Авторизация

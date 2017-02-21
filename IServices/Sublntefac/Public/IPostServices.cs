@@ -9,10 +9,21 @@ using IServices.Models.Post;
 
 namespace IServices.Sublntefac.Public
 {
+    /// <summary>
+    /// Отображание постов на странице
+    /// </summary>
     public interface IPostServices
     {
-        
+        /// <summary>
+        /// Вывод поста с информацией  "Детальней"
+        /// </summary>
+        /// <returns></returns>
         List<ModelPost> PostDetails();
+        /// <summary>
+        /// Вывод поста с информацией "Preview"
+        /// </summary>
+        /// <returns></returns>
         List<ModelPostPreview> PostPreview();
+
     }
 }

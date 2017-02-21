@@ -13,8 +13,14 @@ namespace Blog.Areas.Admin.Controllers
     /// Базовый контролер 
     /// </summary>
     public class BaseController : Controller
-    {
+    {   
+       /// <summary>
+       /// Интерфейс публичной части сайта
+       /// </summary>
         public IMainServices Services { get; set; }
+        /// <summary>
+        /// Интерфейс админки
+        /// </summary>
         public IAdminServices AdminServices { get; set; }
 
         public BaseController()
@@ -24,7 +30,9 @@ namespace Blog.Areas.Admin.Controllers
             User = WebUser.CurrentUser;
 
         }
-
+        /// <summary>
+        /// Модель пользователя 
+        /// </summary>
         public new ModelUser User { get; set; }
     }
 } 

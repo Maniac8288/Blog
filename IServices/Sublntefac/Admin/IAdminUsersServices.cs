@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace IServices.Sublntefac.Admin
 {
-   public interface IAdminUsersServices
+    /// <summary>
+    ///  Реализует методы для управлениями пользователями
+    /// </summary>
+    public interface IAdminUsersServices
     {
         /// <summary>
         /// Удаляет выбраных пользователей из БД
@@ -24,6 +27,11 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <param name="id"></param>
         void Block(List<int> id);
+        /// <summary>
+        /// Назначить роль пользователю 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="role"></param>
         void roleUsers(List<int> id, string role);
 
 

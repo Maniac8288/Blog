@@ -19,7 +19,7 @@ namespace DataModel.Models
 
         public int? ParentId { get; set; }
 
-        public List<Category> Сhild { get; set; }
+        public List<Category> Child { get; set; }
 
         public List<Post> Posts { get; set; }
 

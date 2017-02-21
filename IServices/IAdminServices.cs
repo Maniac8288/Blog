@@ -14,11 +14,11 @@ namespace IServices
     public interface IAdminServices
     {
         /// <summary>
-        /// Реализует методы связанные с пользователями
+        /// Реализует методы для управлениями пользователями
         /// </summary>
         IAdminUsersServices Users { get; set; }
         /// <summary>
-        ///Реализует методы связанные с категорями
+        ///Реализует методы для управления категориями
         /// </summary>
         IAdminCategoriesServices Categories { get; set; }
     }

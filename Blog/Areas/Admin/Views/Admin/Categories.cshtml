@@ -2,175 +2,19 @@
 @{
     ViewBag.Title = "Categories";
 }
-<div id="listCategories">
-<div class="col-md-8">
-    <div class="portlet box red-sunglo">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-gift"></i>Древо категорий
-            </div>
-            
-        </div>
-        <div class="portlet box red-sunglo">
-            <div class="portlet-body">
-                <ul>
-                    @foreach (var element in Services.PostServices.GetCategory())
-            {
-                        <li>
-                            <h3 > @element.Name</h3>
-                            <ul>
-                                @foreach (var item in element.Сhild)
-                                {
-                                    <li>
-                                         @item.Name
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="row" id="PanelCategory">
+   
 </div>
 
-    <div class="col-md-8">
-        <div class="portlet box blue-hoki">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-gift"></i>Управления категориями
-                </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <ul>
-                   <li>
-                       <input type="button" class="btn btn-primary" value="Добавить главную категорию" id="addMainCategory" name="addMainCategory" style="width:250px; margin: 5px;" />
-                       <div class=""><ul id="nameCategoryList"></ul></div>
-                   </li>
-                    <li>
-                        
-                        <button id="sample_editable_1_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width:250px; margin: 5px;">
-                            Добавить дочернию категорию 
-                        </button>
-                     
-                    </li>
-                    <li>
-                        <input type="button" class="btn btn-danger" value="Удалить категорию" id="deleteCategory" name="deleteCategory" style="width:250px; margin: 5px;" />
-                    </li>
-                </ul>
 
-            </div>
-        </div>
-    </div>
-
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Добавить дочернию категорию</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="userName" class="col-sm-5 control-label">Родительская категория</label>
-                    <div class="col-sm-5">
-                       <select class="form-control" style="margin-bottom:10px;" id="namePareantCategory" name="namePareantCategory">
-                           @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
-                           {<option>@element.Name </option>
-                           }
-                       </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="userName" class="col-sm-5 control-label">Название дочерней категории</label>
-                    <div class="col-sm-5">
-                       <input type="text" class="form-control form-inline" placeholder="Введите название " id="nameChildCategory" name="nameChildCategory" style="margin-bottom:10px;"/>
-                    </div>
-                </div>
-
-                
-
-                <div class="modal-footer">
-                    <button class="btn btn-success" id="addChildCategory">Сохранить</button>
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
     @section Scripts{
         <script>
             $(document).ready(function () {
-                $('#addMainCategory').click(function () {
-                    var nameCategoryList = $('#nameCategoryList');
-                    var nameCategory = $('nameCategory');
-                    var li = $('<li/>').appendTo(nameCategoryList);
-                    if ($("#nameCategoryList .btn").hasClass("btn-info")) {
-                        nameCategoryList.empty();
-                    };
-                    var inputName = $('<input/>');
-                    var submitName = $('<input/>');
-                    inputName.attr({ "type": "text", "placeholder": "Введите имя категории", "id": "inputName",  "style": "width:200px;" }).appendTo(li);
-                    submitName.attr({ "type": "submit", "class": " btn btn-info", "id": "submitName", "style": "margin-left:10px" }).appendTo(li);
-             
-                $('#submitName').click(function () {
-                    var formData = new FormData();
-                    var value = document.getElementById("inputName").value;
-                    formData.append("name", value);
-
-                    
-                    $.ajax({
-                        url: 'AddMainCategory',
-                        type: 'post',
-                        contentType: false,
-                        processData: false,
-                        data: formData,
-                        success: function (data) {
-                            
-                            console.log(data);
-                        }
-
-                        
-                    });
-                });
-                });
-                        $('#addChildCategory').click(function () {
-                            var formData = new FormData();
-                            var valuePareant = document.getElementById("namePareantCategory").value;
-                            var valueChild = document.getElementById("nameChildCategory").value;
-                            formData.append("namePareantCategory", valuePareant);
-                            formData.append("nameChild", valueChild);
-
-                    
-                            $.ajax({
-                                url: 'addChildCategory',
-                                type: 'post',
-                                contentType: false,
-                                processData: false,
-                                data: formData,
-                                success: function (data) {
-                            
-                                    console.log(data);
-                                }
-
-                        
-                            });
-                });
-
-             
-                function updateUsers() {
-
-                    $('#listCategories').load("http://localhost:62712/Admin/Admin/Categories");
-                };
-             
-                
+                $('#PanelCategory').load("http://localhost:62712/Admin/Admin/upCategories");
+            
+               
             });
-              
+             
           
         </script>
     }
