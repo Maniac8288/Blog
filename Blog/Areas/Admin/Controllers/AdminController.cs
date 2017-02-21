@@ -89,6 +89,11 @@ namespace Blog.Areas.Admin.Controllers
                  title='Подтвердить регистрацию'>ссылке</a>");
             return Json("Запрос успешно выполнен");
         }
+        /// <summary>
+        /// Назначение роли пользователю
+        /// </summary>
+        /// <param name="role">Выбранная роль</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult roleUsers(string role)
         {
@@ -97,15 +102,38 @@ namespace Blog.Areas.Admin.Controllers
             return Json("Запрос успешно выполнен");
         }
         #endregion
+        #region Страница с категориями
+        /// <summary>
+        /// Страница с категориями 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Categories()
         {
             return View();
         }
+        /// <summary>
+        /// Добавление родительской категории
+        /// </summary>
+        /// <param name="name">Название категории</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AddMainCategory(string name)
         {
             AdminServices.Categories.AddCategory(name);
-            return Json("s");
+            return Json("Запрос успешно выполнен");
         }
+        /// <summary>
+        /// Добавление дочерний категории
+        /// </summary>
+        /// <param name="namePareantCategory">Имя родительской категории</param>
+        /// <param name="nameChild">Название новой дочерний категории</param>
+        /// <returns></returns>
+        [HttpPost]
+         public   ActionResult addChildCategory(string namePareantCategory,string nameChild)
+        {
+            AdminServices.Categories.addChildCategory(namePareantCategory, nameChild);
+            return Json("Запрос успешно выполнен");
+        }
+        #endregion
     }
 }

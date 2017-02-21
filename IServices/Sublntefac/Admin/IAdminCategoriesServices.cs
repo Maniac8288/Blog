@@ -16,5 +16,11 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <param name="name">Название категории</param>
         void AddCategory(string name);
+        /// <summary>
+        /// Добавляет дочернию категорию
+        /// </summary>
+        /// <param name="namePareant">Имя родильской категории</param>
+        /// <param name="nameChild">Название категории</param>
+         void addChildCategory(string namePareant, string nameChild);
     }
 }

@@ -12,7 +12,7 @@ namespace Services.Admin
     /// <summary>
     /// Реализует методы связанные с категорями
     /// </summary>
-    class AdminCategoriesServices : IAdminCategoriesServices
+  public  class AdminCategoriesServices : IAdminCategoriesServices
     {
         /// <summary>
         /// Добавляет родительскую категорию
@@ -27,6 +27,20 @@ namespace Services.Admin
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Добовляет дочернию категорию
+        /// </summary>
+        /// <param name="namePareant">Имя родительской категории</param>
+        /// <param name="nameChild">Название новой категории</param>
+        public void addChildCategory(string namePareant,string nameChild)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.FirstOrDefault(_ => _.Name == namePareant);
+                db.Categories.Add(new Category() { Name = nameChild, ParentId = category.Id });
+                db.SaveChanges();
+            }
+        }
 
         public void Update(int id)
         {
@@ -36,8 +50,15 @@ namespace Services.Admin
 
                 db.SaveChanges();
             }
-
-
         }
+        public static List<Category> GetCategoryPareants()
+        {
+            using (var db = new DataContext())
+            {
+                var categories = db.Categories.Where(_ => !_.ParentId.HasValue).ToList();
+                return categories;
+            }
+        }
+
     }
 }
