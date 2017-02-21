@@ -1,6 +1,4 @@
-﻿@using DataModel.Models;
-
-
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +50,7 @@
             <div class="sf-menu">
     <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
 
-@foreach (var element in PostDataStorage.Category)
+@foreach (var element in Services.PostServices.GetCategory())
             {
         <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629"><a href="#">@element.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
             

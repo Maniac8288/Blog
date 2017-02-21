@@ -14,10 +14,12 @@ namespace Services
         public AdminServices()
         {
             Users = new AdminUsersServices();
+            Categories = new AdminCategoriesServices();
         }
         public IAdminUsersServices Users { get; set; }
+        public IAdminCategoriesServices Categories { get; set; }
 
 
-    
+
     }
 }

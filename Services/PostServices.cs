@@ -80,14 +80,15 @@ namespace Services
             }
         }
 
-        public void GetCategory()
+        public static List<Category>  GetCategory()
         {
             using (var db = new DataContext())
             {
-                var categories = db.Categories.Where(_ => !_.ParentId.HasValue).Include(_ => _.Сhild).Include(_ => _.Сhild.Select(c => c.Сhild)).ToList();
-
+              var  categories = db.Categories.Where(_ => !_.ParentId.HasValue).Include(_ => _.Сhild).ToList();
+                return categories;
             }
         }
+
 
         public void UpdateCategory(int id)
         {

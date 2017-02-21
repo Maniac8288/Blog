@@ -57,6 +57,7 @@
     <Compile Include="Models\User\ModelUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAdminServices.cs" />
+    <Compile Include="Sublntefac\Admin\IAdminCategoriesServices.cs" />
     <Compile Include="Sublntefac\Admin\IAdminUsersServices.cs" />
     <Compile Include="Sublntefac\Public\IPostServices.cs" />
     <Compile Include="Sublntefac\Public\IUserServices.cs" />

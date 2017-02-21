@@ -19,6 +19,16 @@ namespace Blog.Areas.Admin.Controllers
         {
             return View();
         }
+       
+        /// <summary>
+        /// Страница с добавлением нового поста
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NewPost()
+        {
+            return View();
+        }
+        #region Страница с пользователями
         /// <summary>
         /// Страница с таблицей всех пользователй
         /// </summary>
@@ -28,14 +38,6 @@ namespace Blog.Areas.Admin.Controllers
 
             var usres = AdminServices.Users.Users();
             return View(usres);
-        }
-        /// <summary>
-        /// Страница с добавлением нового поста
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult NewPost()
-        {
-            return View();
         }
         /// <summary>
         /// Удаляет выбраных пользователей с БД 
@@ -93,6 +95,17 @@ namespace Blog.Areas.Admin.Controllers
             var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
             AdminServices.Users.roleUsers(list,role);
             return Json("Запрос успешно выполнен");
+        }
+        #endregion
+        public ActionResult Categories()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddMainCategory(string name)
+        {
+            AdminServices.Categories.AddCategory(name);
+            return Json("s");
         }
     }
 }
