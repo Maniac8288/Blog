@@ -16,16 +16,8 @@
         <div class="form-group">
             <label for="Category" class="col-sm-2 control-label">Категория</label>
             <div class="col-md-10">
-                <select class="form-control" required name="selectedCategory">
-                    @foreach (var element in Services.PostServices.GetCategory())
-                    {
-                        <optgroup label="@element.Name">
-                            @foreach (var item in element.Child)
-                        {
-                            <option> @item.Name</option>
-                        }
-                    </optgroup>
-                    }
+                <select class="form-control"  name="selectedCategory">
+                  <option>Ужасы</option>
                 </select>
             </div>
 

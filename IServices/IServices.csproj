@@ -60,7 +60,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAdminServices.cs" />
     <Compile Include="Sublntefac\Admin\IAdminCategoriesServices.cs" />
-    <Compile Include="Sublntefac\Admin\IAdminNewPostServices.cs" />
+    <Compile Include="Sublntefac\Admin\IAdminPostsServices.cs" />
     <Compile Include="Sublntefac\Admin\IAdminUsersServices.cs" />
     <Compile Include="Sublntefac\Public\IPostServices.cs" />
     <Compile Include="Sublntefac\Public\IUserServices.cs" />

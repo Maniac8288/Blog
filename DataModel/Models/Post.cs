@@ -17,7 +17,7 @@ namespace DataModel.Models
             /// <summary>
             /// Коллекция постов
             /// </summary>
-            public static List<Category> Categories { get; set; }
+            public  List<Category> Categories { get; set; }
             /// <summary>
             /// Выбраная категория
             /// </summary>

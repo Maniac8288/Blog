@@ -15,12 +15,11 @@ namespace Services
         {
             Users = new AdminUsersServices();
             Categories = new AdminCategoriesServices();
-            NewPost = new AdminNewPostServices();
+            ControlPosts = new AdminPostsServices();
         }
         public IAdminUsersServices Users { get; set; }
         public IAdminCategoriesServices Categories { get; set; }
-        public IAdminNewPostServices NewPost { get; set;
-        }
+        public IAdminPostsServices ControlPosts { get; set; }
 
 
 

@@ -22,8 +22,8 @@ namespace IServices
         /// </summary>
         IAdminCategoriesServices Categories { get; set; }
         /// <summary>
-        /// Добавление поста на сайт
+        /// Управление постами
         /// </summary>
-        IAdminNewPostServices NewPost { get; set; }
+        IAdminPostsServices ControlPosts { get; set; }
     }
 }

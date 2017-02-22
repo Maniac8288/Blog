@@ -32,13 +32,24 @@ namespace Blog.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult NewPost(ModelPost model)
         {
-            AdminServices.NewPost.AddPost(model);
+            AdminServices.ControlPosts.AddPost(model);
             
             return View();
         }
         public ActionResult Posts()
         {
-            return View();
+            var posts = Services.Post.PostPreview();
+            return View(posts);
+        }
+        /// <summary>
+        /// Удаление постов
+        /// </summary>
+        /// <param name="id">Список выбраных постов</param>
+        /// <returns></returns>
+        public ActionResult DeletePosts(List<int> id)
+        {
+            AdminServices.ControlPosts.DeletePosts(id);
+            return Json("Пост успешно удален");
         }
         #region Страница с пользователями
         /// <summary>

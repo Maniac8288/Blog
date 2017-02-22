@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="AdminServices.cs" />
     <Compile Include="Admin\AdminCategoriesServices.cs" />
-    <Compile Include="Admin\AdminNewPostServices.cs" />
+    <Compile Include="Admin\AdminPostsServices.cs" />
     <Compile Include="Admin\AdminUsersServices.cs" />
     <Compile Include="Exextension\Security.cs" />
     <Compile Include="MainServices.cs" />

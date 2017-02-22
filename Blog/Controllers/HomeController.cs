@@ -89,7 +89,10 @@ namespace Blog.Controllers
             }
             return View("Error");
         }
-        
+        /// <summary>
+        /// Вывод древо категорий
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Categories()
         {
             var model = Services.Post.GetCategory();
