@@ -90,13 +90,25 @@ namespace Services
         /// Вывод всех категорий
         /// </summary>
         /// <returns>Коллекция всех категорий</returns>
-        public static List<Category>  GetCategory()
+        public ModelCategories GetCategory()
         {
             using (var db = new DataContext())
             {
-              var  categories = db.Categories.Where(_ => !_.ParentId.HasValue).Include(_ => _.Child).ToList();
-                return categories;
+              var  categories = db.Categories.Where(_ => !_.ParentId.HasValue).ToList();
+                return new ModelCategories { Categories = categories.Select(c => ConverModelCategory(c)).ToList() };
             }
+        }
+
+        private  static ModelCategory ConverModelCategory(Category category)
+        {
+
+            return  new ModelCategory
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ParentId = category.ParentId,
+              
+            };
         }
 
     }

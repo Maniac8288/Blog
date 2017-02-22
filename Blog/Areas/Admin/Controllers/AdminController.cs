@@ -1,4 +1,5 @@
 ﻿using Blog.Infrastructura;
+using IServices.Models.Post;
 using Services.Exextension;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,17 @@ namespace Blog.Areas.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         public ActionResult NewPost()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewPost(ModelPost model)
+        {
+            AdminServices.NewPost.AddPost(model);
+            
+            return View();
+        }
+        public ActionResult Posts()
         {
             return View();
         }

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – Кинолюбитель</title>
@@ -20,130 +20,109 @@
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">@Html.ActionLink("Новости", "News", "Home")</li>
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Личный кабинет", "Cabinet", "Home")</li>
-                
+
                 </ul>
-             
+
             </div>
-      
+
         </div>
-  
+
         <!-- #top-navigation -->
     </nav>
-    
+
     <div class="container body-content">
-       
+
         <header id="masthead" class="clearfix container site-header" role="banner">
             <div class="site-branding">
 
                 <h1 class="site-title">
-                 @Html.ActionLink("Cinema Blog", "Index", "Home")
+                    @Html.ActionLink("Cinema Blog", "Index", "Home")
                 </h1>
                 <div class="site-description">Блог для кинолюбителей</div>
-               
+
             </div>
 
-            
-        </header>
-        <nav id="main-navigation" class="container main-navigation" role="navigation">
-            <a href="#main-navigation" class="nav-open">Menu</a>
-            <a href="#" class="nav-close">Close</a>
-            <div class="sf-menu">
-    <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
 
-@foreach (var element in Services.PostServices.GetCategory())
-            {
-        <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629"><a href="#">@element.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
-            
-                @foreach (var item in element.Child)
-                {
-        <li><a href="@Url.Action("Category","Home", new { category = item.Name })">@item.Name</a></li> }
-           
-           
-            </ul> </li> }
-     
-       
-    </ul>
-   
-    </div>	<!-- #main-navigation -->
-        </nav>
-     
+        </header>
+        @Html.Action("Categories","Home")
+
         <div id="main" class="site-main">
             <div class="clearfix container">
                 <div id="primary" class="content-area">
                     <div id="content" class="site-content" role="main">
-                       
+
                         @RenderBody()
 
                         <script src="~/Scripts/jquery-1.11.1.min.js"></script>
 
                         <link href="~/Jcrop-v0.9.12/css/jquery.Jcrop.min.css" rel="stylesheet" />
                         <script src="~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js"></script>
-                        </div>
                     </div>
-
-                        <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
-                            
-                             
-                               
-                         
-                            <aside id="search-3" class="widget">
-                                <form role="search" method="get" class="search-form" action="#">
-                                    <label>
-                                        <span class="screen-reader-text">Search for:</span>
-                                        <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
-                                    </label>
-                                    <input type="submit" class="search-submit pull-right" value="Search">
-                                </form>
-                            </aside>
-
-                            @Html.Partial("_LoginPartial")
-                            
-                            <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
-                                <ul id="widget-tab" class="clearfix widget-tab-nav">
-                                    <li class="active"><a href="#widget-tab-popular">Popular</a></li>
-                                    <li><a href="#widget-tab-latest">Latest</a></li>
-                                    <li><a href="#widget-tab-tags">Tags</a></li>
-                                </ul>
-
-                                <div class="widget-tab-content">
-                                    <div class="tab-pane active" id="widget-tab-popular">
-                                        @*<ul>
-                                            @foreach(var item in Services.PostServices.db.Posts )
-                                            {
-                                                <li><a href="@Url.Action("Post","Home", new { id = item.PostID })">@item.NamePost</a></li>
-                                            }
-                                        </ul>*@
-                                        <!-- #widget-tab-popular -->
-                                    </div>
-
-                                    <div class="tab-pane" id="widget-tab-latest">
-                                        <ul>
-                                            <li class="clearfix">
-                                                <div class="widget-entry-thumbnail">
-                                                    <a href="" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
-                                                </div>
-                                                <div class="widget-entry-summary">
-                                                    <h4><a href="" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
-                                                    <span>January 11, 2013</span>
-                                                </div>
-                                            </li>
-                                           
-                                        </ul>
-                                        <!-- #widget-tab-latest -->
-                                    </div>
-                                    <div class="tab-pane" id="widget-tab-tags">
-                                    </div>
-                                </div>
-                            </aside><!-- #widget-area-2 -->
-                        </div>
-                     
-                        <hr />
-                  
                 </div>
-         
+
+                <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
+
+
+
+
+                    <aside id="search-3" class="widget">
+                        <form role="search" method="get" class="search-form" action="#">
+                            <label>
+                                <span class="screen-reader-text">Search for:</span>
+                                <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
+                            </label>
+                            <input type="submit" class="search-submit pull-right" value="Search">
+                        </form>
+                    </aside>
+
+                    @Html.Partial("_LoginPartial")
+
+                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
+                        <ul id="widget-tab" class="clearfix widget-tab-nav">
+                            <li class="active"><a href="#widget-tab-popular">Popular</a></li>
+                            <li><a href="#widget-tab-latest">Latest</a></li>
+                            <li><a href="#widget-tab-tags">Tags</a></li>
+                        </ul>
+
+                        <div class="widget-tab-content">
+                            <div class="tab-pane active" id="widget-tab-popular">
+                                @*<ul>
+                                        @foreach(var item in Services.PostServices.db.Posts )
+                                        {
+                                            <li><a href="@Url.Action("Post","Home", new { id = item.PostID })">@item.NamePost</a></li>
+                                        }
+                                    </ul>*@
+                                <!-- #widget-tab-popular -->
+                            </div>
+
+                            <div class="tab-pane" id="widget-tab-latest">
+                                <ul>
+                                    <li class="clearfix">
+                                        <div class="widget-entry-thumbnail">
+                                            <a href="" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
+                                        </div>
+                                        <div class="widget-entry-summary">
+                                            <h4><a href="" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
+                                            <span>January 11, 2013</span>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                                <!-- #widget-tab-latest -->
+                            </div>
+                            <div class="tab-pane" id="widget-tab-tags">
+                            </div>
+                        </div>
+                    </aside><!-- #widget-area-2 -->
+                </div>
+
+                <hr />
+
+            </div>
+
         </div>
-        
-       
+
+
     </div>
     <footer id="colophon" class="site-footer" role="contentinfo">
         <div class="clearfix container">

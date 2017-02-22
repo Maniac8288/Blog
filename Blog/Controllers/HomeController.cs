@@ -90,6 +90,11 @@ namespace Blog.Controllers
             return View("Error");
         }
         
+        public ActionResult Categories()
+        {
+            var model = Services.Post.GetCategory();
+            return View(model);
+        }
 
     }
 }

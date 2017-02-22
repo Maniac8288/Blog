@@ -21,5 +21,9 @@ namespace IServices
         ///Реализует методы для управления категориями
         /// </summary>
         IAdminCategoriesServices Categories { get; set; }
+        /// <summary>
+        /// Добавление поста на сайт
+        /// </summary>
+        IAdminNewPostServices NewPost { get; set; }
     }
 }

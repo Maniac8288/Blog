@@ -25,5 +25,6 @@ namespace IServices.Sublntefac.Public
         /// <returns></returns>
         List<ModelPostPreview> PostPreview();
 
+        ModelCategories GetCategory();
     }
 }

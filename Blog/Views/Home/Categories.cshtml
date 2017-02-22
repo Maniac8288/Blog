@@ -1,0 +1,32 @@
+﻿@model IServices.Models.Post.ModelCategories
+@{
+    Layout = null;
+}
+
+
+
+<nav id="main-navigation" class="container main-navigation" role="navigation">
+    <a href="#main-navigation" class="nav-open">Menu</a>
+    <a href="#" class="nav-close">Close</a>
+    <div class="sf-menu">
+        <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
+
+            @foreach (var category in Model.Categories)
+            {
+                <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629">
+                    <a href="#">@category.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
+
+                        @foreach (var childCategory in Model.GetChild(category.ParentId))
+                {
+                            <li><a href="@Url.Action("Category","Home", new { category = childCategory.Name })">@childCategory.Name</a></li> }
+
+
+                    </ul>
+                </li>
+            }
+
+
+        </ul>
+
+    </div>	
+</nav>
