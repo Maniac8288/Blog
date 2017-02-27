@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IServices.Models;
 using IServices.Models.Post;
-
+using DataModel.Models;
 
 namespace IServices.Sublntefac.Public
 {
@@ -26,5 +26,6 @@ namespace IServices.Sublntefac.Public
         List<ModelPostPreview> PostPreview();
 
         ModelCategories GetCategory();
+
     }
 }

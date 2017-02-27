@@ -64,12 +64,12 @@ namespace Blog.Controllers
         /// </summary>
         /// <param name="category"></param>
         /// <returns>Вывод постов из БД по выбранной категории</returns>
-        public ActionResult Category(string category)
-        {
-            var posts = Services.Post.PostPreview();
-            var Category = posts.Where(x => x.selectedCategory == category);
-            return View(Category);
-        }
+        //public ActionResult Category(string category)
+        //{
+        //    var posts = Services.Post.PostPreview();
+        //    var Category = posts.Where(x => x.selectedCategory.Name == category);
+        //    return View(Category);
+        //}
         /// <summary>
         /// Страница с определенным постом
         /// </summary>
@@ -95,8 +95,11 @@ namespace Blog.Controllers
         /// <returns></returns>
         public ActionResult Categories()
         {
+
             var model = Services.Post.GetCategory();
             return View(model);
+
+
         }
 
     }

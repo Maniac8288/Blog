@@ -30,16 +30,17 @@ namespace Blog.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult NewPost(ModelPost model)
+        [ValidateInput(false)]
+        public ActionResult NewPost(ModelPost model, int IdCategory)
         {
-            AdminServices.ControlPosts.AddPost(model);
+            AdminServices.ControlPosts.AddPost(model, IdCategory);
             
             return View();
         }
         public ActionResult Posts()
         {
-            var posts = Services.Post.PostPreview();
-            return View(posts);
+           
+            return View();
         }
         /// <summary>
         /// Удаление постов
@@ -51,6 +52,12 @@ namespace Blog.Areas.Admin.Controllers
             AdminServices.ControlPosts.DeletePosts(id);
             return Json("Пост успешно удален");
         }
+        public ActionResult upPosts()
+        {
+            var posts = Services.Post.PostPreview();
+            return View(posts);
+        }
+       
         #region Страница с пользователями
         /// <summary>
         /// Страница с таблицей всех пользователй
@@ -206,5 +213,10 @@ namespace Blog.Areas.Admin.Controllers
             return View();
         }
         #endregion
+        public ActionResult SelectCategory()
+        {
+            var model = Services.Post.GetCategory();
+            return View(model);
+        }
     }
 }

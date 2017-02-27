@@ -50,9 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201702200842370_begin.cs" />
-    <Compile Include="Migrations\201702200842370_begin.Designer.cs">
-      <DependentUpon>201702200842370_begin.cs</DependentUpon>
+    <Compile Include="Migrations\201702251533571_begin.cs" />
+    <Compile Include="Migrations\201702251533571_begin.Designer.cs">
+      <DependentUpon>201702251533571_begin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
@@ -71,8 +71,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702200842370_begin.resx">
-      <DependentUpon>201702200842370_begin.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702251533571_begin.resx">
+      <DependentUpon>201702251533571_begin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

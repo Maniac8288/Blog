@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.IO;
+using System.Web;
 
 namespace Services.Admin
 {
@@ -36,20 +38,24 @@ namespace Services.Admin
         /// Добавление  нового поста
         /// </summary>
         /// <param name="model">Модель поста</param>
-        public void AddPost(ModelPost model)
+        /// <param name="IdCategory">Ид категории</param>
+        public void AddPost(ModelPost model, int IdCategory)
         {
             using (var db = new DataContext())
             {
-                var category = db.Categories.FirstOrDefault(x => x.Name == model.selectedCategory);
+                var category = db.Categories.FirstOrDefault(x => x.Id == IdCategory);
               
-                var posts = ConverModelCategory(model);
-               
-                   db.Posts.Add(posts);
-                
+
+                var posts = ConverModelPost(model);
+                posts.SelectCategories = category;
+                db.Posts.Add(posts);
+             
                 db.SaveChanges();
             }
         }
-        private static Post ConverModelCategory(ModelPost posts)
+     
+
+    private static Post ConverModelPost(ModelPost posts)
         {
 
             return new Post
@@ -59,9 +65,10 @@ namespace Services.Admin
                 dateAddPost = posts.dateAddPost,
                 contentPost = posts.contentPost,
                 NamePost = posts.NamePost,
-                selectedCategory = posts.selectedCategory,
+      
                 Tags = posts.Tags,
                 upload = posts.upload,
+               
                 
                 
 

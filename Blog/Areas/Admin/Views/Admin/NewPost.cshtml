@@ -5,7 +5,7 @@
 
 
 <div class="container ">
-    <form class="form-horizontal col-sm-2 col-md-10 " name="Post" method="post" enctype="multipart/form-data">
+    
         <div class="form-group  ">
             <label for="NamePost" class="col-sm-2 control-label">Название</label>
 
@@ -13,15 +13,7 @@
                 <input type="text" class="form-control" id="NamePost" name="NamePost" required placeholder="Заголовок" />
             </div>
         </div>
-        <div class="form-group">
-            <label for="Category" class="col-sm-2 control-label">Категория</label>
-            <div class="col-md-10">
-                <select class="form-control"  name="selectedCategory">
-                  <option>Ужасы</option>
-                </select>
-            </div>
-
-        </div>
+        @Html.Action("SelectCategory", "Admin")
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-md-">
@@ -39,7 +31,7 @@
         <div class="form-group ">
             <label for="dateAddPost" class="col-sm-2 control-label">Дата создания</label>
             <div class="col-md-2">
-                <input type="date" class="form-control" required name="dateAddPost" id="dateAddPost" />
+                <input type="date" class="form-control" required name="с" id="dateAddPost" />
             </div>
 
             <label for="File" class="col-sm-2 control-label">Прикрепить файл</label>
@@ -51,29 +43,43 @@
             @*<a class="addLink btn btn-default">Добавить новый файл</a>*@
             <div align="center">
                 <br />
-                <input type="submit" class="btn btn-info  " name="save" />
+                <input type="submit" class="btn btn-info " id="addNewPost" name="save" />
             </div>
         </div>
 
 
-    </form>
 </div>
 <hr />
-@*@section scripts {
+
+@section scripts {
     <script>
+        $(document).ready(function () {
+            $('#addNewPost').click(function () {
+                var data = new FormData();
+                var item = document.getElementById("selectedCategory");
+                var selected = $(':selected', item);
+                var selectedCategory = selected.val();
+                data.append("IdCategory", selectedCategory);
+                data.append("NamePost", $("#NamePost").val());
+                data.append("contentPost", $("#contentPost").val());
+                data.append("Tags", $("#Tags").val());
+                data.append("dateAddPost", $("#dateAddPost").val());
 
+                $.ajax({
+                    url: 'NewPost',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (data) {
 
-        $(function () {
-            var i = 0;
-            $('.addLink').click(function () {
-                i++;
-                var html2Add = "<div class='addfile'>" +
-             "<h4>Файл №" + (i + 1) + "</h4>" +
-                     "<input type='file' class='form-control' name='upload' />" +
-                 "</div></div></div>";
-                $('.addbut').append(html2Add);
-            })
-        })
+                        console.log(data);
+
+                    }
+                });
+            });
+        });
+
     </script>
-}*@   
+}
 

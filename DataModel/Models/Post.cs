@@ -15,13 +15,9 @@ namespace DataModel.Models
          /// </summary>
             public string NamePost { get; set; }
             /// <summary>
-            /// Коллекция постов
+            /// Информация о выбранной категории
             /// </summary>
-            public  List<Category> Categories { get; set; }
-            /// <summary>
-            /// Выбраная категория
-            /// </summary>
-            public string selectedCategory { get; set; }
+            public Category SelectCategories { get; set; }
             /// <summary>
             /// Содержимое поста
             /// </summary>

@@ -1,0 +1,22 @@
+﻿@model IServices.Models.Post.ModelCategories
+@{
+    Layout = null;
+}
+<div class="form-group">
+    <label for="Category" class="col-sm-2 control-label">Категория</label>
+    <div class="col-md-10">
+        <select class="form-control" id="selectedCategory" name="selectedCategory">
+            @foreach (var category in Model.GetParents())
+            {
+                <optgroup label="@category.Name">
+                    @foreach (var childCategory in Model.GetChild(category.Id))
+                    {
+                        <option  value="@childCategory.Id">@childCategory.Name</option>
+                    }
+                </optgroup>
+            }
+
+        </select>
+    </div>
+
+</div>

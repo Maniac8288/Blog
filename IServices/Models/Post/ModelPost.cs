@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataModel.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace IServices.Models.Post
         /// <summary>
         /// Выбраная категория
         /// </summary>
-        public string selectedCategory { get; set; }
+        public Category selectedCategory { get; set; }
         /// <summary>
         /// Содержимое поста
         /// </summary>

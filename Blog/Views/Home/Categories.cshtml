@@ -11,12 +11,12 @@
     <div class="sf-menu">
         <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
 
-            @foreach (var category in Model.Categories)
+            @foreach (var category in Model.GetParents())
             {
                 <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629">
                     <a href="#">@category.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
 
-                        @foreach (var childCategory in Model.GetChild(category.ParentId))
+                        @foreach (var childCategory in Model.GetChild(category.Id))
                 {
                             <li><a href="@Url.Action("Category","Home", new { category = childCategory.Name })">@childCategory.Name</a></li> }
 

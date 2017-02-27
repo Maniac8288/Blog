@@ -1,0 +1,449 @@
+﻿
+@{
+    Layout = null;
+}
+<div id="listCategories">
+        <div class="col-md-6">
+            <div class="portlet box red-sunglo">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-gift"></i>Древо категорий
+                    </div>
+                </div>
+                <div class="portlet box red-sunglo">
+                    <div class="portlet-body">
+                        <ul>
+                            @foreach (var element in Services.PostServices.GetCategories())
+                             {
+                                <li>
+                                    <h3> @element.Name</h3>
+                                    <ul>
+                                        @foreach (var item in element.Child)
+                                        {
+                                            <li>
+                                                @item.Name
+                                            </li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="portlet box blue-hoki">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>Управления категориями
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse" data-original-title="" title="">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <ul>
+                    <li>
+                        <input type="button" class="btn btn-primary" value="Добавить главную категорию" id="addMainCategory" name="addMainCategory" style="width:250px; margin: 5px;" />
+                      <ul id="nameCategoryList"></ul>
+                    </li>
+                    <li>
+
+                        <button id="sample_editable_1_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width:250px; margin: 5px;">
+                            Добавить дочернию категорию
+                        </button>
+
+                    </li>
+                    
+                    <li>
+                        <input type="button" class="btn btn-primary" value="Изменить название категории" id="changeName" name="changeName" style="width:250px; margin: 5px;" />
+                        <ul id="PareantOrChild"></ul>
+
+                    </li>
+                    <li>
+                        <input type="button" class="btn btn-danger" value="Удалить категорию" id="deleteCategory" name="deleteCategory" style="width:250px; margin: 5px;" />
+                        <ul id="nameDeleteCategoryList"></ul>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+ </div>
+<!--Начало скрытых модальных окон-->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Добавить дочернию категорию</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="userName" class="col-sm-5 control-label">Родительская категория</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" style="margin-bottom:10px;" id="namePareantCategory" name="namePareantCategory">
+                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
+                            {
+                                <option>@element.Name </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="nameChildCategory" class="col-sm-5 control-label">Название дочерней категории</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control form-inline" placeholder="Введите название " id="nameChildCategory" name="nameChildCategory" style="margin-bottom:10px;" />
+                    </div>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" id="addChildCategory">Сохранить</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="deletePareant" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Удалить родительскую категорию</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="namePareantCategory" class="col-sm-5 control-label">Выбрать родительскую категорию</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" style="margin-bottom:10px;" id="selectPareantCategory" name="selectPareantCategory">
+                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
+                            {
+
+                                <option>@element.Name </option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" id="deletePareantSave">Сохранить</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="deleteChild" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" id="close1">×</button>
+                <h4 class="modal-title">Удалить дочернию категорию</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nameChildCategory" class="col-sm-5 control-label">Выбрать дочернию категорию</label>
+                    <div class="col-sm-5">
+                        <select class="form-control" style="margin-bottom:10px;" id="selectChildCategory" name="selectChildCategory">
+                            @foreach (var element in Services.PostServices.GetCategories())
+                            {
+                                <optgroup label="@element.Name">
+                                    @foreach (var item in element.Child)
+                                    {
+                                        <option>@item.Name </option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="deleteChildSave" data-dismiss="modal">Сохранить</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="changeNamePareant" class="modal fade ">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Удалить родительскую категорию</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Выбрать родительскую категорию</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" style="margin-bottom:10px;" id="selectChangeNamePareantCategory" name="selectChangeNamePareantCategory">
+                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
+                            {
+
+                                <option>@element.Name </option>
+
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название родительской категории</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="NewNamePareantCategory" name="NewNamePareantCategory" placeholder="Название категории" />
+                    </div>
+                </div>
+               
+                    <div class="modal-footer">
+                        <button class="btn btn-success" data-dismiss="modal" id="ChangeNamePareantSave">Сохранить</button>
+                        <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                    </div>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+<div id="changeNameChild" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" id="close1">×</button>
+                <h4 class="modal-title">Изменить дочернию категорию</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="selectChangeNameChild" class="col-sm-5 control-label">Выбрать дочернию категорию</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" style="margin-bottom:10px;" id="selectChangeNameChild" name="selectChangeNameChild">
+                            @foreach (var element in Services.PostServices.GetCategories())
+                            {
+                                <optgroup label="@element.Name">
+                                    @foreach (var item in element.Child)
+                                    {
+                                        <option>@item.Name </option>
+                                    }
+                                </optgroup>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название дочерний категории</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="NewNameChildCategory" name="NewNameChildCategory" placeholder="Название категории" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" id="changeNameChildSave" data-dismiss="modal">Сохранить</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Конец скрытых модальных окон-->
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#addMainCategory').click(function () {
+                var nameCategoryList = $('#nameCategoryList');
+                var nameCategory = $('nameCategory');
+                var li = $('<li/>').appendTo(nameCategoryList);
+                if ($("#nameCategoryList .btn").hasClass("btn-info")) {
+                    nameCategoryList.empty();
+                };
+                var inputName = $('<input/>');
+                var submitName = $('<input/>');
+                inputName.attr({ "type": "text", "placeholder": "Введите имя категории", "id": "inputName", "style": "width:200px;" }).appendTo(li);
+                submitName.attr({ "type": "submit", "class": " btn btn-info", "id": "submitName", "style": "margin-left:10px" }).appendTo(li);
+
+                $('#submitName').click(function () {
+                    var formData = new FormData();
+                    var value = document.getElementById("inputName").value;
+                    formData.append("name", value);
+
+
+                    $.ajax({
+                        url: 'AddMainCategory',
+                        type: 'post',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+
+                            console.log(data);
+                            updateCategory();
+                        }
+
+
+                    });
+                });
+            });
+            $('#addChildCategory').click(function () {
+                var formData = new FormData();
+                var valuePareant = document.getElementById("namePareantCategory").value;
+                var valueChild = document.getElementById("nameChildCategory").value;
+                formData.append("namePareantCategory", valuePareant);
+                formData.append("nameChild", valueChild);
+
+
+                $.ajax({
+                    url: 'addChildCategory',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (data) {
+                        
+
+                        console.log(data);
+                        updateCategory();
+                    }
+
+
+                });
+                    
+
+            });
+            $('#deleteCategory').click(function () {
+                var nameDeleteCategoryList = $('#nameDeleteCategoryList');
+                var li = $('<li/>').appendTo(nameDeleteCategoryList);
+
+                if ($("#nameDeleteCategoryList .btn").hasClass("btn-danger")) {
+                    nameDeleteCategoryList.empty();
+                };
+
+                var pareantInput = $('<button> Удалить родительскую категорию </button>');
+
+                var childInput = $('<button> Удалить дочернию категорию </button>');
+                pareantInput.attr({ "class": "btn btn-danger", "data-toggle": "modal", "id": "deletePareantCategory", "data-target": "#deletePareant", "style": "width:270px; margin: 5px;" }).appendTo(li);
+                childInput.attr({ "class": " btn btn-danger", "data-toggle": "modal", "id": "deleteChildCategory", "data-target": "#deleteChild", "style": "width:270px; margin: 5px;" }).appendTo(li);
+
+            });
+            $('#deletePareantSave').click(function () {
+                var formData = new FormData();
+                var valueSelectPareant = document.getElementById("selectPareantCategory").value;
+                formData.append("name", valueSelectPareant);
+
+                $.ajax({
+                    url: 'DeletePareant',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (data) {
+                       
+                    
+                        console.log(data);
+                        updateCategory();
+                    }
+
+
+                });
+                
+            });
+            $('#deleteChildSave').click(function () {
+                var formDataDelete = new FormData();
+
+                var item = document.getElementById("selectChildCategory");
+                var selected = $(':selected', item);
+               
+                    var valueOptgroup = selected.closest('optgroup').attr('label');
+                    var valueSelectChild = selected.val();
+               
+                    formDataDelete.append("NameChild", valueSelectChild);
+                    formDataDelete.append("NamePareant", valueOptgroup);
+                
+               
+              
+                $.ajax({
+                    url: 'DeleteChild',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formDataDelete,
+                    success: function (data) {
+
+                        console.log(data);
+                        updateCategory();
+                    }
+
+
+                });
+              
+            });
+            $('#changeName').click(function () {
+                var PareantOrChild = $('#PareantOrChild');
+                var li = $('<li/>').appendTo(PareantOrChild);
+
+                if ($("#PareantOrChild .btn").hasClass("btn-info")) {
+                    PareantOrChild.empty();
+                };
+
+                var changePareantInput = $('<button> Изменить родительскую категорию </button>');
+                var changeChildInput = $('<button> Изменить дочернию категорию </button>');
+                changePareantInput.attr({ "class": "btn btn-info", "data-toggle": "modal", "id": "changePareantCategory", "data-target": "#changeNamePareant", "style": "width:270px; margin: 5px;" }).appendTo(li);
+                changeChildInput.attr({ "class": " btn btn-info", "data-toggle": "modal", "id": "changeChildCategory", "data-target": "#changeNameChild", "style": "width:270px; margin: 5px;" }).appendTo(li);
+
+            });
+            $('#ChangeNamePareantSave').click(function () {
+                var formData = new FormData();
+                var valueSelectPareant = document.getElementById("selectChangeNamePareantCategory").value;
+                var valueInputPareant = document.getElementById("NewNamePareantCategory").value;
+                formData.append("namePareant", valueSelectPareant);
+                formData.append("newName", valueInputPareant);
+                $.ajax({
+                    url: 'ChangeNamePareant',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        updateCategory();
+                    }
+                });
+            });
+            $('#changeNameChildSave').click(function () {
+                var formDataDelete = new FormData();
+                var item = document.getElementById("selectChangeNameChild");
+                var selected = $(':selected', item);
+                var valueOptgroup = selected.closest('optgroup').attr('label');
+                var valueSelectChild = selected.val();
+                var valueInputName = document.getElementById("NewNameChildCategory").value;
+                formDataDelete.append("childName", valueSelectChild);
+                formDataDelete.append("namePareant", valueOptgroup);
+                formDataDelete.append("newName", valueInputName);
+                $.ajax({
+                    url: 'ChangeNameChild',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formDataDelete,
+                    success: function (data) {
+                        console.log(data);
+                        updateCategory();
+                    }
+
+
+                });
+
+            });
+
+            function updateCategory() {
+
+                $('#PanelCategory').load("http://localhost:62712/Admin/Admin/upCategories");
+            };
+        });
+    </script>
+    
