@@ -20,7 +20,7 @@ namespace Blog.Areas.Admin.Controllers
         {
             return View();
         }
-       
+        #region Управления постами
         /// <summary>
         /// Страница с добавлением нового поста
         /// </summary>
@@ -29,17 +29,34 @@ namespace Blog.Areas.Admin.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// Добавление поста
+        /// </summary>
+        /// <param name="model">Модель поста</param>
+        /// <param name="IdCategory">Ид категории</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult NewPost(ModelPost model, int IdCategory)
+        public ActionResult NewPost(ModelPost model, int? IdCategory, HttpPostedFileBase Upload)
         {
             AdminServices.ControlPosts.AddPost(model, IdCategory);
-            
-            return View();
+            //if (Upload != null)
+            //{
+            //    // получаем имя файла
+            //    string fileName = System.IO.Path.GetFileName(Upload.FileName);
+            //    // сохраняем файл в папку img в проекте
+            //    System.IO.Directory.CreateDirectory(Server.MapPath("~/img/") + model.PostID);
+            //    Upload.SaveAs(Server.MapPath("~/img/" + model.PostID + "/" + fileName));
+            //}
+            return RedirectToAction("Posts");
         }
+        /// <summary>
+        /// Страница с управлением постами
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Posts()
         {
-           
+
             return View();
         }
         /// <summary>
@@ -52,12 +69,17 @@ namespace Blog.Areas.Admin.Controllers
             AdminServices.ControlPosts.DeletePosts(id);
             return Json("Пост успешно удален");
         }
+        public ActionResult EditPost(int id)
+        {
+          var model =  AdminServices.ControlPosts.EditPost(id);
+            return View(model);
+        }
         public ActionResult upPosts()
         {
             var posts = Services.Post.PostPreview();
             return View(posts);
         }
-       
+#endregion
         #region Страница с пользователями
         /// <summary>
         /// Страница с таблицей всех пользователй
@@ -91,10 +113,10 @@ namespace Blog.Areas.Admin.Controllers
             AdminServices.Users.Block(list);
             return Json("Запрос успешно выполнен");
         }
-       /// <summary>
-       /// Вывод содержимое таблицы пользователей  
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// Вывод содержимое таблицы пользователей  
+        /// </summary>
+        /// <returns></returns>
         public ActionResult upUsers()
         {
             var users = AdminServices.Users.Users();
@@ -109,13 +131,13 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="dataBirth">Дата Рождения пользователя</param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult AddUser(string userName, string email, string password,DateTime dataBirth)
+        public JsonResult AddUser(string userName, string email, string password, DateTime dataBirth)
         {
 
             var salt = Services.Users.Register(userName, password, dataBirth, email);
             WebUser.SendMail("Подтвердите регистрацию", email,
                 $@"Для завершения регистрации перейдите по 
-                 <a href='{Url.Action( "Confrimed", "Account", new { area = "", salt = salt, userName = userName }, Request.Url.Scheme)}'
+                 <a href='{Url.Action("Confrimed", "Account", new { area = "", salt = salt, userName = userName }, Request.Url.Scheme)}'
                  title='Подтвердить регистрацию'>ссылке</a>");
             return Json("Запрос успешно выполнен");
         }
@@ -128,7 +150,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult roleUsers(string role)
         {
             var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
-            AdminServices.Users.roleUsers(list,role);
+            AdminServices.Users.roleUsers(list, role);
             return Json("Запрос успешно выполнен");
         }
         #endregion
@@ -159,7 +181,7 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="nameChild">Название новой дочерний категории</param>
         /// <returns></returns>
         [HttpPost]
-         public   ActionResult addChildCategory(string namePareantCategory,string nameChild)
+        public ActionResult addChildCategory(string namePareantCategory, string nameChild)
         {
             AdminServices.Categories.addChildCategory(namePareantCategory, nameChild);
             return Json("Запрос успешно выполнен");
@@ -170,7 +192,7 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="name">Имя родительской категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DeletePareant (string name)
+        public ActionResult DeletePareant(string name)
         {
             AdminServices.Categories.DeletePareant(name);
             return Json("Запрос успешно выполнен");
@@ -182,7 +204,7 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="NameChild">Имя дочерний категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DeleteChild (string NamePareant, string NameChild)
+        public ActionResult DeleteChild(string NamePareant, string NameChild)
         {
             AdminServices.Categories.DeleteChild(NamePareant, NameChild);
             return Json("Запрос успешно выполнен");
@@ -194,29 +216,30 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="newName">Новое название категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ChangeNamePareant(string namePareant,string newName)
+        public ActionResult ChangeNamePareant(string namePareant, string newName)
         {
             AdminServices.Categories.ChangeNamePareant(namePareant, newName);
             return Json("Запрос успешно выполнен");
         }
         [HttpPost]
-        public ActionResult ChangeNameChild(string namePareant,string childName, string newName)
+        public ActionResult ChangeNameChild(string namePareant, string childName, string newName)
         {
-            AdminServices.Categories.ChangeNameChild(namePareant,childName, newName);
+            AdminServices.Categories.ChangeNameChild(namePareant, childName, newName);
             return Json("Запрос успешно выполнен");
         }
 
 
         public ActionResult upCategories()
         {
-            
+
             return View();
         }
-        #endregion
+  
         public ActionResult SelectCategory()
         {
             var model = Services.Post.GetCategory();
             return View(model);
         }
+        #endregion
     }
 }

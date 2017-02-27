@@ -89,10 +89,7 @@ namespace Services
             return model.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
         }
 
-        /// <summary>
-        /// Вывод всех категорий
-        /// </summary>
-        /// <returns>Коллекция всех категорий</returns>
+  
         public ModelCategories GetCategory()
         {
             using (var db = new DataContext())
@@ -101,7 +98,10 @@ namespace Services
                 return new ModelCategories { Categories = categories.Select(c => ConverModelCategory(c)).ToList() };
             }
         }
-
+        /// <summary>
+        /// Вывод всех категорий
+        /// </summary>
+        /// <returns></returns>
         public static List<Category> GetCategories()
         {
             using (var db = new DataContext())
@@ -110,7 +110,11 @@ namespace Services
                 return categories;
             }
         }
-
+        /// <summary>
+        /// Конвертирует из ModelCategory в Category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         private static ModelCategory ConverModelCategory(Category category)
         {
 

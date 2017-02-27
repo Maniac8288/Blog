@@ -23,7 +23,7 @@
 
 
         <div class="entry-summary">
-            <p>@item.contentPost</p>
+        @Html.Raw(item.contentPost)
             <!-- .entry-summary -->
         </div>
         <a href="@Url.Action("Post","Home", new { id = item.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>

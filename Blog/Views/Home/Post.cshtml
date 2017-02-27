@@ -17,7 +17,7 @@
         <div id="attachment_906" style="width: 590px" class="wp-caption aligncenter text-center">
             <img width="600" height="270" src="~/img/@Model.PostID/@Model.upload" alt="@Model.NamePost" title="@Model.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image"><p class="wp-caption-text"> </p>
         </div>
-            @Model.contentPost
+          @Html.Raw(Model.contentPost)
       
         <!-- .entry-content -->
     </div>
