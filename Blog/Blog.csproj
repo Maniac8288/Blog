@@ -218,6 +218,7 @@
     <Content Include="Areas\Admin\Views\Shared\SelectCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\upPosts.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EditPost.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Test.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

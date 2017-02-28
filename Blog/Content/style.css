@@ -554,10 +554,12 @@ object {
 /* LAYOUT
 ----------------------------------------------- */
 .container {
-	width: 980px;
+	width: 1370px;
+    
 	}
 .content-area {
 	width: 100%;
+    min-height:700px;
 	float: left;
 	}
 .site-content {
@@ -565,7 +567,7 @@ object {
 	}
 .site-sidebar {
 	width: 300px;
-	float: left;
+	float: right;
 	margin: 0 0 0 -300px;
 	}
 

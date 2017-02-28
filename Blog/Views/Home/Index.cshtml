@@ -3,35 +3,35 @@
 @{
     ViewBag.Title = "Главная";
 }
-@foreach(var item in Model){
+@foreach(var post in Model){
     <article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
         <header class="entry-header">
-            <h3 class="site-title"><a href="@Url.Action("Post","Home", new { id = item.PostID })" rel="bookmark">@item.NamePost</a></h3>
+            <h3 class="site-title"><a href="@Url.Action("Post","Home", new { id = post.PostID })" rel="bookmark">@post.NamePost</a></h3>
 
             <div class="entry-meta">
-                <span class="posted-on"><a ><time class="entry-date published updated">@item.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a>@item.Author</a></span></span>
+                <span class="posted-on"><a ><time class="entry-date published updated">@post.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a>@post.Author</a></span></span>
                 <!-- .entry-meta -->
             </div>
             <!-- .entry-header -->
         </header>
 
-        <div class="entry-thumbnail">
-            <a href="@Url.Action("Post","Home", new { id = item.PostID })" title="Template: Sticky">
-                <img width="600" height="270" src="~/img/@item.upload" alt="@item.NamePost" title="@item.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">
-            </a>
+        <div class="entry-thumbnail" align="center">
+            <a href="@Url.Action("Post","Home", new { id = post.PostID })" title="Template: Sticky">
+                @if (post.upload != null) { 
+                <img width="540" height="270" src="~/img/@post.PostID/Preview/@post.upload" alt="@post.NamePost" title="@post.NamePost"  class="attachment-thumb-featured size-thumb-featured wp-post-image">}            </a>
         </div>
 
 
         <div class="entry-summary">
-        @Html.Raw(item.contentPost)
+          <p>@post.Description</p>
             <!-- .entry-summary -->
         </div>
-        <a href="@Url.Action("Post","Home", new { id = item.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>
+        <a href="@Url.Action("Post","Home", new { id = post.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>
         <footer class="entry-meta entry-footer">
             <span class="cat-links">
-                <i class="ico-folder"></i><a class="btn btn-default btn-sm" href="@Url.Action("Category","Home", new { category = item.selectedCategory.Name})">
+                <i class="ico-folder"></i><a class="btn btn-default btn-sm" href="@Url.Action("Category","Home", new { category = post.selectedCategory.Name})">
    
-                  @item.selectedCategory.Name
+                  @post.selectedCategory.Name
               
     </a>
             </span>

@@ -39,7 +39,7 @@ namespace Services.Admin
         /// </summary>
         /// <param name="model">Модель поста</param>
         /// <param name="IdCategory">Ид категории</param>
-        public void AddPost(ModelPost model, int? IdCategory)
+        public void AddPost(ModelNewPost model, int IdCategory)
         {
             using (var db = new DataContext())
             {
@@ -48,32 +48,38 @@ namespace Services.Admin
                 posts.SelectCategories = category;
                 db.Posts.Add(posts);
                 db.SaveChanges();
-                
+
             }
         }
         /// <summary>
-        /// Добавление изображения
+        /// Возвращает нужуню модель поста для редактирования 
         /// </summary>
-        /// <param name="model">Модель поста</param>
-        /// <param name="Upload">Изображение</param>
-        public void AddImage(ModelPost model,HttpPostedFileBase Upload)
-        {
-            //if (Upload != null)
-            //{ 
-            //    // получаем имя файла
-            //    string fileName = System.IO.Path.GetFileName(Upload.FileName);
-            //    // сохраняем файл в папку img в проекте
-            //    System.IO.Directory.CreateDirectory(Server.MapPath("~/img/") + model.PostID);
-            //    Upload.SaveAs(Server.MapPath("~/img/" + model.PostID + "/" + fileName));
-            //}
-        }
-        public ModelPost EditPost (int id)
+        /// <param name="id">Ид категории</param>
+        /// <returns></returns>   
+        public ModelPost GetEditPost(int id)
         {
             using (var db = new DataContext())
             {
-                
+
                 var post = db.Posts.FirstOrDefault(_ => _.PostID == id);
                 return ConverPost(post);
+            }
+        }
+        public void EditPost(ModelNewPost model, int IdCategory)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.FirstOrDefault(x => x.Id == IdCategory);
+                var post = db.Posts.FirstOrDefault(x => x.PostID == model.PostID);
+                post.NamePost = model.NamePost;
+                post.SelectCategories = category;
+                post.Description = model.Description;
+                post.Tags = model.Tags;
+                post.dateAddPost = model.dateAddPost;
+                post.contentPost = model.contentPost;
+                post.upload = model.upload;
+                db.SaveChanges();
+
             }
         }
         /// <summary>
@@ -81,7 +87,7 @@ namespace Services.Admin
         /// </summary>
         /// <param name="posts"></param>
         /// <returns></returns>
-        private static Post ConverModelPost(ModelPost posts)
+        private static Post ConverModelPost(ModelNewPost posts)
         {
             return new Post
             {
@@ -92,6 +98,7 @@ namespace Services.Admin
                 NamePost = posts.NamePost,
                 Tags = posts.Tags,
                 upload = posts.upload,
+                Description = posts.Description
 
             };
         }
@@ -109,10 +116,91 @@ namespace Services.Admin
                 dateAddPost = post.dateAddPost,
                 contentPost = post.contentPost,
                 NamePost = post.NamePost,
-                Tags = post.Tags
-                
+                Tags = post.Tags,
+                Description = post.Description
+
 
             };
         }
+        /// <summary>
+        /// Добавление изображения в Priveiw
+        /// </summary>
+        /// <param name="upload">Изображение</param>
+        /// <param name="mapPath">Путь</param>
+        /// <param name="model">Модель поста</param>
+        public void Image(HttpPostedFileBase upload, string mapPath, ModelNewPost model)
+        {
+            if (upload != null)
+            {
+                using (var db = new DataContext())
+                {
+                    var post = db.Posts.FirstOrDefault(x => x.PostID == model.PostID);
+                    if (post == null)
+                    {
+                        
+                        var postID = db.Posts.Max(x => x.PostID);
+                        postID++;
+                        string dir = mapPath + postID;
+                        if (!Directory.Exists(dir + "/" + "Preview"))
+                        {
+                          
+                            Directory.CreateDirectory(dir + "/" + "Preview");
+                        }
+                        string newFileName = Path.GetFileName(upload.FileName);
+                        // сохраняем файл в папку img в проекте
+                        var newPatch = Path.Combine(mapPath + "/" + postID+"/"+"Preview", newFileName);
+                        upload.SaveAs(newPatch);
+                    }
+                    else
+                    {
+                        string dir = mapPath + model.PostID;
+                        if (!Directory.Exists(dir + "/" + "Preview"))
+                        {
+
+                            Directory.CreateDirectory(dir + "/" + "Preview");
+                        }
+                        string fileName = Path.GetFileName(upload.FileName);
+                        // сохраняем файл в папку img в проекте
+                        var path = Path.Combine(mapPath+"/"+ model.PostID + "/" + "Preview", fileName);
+                        upload.SaveAs(path);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Загржает изображение на сервер и получает путь к файлу изображения
+        /// </summary>
+        /// <param name="upload">Изображения</param>
+        /// <param name="CKEditorFuncNum">Идентификационный номер анонимного функции обратного вызова после загрузки</param>
+        /// <param name="mapPath">Путь для сохранения файла</param>
+        /// <returns>Возвращает строку с Ajax запросом</returns>
+        public string ProcessRequest(HttpPostedFileBase upload, string CKEditorFuncNum, string mapPath, ModelNewPost model)
+        {
+
+            if (upload.ContentLength <= 0)
+                return null;
+            using (var db = new DataContext())
+            {
+                var NewPost = db.Posts.Max(x => x.PostID);
+                NewPost++;
+                const string uploadFolder = "img";
+                // сохраняем файл в папку img в проекте
+                Directory.CreateDirectory(mapPath + NewPost);
+                var fileName = Path.GetFileName(upload.FileName);
+                var path = Path.Combine(mapPath + "/" + NewPost, fileName);
+                upload.SaveAs(path);
+                var url = string.Format("{0}/{1}/{2}/{3}", "http://localhost:62712/", uploadFolder, NewPost, fileName);
+                const string message = "Ваше изображение успешно сохраненно";
+                // Ajax запрос для передачи изображение
+                var output = string.Format(
+                    "<html><body><script>window.parent.CKEDITOR.tools.callFunction({0}, \"{1}\", \"{2}\");</script></body></html>",
+                    CKEditorFuncNum, url, message);
+                return output;
+            }
+
+
+        }
+
+
     }
 }

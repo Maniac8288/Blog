@@ -31,7 +31,7 @@ namespace Services
                 return posts;
             }
         }
-        
+      
         /// <summary>
         /// Выводит пост с информацией "Детальней"
         /// </summary>
@@ -59,9 +59,11 @@ namespace Services
                 dateAddPost = post.dateAddPost,
                 Tags = post.Tags,
                 contentPost = post.contentPost,
-                Author = post.Author
+                Author = post.Author,
+                Description = post.Description
             };
         }
+       
 
         /// <summary>
         /// Перезапись модели Post из ModelPost
@@ -80,7 +82,10 @@ namespace Services
                 dateAddPost = post.dateAddPost,
                 Tags = post.Tags,
                 contentPost = post.contentPost,
-                Author = post.Author
+                Author = post.Author,
+                Description = post.Description
+                
+                
             };
         }
         public static List<string> collectionsTags = new List<string>();

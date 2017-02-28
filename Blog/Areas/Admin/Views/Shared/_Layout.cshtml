@@ -32,9 +32,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="~/Areas/Admin/Metrionic/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
     <link href="~/Areas/Admin/Metrionic/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="~/Areas/Admin/Metrionic/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
-    <link href="~/Areas/Admin/Metrionic/global/plugins/ckeditor/skins/moono/editor.css" rel="stylesheet" type="text/css">
+    <link href="~/Areas/Admin/Metrionic/global/plugins/ckeditor/skins/moono-lisa/editor.css" rel="stylesheet" type="text/css">
   
-    
+
     <link href="~/Areas/Admin/Metrionic/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css">
     <link href="~/Areas/Admin/Metrionic/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -513,25 +513,25 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                         <ul class="sub-menu">
                             <li>
-                                <a href="Users">
+                                <a href="@Url.Action("Users", "Admin")">
                                     <i class="icon-users"></i>
                                     Пользователи
                                 </a>
                             </li>
                             <li>
-                                <a href="NewPost">
+                                <a href="@Url.Action("NewPost","Admin")">
                                     <i class="icon-docs"></i>
                                     Создать пост
                                 </a>
                             </li>
                             <li>
-                                <a href="Categories">
+                                <a href="@Url.Action("Categories", "Admin")">
                                     <i class="icon-puzzle"></i>
                                     Категории
                                 </a>
                             </li>
                             <li>
-                                <a href="Posts">
+                                <a href="@Url.Action("Posts", "Admin")">
                                     <i class="icon-link"></i>
                                     Посты
                                 </a>
@@ -615,8 +615,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <script src="~/Areas/Admin/Metrionic/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
     <!-- END CORE PLUGINS -->
     <script src="~/Areas/Admin/Metrionic/global/plugins/ckeditor/ckeditor.js" type="text/javascript"> </script>
+    <script src="~/Areas/Admin/Metrionic/global/plugins/ckeditor/config.js" type="text/javascript"> </script>
 
-    
     <script src="~/Areas/Admin/Metrionic/global/plugins/bootstrap-markdown/lib/markdown.js" type="text/javascript"> </script>
     <script src="~/Areas/Admin/Metrionic/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"> </script>
     <script src="~/Areas/Admin/Metrionic/global/scripts/metronic.js" type="text/javascript"></script>

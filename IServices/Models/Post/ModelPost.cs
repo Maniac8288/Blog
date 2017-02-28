@@ -24,6 +24,10 @@ namespace IServices.Models.Post
         /// </summary>
         public Category selectedCategory { get; set; }
         /// <summary>
+        /// Краткое описание поста
+        /// </summary>
+        public string Description { get; set; }
+        /// <summary>
         /// Содержимое поста
         /// </summary>
         public string contentPost { get; set; }

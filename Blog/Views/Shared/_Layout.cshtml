@@ -20,7 +20,7 @@
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">@Html.ActionLink("Новости", "News", "Home")</li>
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Контакты", "Contact", "Home")</li>
                     <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Личный кабинет", "Cabinet", "Home")</li>
-
+                    @Html.Partial("_LoginPartial")
                 </ul>
 
             </div>
@@ -75,7 +75,7 @@
                         </form>
                     </aside>
 
-                    @Html.Partial("_LoginPartial")
+              
 
                     <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
                         <ul id="widget-tab" class="clearfix widget-tab-nav">

@@ -2,10 +2,10 @@
 @{
     Layout = null;
 }
-<div class="form-group">
-    <label for="Category" class="col-sm-2 control-label">Категория</label>
+
+    <label for="selectedCategory" class="col-sm-2 control-label style="margin:10px;"">Категория</label>
     <div class="col-md-10">
-        <select class="form-control" id="selectedCategory" name="selectedCategory">
+        <select class="form-control" id="selectedCategory" name="selectedCategory" style="margin:10px;">
             @foreach (var category in Model.GetParents())
             {
                 <optgroup label="@category.Name">
@@ -19,4 +19,3 @@
         </select>
     </div>
 
-</div>

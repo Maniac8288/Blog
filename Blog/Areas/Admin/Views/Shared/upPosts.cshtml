@@ -16,9 +16,7 @@
                 <a href="javascript:;" class="btn btn-default btn-sm" id="deletePost">
                     <i class="fa fa-minus"></i> Удалить пост
                 </a>
-                <a href="javascript:;" class="btn btn-default btn-sm" id="editPost">
-                    <i class="fa fa-cogs"></i> Редактировать пост
-                </a>
+               
             </div>
         </div>
         <div class="portlet-body">
@@ -26,7 +24,7 @@
                 <thead>
                     <tr>
                         <th class="table-checkbox">
-                            <input type="checkbox" class="group-checkable" data-set="#sample_3 .checkboxes" />
+                            <input type="checkbox" class="group-checkable" />
                         </th>
                         <th>
                             Название поста
@@ -44,7 +42,7 @@
                     {
                         <tr class="odd gradeX">
                             <td>
-                                <input type="checkbox" class="checkboxes" value="@post.PostID" name="list" id="check" /> <span ><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs"></i> </a></span>
+                                <input type="checkbox" class="checkboxes" value="@post.PostID" name="list" id="check" /> <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs"></i> </a></span>
                             </td>
                             <td>
                                 @post.NamePost
@@ -81,7 +79,7 @@
                     }
 
                 }).get();
-                data.append("id", values);
+                data.append("list", values);
                 $.ajax({
                     url: 'DeletePosts',
                     type: 'post',
@@ -95,30 +93,7 @@
                     }
                 });
             });
-            $('#editPost').click(function () {
-                var data = new FormData();
-                var list = $('#check').attr("name");
-                var listVal = $('#check').attr("value");
-                values = $("input[name=list]").map(function () {
-                    if ($(this)[0].checked) {
-                        return $(this).val();
-                    }
-
-                }).get();
-                data.append("id", $("#check").val());
-                $.ajax({
-                    url: 'EditPost',
-                    type: 'get',
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    beforeSend: function () { console.log(values); },
-                    success: function (data) {
-                       
-                        console.log(data);
-                    }
-                });
-            });
+         
             function upPosts() {
 
                 $('#PanelPosts').load("http://localhost:62712/Admin/Admin/upPosts");

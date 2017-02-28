@@ -14,12 +14,13 @@ namespace IServices.Models.Post
         /// </summary>
         public string NamePost { get; set; }
         /// <summary>
-        /// Коллекция постов
-        /// </summary>
-        /// <summary>
         /// Выбраная категория
         /// </summary>
         public Category selectedCategory { get; set; }
+        /// <summary>
+        /// Краткое описание поста
+        /// </summary>
+        public string Description { get; set; }
         /// <summary>
         /// Содержимое поста
         /// </summary>
@@ -28,7 +29,6 @@ namespace IServices.Models.Post
         /// Тэги
         /// </summary>
         public string Tags { get; set; }
-
         public List<string> CollectionTags = new List<string>();
         /// <summary>
         /// Дата создания

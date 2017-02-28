@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace IServices.Sublntefac.Admin
 {
@@ -19,12 +20,33 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <param name="model">Модель поста</param>
         /// <param name="IdCategory">Ид категории</param>
-        void AddPost(ModelPost model,int? IdCategory);
+        void AddPost(ModelNewPost model,int IdCategory);
         /// <summary>
         /// Возвращает модель редактирование поста
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        ModelPost EditPost(int id);
+        ModelPost GetEditPost(int id);
+        /// <summary>
+        /// Изменяет выбранный пост в БД
+        /// </summary>
+        /// <param name="model">Выбраный пост</param>
+        /// <param name="IdCategory">ID категории</param>
+        void EditPost(ModelNewPost model, int IdCategory);
+        /// <summary>
+        /// Добавление изображение в Priview 
+        /// </summary>
+        /// <param name="upload">Изображения</param>
+        /// <param name="mapPath">Путь для сохранения файла</param>
+        /// <param name="model">Модель поста</param>
+        void Image(HttpPostedFileBase upload, string mapPath,ModelNewPost model);
+        /// <summary>
+        /// Загржает изображение на сервер и получает путь к файлу изображения
+        /// </summary>
+        /// <param name="upload">Изображения</param>
+        /// <param name="CKEditorFuncNum">Идентификационный номер анонимного функции обратного вызова после загрузки</param>
+        /// <param name="mapPath">Путь для сохранения файла</param>
+        /// <returns>Возвращает строку с Ajax запросом</returns>
+        string ProcessRequest(HttpPostedFileBase upload, string CKEditorFuncNum, string mapPath, ModelNewPost model);
     }
 }

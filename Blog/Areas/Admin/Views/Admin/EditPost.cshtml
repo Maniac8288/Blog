@@ -3,50 +3,121 @@
     ViewBag.Title = "EditPost";
 }
 
-<div class="container ">
+<div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box blue">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs">&nbsp;</i>Добавить пост
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse" data-original-title="" title="">
+                </a>
+                <a href="javascript:;" id="reloadUsers" class="reload" data-original-title="" title="">
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body">
 
-    <div class="form-group  ">
-        <label for="NamePost" class="col-sm-2 control-label">Название</label>
+            <div class="form-group">
+                <input type="hidden" id="id" name="id" value="@Model.PostID" />
+                <label for="NamePost" class="col-sm-2 control-label">Название</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="NamePost" name="NamePost" required value="@Model.NamePost" style="margin:10px;" />
+                </div>
+            </div>
+            <div class="form-group">@Html.Action("SelectCategory", "Admin")</div>
+            <div class="form-group">
+                <label for="Description" class="col-sm-2 control-label">Краткое описание</label>
+                <div class="col-md-10">
+                    <textarea rows="3" class="form-control" id="Description" name="Description" required placeholder="Введите краткое описание, максимум 200 символов" maxlength="200" style="margin:10px;">@Model.Description</textarea>
+                </div>
+            </div>
 
-        <div class="col-md-10">
-            <input type="text" class="form-control" id="NamePost" name="NamePost" required value="@Model.NamePost" />
+            <div class="form-group">
+                <label for="contentPost" class="col-sm-2 control-label">Содержимое поста</label>
+                <div class="col-md-10">
+                    <textarea class="ckeditor form-control" name="contentPost" id="contentPost" rows="6" style="visibility: hidden; display: none;">@Model.contentPost</textarea>
+                    <script type="text/javascript">
+
+                    </script>
+                </div>
+
+                <hr />
+                <div class="form-group">
+                    <label for="Tags" class="col-sm-2 control-label">Тэги</label>
+                    <div class="col-md-10">
+                        <textarea cols="150" rows="3" class="form-control" id="Tags" name="Tags" required placeholder="Введите тэги через запятую" style="margin:10px;">@Model.Tags</textarea>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="dateAddPost" class="col-sm-2 control-label">Дата создания</label>
+                    <div class="col-md-10">
+                        <input type="date" class="form-control" required name="dateAddPost" id="dateAddPost" style="margin:10px; width:400px;" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="File" class="col-sm-2 control-label">Прикрепить файл для Preview</label>
+                    <div class="col-md-10">
+                        <input type="file" class="form-control " name="Upload" id="Upload" style="margin:10px; width:400px; " />
+                    </div>
+                </div>
+
+                <div align="right">
+                    <br />
+                    <input type="submit" class="btn btn-info " id="editPost" name="save" style="margin:10px;" />
+                </div>
+
+            </div>
         </div>
     </div>
-    @Html.Action("SelectCategory", "Admin")
-
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-md-">
-            <textarea class="form-control col-lg-50" cols="10" rows="25" id="contentPost" required name="contentPost">@Model.contentPost</textarea>
-        </div>
-    </div>
-    <hr />
-    <div class="form-group col-xs-12 ">
-        <label for="Tags" class="col-sm-2 control-label">Тэги</label>
-        <div class="col-xs-10">
-            <textarea cols="150" rows="3" class="form-control" id="Tags" name="Tags" required placeholder="Введите тэги через запятую"></textarea>
-        </div>
-
-    </div>
-    <div class="form-group ">
-        <label for="dateAddPost" class="col-sm-2 control-label">Дата создания</label>
-        <div class="col-md-2">
-            <input type="date" class="form-control" required name="с" id="dateAddPost" />
-        </div>
-
-        <label for="File" class="col-sm-2 control-label">Прикрепить файл</label>
-        <div class="addbut col-xs-4">
-
-            <input type="file" class="form-control " name="Upload" id="Upload" />
-
-        </div>
-        @*<a class="addLink btn btn-default">Добавить новый файл</a>*@
-        <div align="center">
-            <br />
-            <input type="submit" class="btn btn-info " id="addNewPost" name="save" />
-        </div>
-    </div>
-
 </div>
-<hr />
+
+
+@section scripts {
+    <script>
+        var files;
+        $(document).ready(function () {
+            $('#editPost').click(function () {
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                files = document.getElementById('Upload').files;
+                var data = new FormData();
+                var item = document.getElementById("selectedCategory");
+                var selected = $(':selected', item);
+                var selectedCategory = selected.val();
+                data.append("IdCategory", selectedCategory);
+                data.append("NamePost", $("#NamePost").val());
+                data.append("Description", $("#Description").val());
+                data.append("contentPost", $("#contentPost").val());
+                data.append("Tags", $("#Tags").val());
+                data.append("dateAddPost", $("#dateAddPost").val());
+                data.append("PostID", $("#id").val());
+                data.append("Upload", files[0]);
+                data.append("upload", files[0].name);
+
+                for (instance in CKEDITOR.instances) {
+                    CKEDITOR.instances[instance].updateElement();
+                }
+                $.ajax({
+                    url: 'EditPost',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (data) {
+                        window.location.href = "http://localhost:62712/Admin/Admin/Posts";
+                        console.log(data);
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+
+
+
 
 
