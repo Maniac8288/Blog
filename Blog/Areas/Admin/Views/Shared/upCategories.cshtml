@@ -12,21 +12,24 @@
                 </div>
                 <div class="portlet box red-sunglo">
                     <div class="portlet-body">
-                        <ul>
+                        <ul style="list-style-type:none;">
                             @foreach (var element in Services.PostServices.GetCategories())
                              {
                                 <li>
-                                    <h3> @element.Name</h3>
-                                    <ul>
+                                    <h3><a data-toggle="modal" data-target="#changeNamePareant"  style="text-decoration: none; "> <i class="fa fa-cogs" title="Редактировать категорию"></i>  @element.Name</a></h3>
+                                    <ul style="list-style-type:none;">
                                         @foreach (var item in element.Child)
                                         {
                                             <li>
-                                                @item.Name
-                                            </li>
+                                                <a data-toggle="modal" data-target="#changeNameChild" style="text-decoration: none; ">   <i class="fa fa-cogs" title="Редактировать категорию"></i>       @item.Name </a>
+                                            </li>                                           
                                         }
+                                       
+                                   <shadow><a data-toggle="modal" data-target="#myModal" style="text-decoration: none; "> <i class="fa fa-plus"></i> Добавить  категорию </a></shadow>
                                     </ul>
                                 </li>
                             }
+                            <li><a data-toggle="modal" data-target="#myModal" style="text-decoration: none; "><h3> <i class="fa fa-plus"></i> Добавить категорию </h3> </a></li>
                         </ul>
                     </div>
                 </div>
@@ -53,7 +56,7 @@
                     </li>
                     <li>
 
-                        <button id="sample_editable_1_new" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width:250px; margin: 5px;">
+                        <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width:250px; margin: 5px;">
                             Добавить дочернию категорию
                         </button>
 
@@ -177,22 +180,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Удалить родительскую категорию</h4>
+                <h4 class="modal-title">Изменить родительскую категорию</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Выбрать родительскую категорию</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" style="margin-bottom:10px;" id="selectChangeNamePareantCategory" name="selectChangeNamePareantCategory">
-                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
-                            {
-
-                                <option>@element.Name </option>
-
-                            }
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="form-group">
                     <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название родительской категории</label>
                     <div class="col-sm-4">
@@ -217,22 +208,7 @@
                 <h4 class="modal-title">Изменить дочернию категорию</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="selectChangeNameChild" class="col-sm-5 control-label">Выбрать дочернию категорию</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" style="margin-bottom:10px;" id="selectChangeNameChild" name="selectChangeNameChild">
-                            @foreach (var element in Services.PostServices.GetCategories())
-                            {
-                                <optgroup label="@element.Name">
-                                    @foreach (var item in element.Child)
-                                    {
-                                        <option>@item.Name </option>
-                                    }
-                                </optgroup>
-                            }
-                        </select>
-                    </div>
-                </div>
+
                 <div class="form-group">
                     <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название дочерний категории</label>
                     <div class="col-sm-4">

@@ -23,9 +23,9 @@ namespace Blog
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
             bundles.Add(new ScriptBundle("~/bundles/site").Include(
-                 "~/Scripts/customizer.js",
+              
                       "~/Scripts/hoverIntent.js",
-                        "~/Scripts/customizer.js",
+                 
                           "~/Scripts/html5shiv.js",
                             "~/Scripts/settings.js",
                            "~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js",

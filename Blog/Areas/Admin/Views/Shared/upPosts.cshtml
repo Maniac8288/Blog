@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th class="table-checkbox">
-                            <input type="checkbox" class="group-checkable" />
+                            
                         </th>
                         <th>
                             Название поста
@@ -42,11 +42,15 @@
                     {
                         <tr class="odd gradeX">
                             <td>
-                                <input type="checkbox" class="checkboxes" value="@post.PostID" name="list" id="check" /> <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
+                                 <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
                             </td>
-                            <td>
-                                @post.NamePost
+                            
+                                <td>
+                                    <a href="@Url.Action("EditPost","Admin", new { id = post.PostID })" title="Редактировать пост" id="deletePost" >
+                                        @post.NamePost
+                                    </a>
                             </td>
+
                             <td>
 
 
@@ -54,12 +58,19 @@
 
 
                             </td>
-                            <td>
+                                <td>
 
-                                @post.dateAddPost
+                                    @post.dateAddPost
 
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+
+                                    <span class="glyphicon glyphicon-trash">
+                                    </span>
+
+
+                                </td>
+                            </tr>
                     }
                 </tbody>
             </table>

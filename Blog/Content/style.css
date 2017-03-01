@@ -966,13 +966,12 @@ body.search .page .entry-footer {
 	}
 .widget-title {
 	margin: 0 0 15px;
-	padding: 0 0 15px;
 	font-size: 1.2em;
 	font-weight: 400;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	border-bottom: 3px solid #333;
+
 	}
 
 /* Make sure select elements fit in widgets */

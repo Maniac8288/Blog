@@ -198,8 +198,6 @@ namespace Services.Admin
                     CKEditorFuncNum, url, message);
                 return output;
             }
-
-
         }
 
 

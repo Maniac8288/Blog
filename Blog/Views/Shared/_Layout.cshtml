@@ -55,16 +55,10 @@
 
                         <script src="~/Scripts/jquery-1.11.1.min.js"></script>
 
-                        <link href="~/Jcrop-v0.9.12/css/jquery.Jcrop.min.css" rel="stylesheet" />
-                        <script src="~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js"></script>
                     </div>
                 </div>
 
                 <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
-
-
-
-
                     <aside id="search-3" class="widget">
                         <form role="search" method="get" class="search-form" action="#">
                             <label>
@@ -74,49 +68,42 @@
                             <input type="submit" class="search-submit pull-right" value="Search">
                         </form>
                     </aside>
-
-              
-
                     <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
                         <ul id="widget-tab" class="clearfix widget-tab-nav">
-                            <li ><a href="#widget-tab-popular">Popular</a></li>
-                            <li class="active"><a href="#widget-tab-latest">Latest</a></li>
-                            <li><a href="#widget-tab-tags">Tags</a></li>
+                            <li><h3 class="widget-title" >Популярные</h3></li>
                         </ul>
-
                         <div class="widget-tab-content">
                             <div class="tab-pane active" id="widget-tab-popular">
                              @Html.Action("Latest","Home")
                             </div>
-
-                            <div class="tab-pane" id="widget-tab-latest">
-                                <ul>
-                                    <li class="clearfix">
-                                        <div class="widget-entry-thumbnail">
-                                            <a href="" title="Markup: HTML Tags and Formatting"><img width="50" height="50" src="" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: HTML Tags and Formatting"></a>
-                                        </div>
-                                        <div class="widget-entry-summary">
-                                            <h4><a href="" title="Markup: HTML Tags and Formatting" rel="bookmark">Markup: HTML Tags and Formatting</a></h4>
-                                            <span>January 11, 2013</span>
-                                        </div>
-                                    </li>
-
-                                </ul>
-                                <!-- #widget-tab-latest -->
+                        </div>
+                    </aside><!-- #widget-area-2 -->
+                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
+                        <ul id="widget-tab" class="clearfix widget-tab-nav">
+                            <li class="active"><h3 class="widget-title">Последние</h3></li>
+                        </ul>
+                        <div class="widget-tab-content">
+                            <div class="tab-pane active" id="widget-tab-popular">
+                                @Html.Action("Latest", "Home")
+                            </div>
+                        </div>
+                    </aside><!-- #widget-area-2 -->
+                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
+                        <ul id="widget-tab" class="clearfix widget-tab-nav">
+                            <li><h3 class="widget-title">Тэги</h3></li>
+                        </ul>
+                        <div class="widget-tab-content">
+                            <div class="tab-pane active" id="widget-tab-popular">
+                                @Html.Action("Latest", "Home")
                             </div>
                             <div class="tab-pane" id="widget-tab-tags">
                             </div>
                         </div>
                     </aside><!-- #widget-area-2 -->
                 </div>
-
                 <hr />
-
             </div>
-
         </div>
-
-
     </div>
     <footer id="colophon" class="site-footer" role="contentinfo">
         <div class="clearfix container">
