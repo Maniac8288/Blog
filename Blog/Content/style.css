@@ -971,6 +971,7 @@ body.search .page .entry-footer {
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 2px;
+    border-bottom: 3px solid #333;
 
 	}
 
@@ -1069,7 +1070,13 @@ ul.widget-tab-nav {
 	text-transform: uppercase;
 	line-height: 1.4;
 	}
-.widget-entry-content h4 a,
+.widget-entry-content h4 a,{
+
+    margin: 0;
+	font-size: 1em;
+	text-transform: uppercase;
+	line-height: 1.4;
+}
 .widget-entry-summary h4 a {
 	}
 .widget-entry-content h4 a:hover,

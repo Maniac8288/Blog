@@ -95,8 +95,9 @@
                 data.append("dateAddPost", $("#dateAddPost").val());
                 data.append("PostID", $("#id").val());
                 data.append("Upload", files[0]);
-                data.append("upload", files[0].name);
-
+                if (files[0] != null) {
+                    data.append("upload", files[0].name);
+                }
                 for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
                 }
