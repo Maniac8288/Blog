@@ -9,6 +9,9 @@ using Services.Admin;
 
 namespace Services
 {
+    /// <summary>
+    /// Управление админкой
+    /// </summary>
     public class AdminServices : IAdminServices
     {
         public AdminServices()
@@ -17,8 +20,17 @@ namespace Services
             Categories = new AdminCategoriesServices();
             ControlPosts = new AdminPostsServices();
         }
+        /// <summary>
+        /// Управление пользователями
+        /// </summary>
         public IAdminUsersServices Users { get; set; }
+        /// <summary>
+        /// Управление категориями
+        /// </summary>
         public IAdminCategoriesServices Categories { get; set; }
+        /// <summary>
+        /// Управление постами
+        /// </summary>
         public IAdminPostsServices ControlPosts { get; set; }
 
 

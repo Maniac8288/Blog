@@ -7,7 +7,7 @@
     <ul>
             @foreach(var lastPost in Model )
             {
-                <li><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })">@lastPost.NamePost</a></li>
+                <li><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })">@lastPost.NamePost</a> </li>
             }
         </ul>
 </div>

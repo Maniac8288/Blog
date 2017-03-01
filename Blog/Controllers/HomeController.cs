@@ -101,6 +101,10 @@ namespace Blog.Controllers
 
 
         }
+        /// <summary>
+        /// Последние посты
+        /// </summary>
+        /// <returns>Вывод последних постов отсортированных по дате</returns>
         public ActionResult Latest()
         {
             var posts = Services.Post.PostPreview();

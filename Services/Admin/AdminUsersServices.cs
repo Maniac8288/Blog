@@ -93,8 +93,8 @@ namespace Services.Admin
                     }
                   
                 }
-                try { db.SaveChanges(); }
-                catch(Exception ex) { }
+               db.SaveChanges(); 
+               
             }
         }
         /// <summary>

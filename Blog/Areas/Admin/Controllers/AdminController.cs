@@ -73,8 +73,9 @@ namespace Blog.Areas.Admin.Controllers
         /// <returns></returns>
         public ActionResult DeletePosts()
         {
+            string map = Server.MapPath("~/img/");
             var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
-            AdminServices.ControlPosts.DeletePosts(list);
+            AdminServices.ControlPosts.DeletePosts(list,map);
             return Json("Пост успешно удален");
         }
         public ActionResult EditPost(int id)

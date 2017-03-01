@@ -14,7 +14,8 @@ namespace IServices.Sublntefac.Admin
         /// Удаление выбраных постов
         /// </summary>
         /// <param name="id">Выбраные посты</param>
-        void DeletePosts(List<int> id);
+        /// <param name="mapPath">Расположение к папке с постом</param>
+        void DeletePosts(List<int> id,string map);
         /// <summary>
         /// Добавление  нового поста
         /// </summary>

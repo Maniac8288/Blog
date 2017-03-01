@@ -11,7 +11,9 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    
+    /// <summary>
+    /// Управление публичной частью
+    /// </summary>
     public class MainServices : IMainServices
     {
         public MainServices()
@@ -21,8 +23,13 @@ namespace Services
        
         
         }
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
         public IUserServices Users { get; set; }
- 
+        /// <summary>
+        /// Отображение постов
+        /// </summary>
         public IPostServices Post { get; set; }
         
       

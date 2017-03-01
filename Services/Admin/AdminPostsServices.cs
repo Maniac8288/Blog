@@ -22,13 +22,19 @@ namespace Services.Admin
         /// Удаление выбраных постов
         /// </summary>
         /// <param name="id">Выбраные посты</param>
-        public void DeletePosts(List<int> id)
+        /// <param name="mapPath">Расположение к папке с постом</param>
+        public void DeletePosts(List<int> id, string mapPath)
         {
             using (var db = new DataContext())
             {
                 foreach (int item in id)
                 {
                     var posts = db.Posts.FirstOrDefault(_ => _.PostID == item);
+                    string dir = mapPath + posts.PostID;
+                    if (System.IO.Directory.Exists(dir))
+                    {
+                        System.IO.Directory.Delete(dir, true);
+                    }
                     db.Posts.Remove(posts);
                 }
                 db.SaveChanges();
@@ -60,7 +66,6 @@ namespace Services.Admin
         {
             using (var db = new DataContext())
             {
-
                 var post = db.Posts.FirstOrDefault(_ => _.PostID == id);
                 return ConverPost(post);
             }
@@ -84,7 +89,6 @@ namespace Services.Admin
                 post.contentPost = model.contentPost;
                 post.upload = model.upload;
                 db.SaveChanges();
-
             }
         }
         /// <summary>
@@ -123,8 +127,6 @@ namespace Services.Admin
                 NamePost = post.NamePost,
                 Tags = post.Tags,
                 Description = post.Description
-
-
             };
         }
         /// <summary>
@@ -142,18 +144,15 @@ namespace Services.Admin
                     var post = db.Posts.FirstOrDefault(x => x.PostID == model.PostID);
                     if (post == null)
                     {
-                        
                         var postID = db.Posts.Max(x => x.PostID);
                         postID++;
                         string dir = mapPath + postID;
                         if (!Directory.Exists(dir + "/" + "Preview"))
                         {
-                          
                             Directory.CreateDirectory(dir + "/" + "Preview");
                         }
                         string newFileName = Path.GetFileName(upload.FileName);
-                        // сохраняем файл в папку img в проекте
-                        var newPatch = Path.Combine(mapPath + "/" + postID+"/"+"Preview", newFileName);
+                        var newPatch = Path.Combine(mapPath + "/" + postID + "/" + "Preview", newFileName);
                         upload.SaveAs(newPatch);
                     }
                     else
@@ -161,12 +160,10 @@ namespace Services.Admin
                         string dir = mapPath + model.PostID;
                         if (!Directory.Exists(dir + "/" + "Preview"))
                         {
-
                             Directory.CreateDirectory(dir + "/" + "Preview");
                         }
                         string fileName = Path.GetFileName(upload.FileName);
-                        // сохраняем файл в папку img в проекте
-                        var path = Path.Combine(mapPath+"/"+ model.PostID + "/" + "Preview", fileName);
+                        var path = Path.Combine(mapPath + "/" + model.PostID + "/" + "Preview", fileName);
                         upload.SaveAs(path);
                     }
                 }
@@ -181,7 +178,6 @@ namespace Services.Admin
         /// <returns>Возвращает строку с Ajax запросом</returns>
         public string ProcessRequest(HttpPostedFileBase upload, string CKEditorFuncNum, string mapPath, ModelNewPost model)
         {
-
             if (upload.ContentLength <= 0)
                 return null;
             using (var db = new DataContext())

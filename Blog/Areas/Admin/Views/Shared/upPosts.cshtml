@@ -10,10 +10,10 @@
                 <i class="fa fa-cogs"></i>Управление постами
             </div>
             <div class="actions">
-                <a href="NewPost" class="btn btn-default btn-sm">
+                <a href="NewPost" class="btn btn-default btn-sm" title="Добавить пост">
                     <i class="fa fa-plus"></i> Добавить пост
                 </a>
-                <a href="javascript:;" class="btn btn-default btn-sm" id="deletePost">
+                <a href="javascript:;" class="btn btn-default btn-sm" id="deletePost" title="Удалить пост">
                     <i class="fa fa-minus"></i> Удалить пост
                 </a>
                
@@ -42,7 +42,7 @@
                     {
                         <tr class="odd gradeX">
                             <td>
-                                <input type="checkbox" class="checkboxes" value="@post.PostID" name="list" id="check" /> <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs"></i> </a></span>
+                                <input type="checkbox" class="checkboxes" value="@post.PostID" name="list" id="check" /> <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
                             </td>
                             <td>
                                 @post.NamePost

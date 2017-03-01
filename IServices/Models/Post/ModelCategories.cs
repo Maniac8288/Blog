@@ -8,6 +8,7 @@ namespace IServices.Models.Post
 {
     public  class ModelCategories
     {
+        
         public List<ModelCategory> Categories { get; set; }
 
         public List<ModelCategory> GetParents() { return Categories.Where(_ => !_.ParentId.HasValue).ToList(); }
