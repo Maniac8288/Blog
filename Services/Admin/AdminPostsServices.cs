@@ -65,6 +65,11 @@ namespace Services.Admin
                 return ConverPost(post);
             }
         }
+        /// <summary>
+        /// Редактирование поста
+        /// </summary>
+        /// <param name="model">Моедль поста</param>
+        /// <param name="IdCategory">ID категории</param>
         public void EditPost(ModelNewPost model, int IdCategory)
         {
             using (var db = new DataContext())

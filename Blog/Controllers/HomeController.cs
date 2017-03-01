@@ -16,7 +16,7 @@ namespace Blog.Controllers
         public ActionResult Index()
         {
             var posts = Services.Post.PostPreview();
-            return View(posts);
+            return View(posts.OrderByDescending(x => x.dateAddPost));
         }
         /// <summary>
         /// Страница с новостями
@@ -100,6 +100,11 @@ namespace Blog.Controllers
             return View(model);
 
 
+        }
+        public ActionResult Latest()
+        {
+            var posts = Services.Post.PostPreview();
+            return View(posts.OrderByDescending(x => x.dateAddPost));
         }
 
     }

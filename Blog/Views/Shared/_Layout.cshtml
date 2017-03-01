@@ -79,20 +79,14 @@
 
                     <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
                         <ul id="widget-tab" class="clearfix widget-tab-nav">
-                            <li class="active"><a href="#widget-tab-popular">Popular</a></li>
-                            <li><a href="#widget-tab-latest">Latest</a></li>
+                            <li ><a href="#widget-tab-popular">Popular</a></li>
+                            <li class="active"><a href="#widget-tab-latest">Latest</a></li>
                             <li><a href="#widget-tab-tags">Tags</a></li>
                         </ul>
 
                         <div class="widget-tab-content">
                             <div class="tab-pane active" id="widget-tab-popular">
-                                @*<ul>
-                                        @foreach(var item in Services.PostServices.db.Posts )
-                                        {
-                                            <li><a href="@Url.Action("Post","Home", new { id = item.PostID })">@item.NamePost</a></li>
-                                        }
-                                    </ul>*@
-                                <!-- #widget-tab-popular -->
+                             @Html.Action("Latest","Home")
                             </div>
 
                             <div class="tab-pane" id="widget-tab-latest">

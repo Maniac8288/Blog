@@ -1,0 +1,14 @@
+﻿@model IEnumerable<IServices.Models.Post.ModelPostPreview>
+@{
+    Layout = null;
+}
+
+<div class="tab-pane active" id="widget-tab-popular">
+    <ul>
+            @foreach(var lastPost in Model )
+            {
+                <li><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })">@lastPost.NamePost</a></li>
+            }
+        </ul>
+</div>
+
