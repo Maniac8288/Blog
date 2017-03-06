@@ -57,6 +57,10 @@ namespace IServices.Models.Post
         /// Количество лайков
         /// </summary>
         public int CountLike { get; set; }
+        /// <summary>
+        /// Количество просмотров
+        /// </summary>
+        public int CountViews { get; set; }
         public ModelCategory Category { get; set; }
 
     }

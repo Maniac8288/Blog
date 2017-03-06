@@ -30,6 +30,11 @@ namespace IServices.Sublntefac.Public
         /// <param name="PostId">Id поста</param>
         /// <param name="UserID">Id пользователя</param>
         void GetLike(int PostId, int UserID);
+        /// <summary>
+        /// Добовляет просмотр к посту
+        /// </summary>
+        /// <param name="PostID">Номер поста</param>
+        void GetView(int PostID);
         ModelCategories GetCategory();
 
     }

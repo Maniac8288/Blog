@@ -75,16 +75,16 @@ namespace Blog.Controllers
         /// </summary>
         /// <param name="id">ID поста</param>
         /// <returns>Вывод поста по определенному ID</returns>
-        public ActionResult Post(int? id)
+        public ActionResult Post(int id)
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            
             var posts = Services.Post.PostDetails();
             var post = posts.FirstOrDefault(x => x.PostID == id);
             if (post != null)
             {
+                Services.Post.GetView(id);
+
+
                 return View(post);
             }
             return View("Error");
@@ -116,5 +116,6 @@ namespace Blog.Controllers
             Services.Post.GetLike(PostID, UserID);
             return Json("Запрос успешно выполнен");
         }
+    
     }
 }

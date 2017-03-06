@@ -1,0 +1,43 @@
+﻿@model IServices.Models.Post.ModelPost
+@{
+    Layout = null;
+}
+
+<a id="GetLike">
+    <span class="glyphicon glyphicon-heart" style="float:right;">
+        @Model.CountLike
+    </span>
+</a> 
+
+<script>
+    $(document).ready(function () {
+        $('#GetLike').click(function () {
+            var formData = new FormData();
+                    
+            formData.append("PostId", @Model.PostID);
+            formData.append("UserID", @User.Id);
+
+
+            $.ajax({
+                url: '/Home/GetLike',
+                type: 'post',
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+
+                    console.log(data);
+                    upLike();
+                }
+
+
+            });       
+        });
+        function upLike() {
+
+            $('#Like').load("http://localhost:62712/Home/AjaxGetLike");
+
+        };
+    });
+    });
+</script>

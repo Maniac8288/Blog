@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace DataModel.Models
 {
-   public class Views
-    {
+    /// <summary>
+    /// Модель лайков для поста
+    /// </summary>
+ public class PostLike
+    {   public int id { get; set; }
         /// <summary>
-        /// Индификатор с типом данных Guid
+        /// Пользователь
         /// </summary>
-        public Guid id { get; set; }
+        public int UserID { get; set;}
         /// <summary>
-        /// Номер поста
+        /// Пост
         /// </summary>
         public int PostID { get; set; }
-
 
     }
 }

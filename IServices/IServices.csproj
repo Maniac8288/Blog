@@ -53,8 +53,10 @@
     <Compile Include="IMainServices.cs" />
     <Compile Include="Models\Post\ModelCategories.cs" />
     <Compile Include="Models\Post\ModelCategory.cs" />
+    <Compile Include="Models\Post\ModelLike.cs" />
     <Compile Include="Models\Post\ModelNewPost.cs" />
     <Compile Include="Models\Post\ModelPostPreview.cs" />
+    <Compile Include="Models\Post\ModelViews.cs" />
     <Compile Include="Models\User\ModelRole.cs" />
     <Compile Include="Models\User\ModelUser.cs" />
     <Compile Include="Models\Post\ModelPost.cs" />

@@ -12,6 +12,7 @@ using System.Numerics;
 using Services.Exextension;
 using System.Net.Mail;
 using IServices.Models.User;
+using IServices.Models.Post;
 
 namespace Blog.Infrastructura
 {
@@ -126,8 +127,7 @@ namespace Blog.Infrastructura
             Services.Users.ForgotPW(email, password);
         }
 
-
-
+      
         #region Криптография
 
         static byte[] key = Encoding.UTF8.GetBytes("Some salt value0Some salt value0");

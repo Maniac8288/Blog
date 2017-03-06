@@ -57,6 +57,10 @@ namespace DataModel.Models
         /// </value>
         public int CountLike { get; set; }
         /// <summary>
+        /// Количество просмотров
+        /// </summary>
+        public int CountViews { get; set; }
+        /// <summary>
         /// Gets or sets the users.
         /// </summary>
         /// <value>

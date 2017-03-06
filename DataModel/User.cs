@@ -61,6 +61,7 @@ namespace DataModel
         /// <summary>
         /// Список статусов
         /// </summary>
+        
 
     }
     public enum EnumStatusUser

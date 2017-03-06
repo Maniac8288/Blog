@@ -2,14 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using IServices.Models;
 using System.Linq.Expressions;
 using DataModel.Models;
 using IServices.Sublntefac.Public;
 using IServices.Models.Post;
+using System.Web;
 
 namespace Services
 {
@@ -84,7 +82,10 @@ namespace Services
                 contentPost = post.contentPost,
                 Author = post.Author,
                 Description = post.Description,
-                CountLike= post.CountLike
+                CountLike= post.CountLike,
+                CountViews = post.CountViews
+                
+
                 
                 
             };
@@ -132,14 +133,90 @@ namespace Services
               
             };
         }
+        /// <summary>
+        /// Ставил лайк
+        /// </summary>
+        /// <param name="PostId">ИД поста</param>
+        /// <param name="UserID">ИД пользователя</param>
         public void GetLike(int PostId , int UserID)
         {
             using(var db = new DataContext())
             {
+                
                 var post = db.Posts.FirstOrDefault(x => x.PostID == PostId);
-                post.CountLike++;
-                db.SaveChanges();
+                var like = ConvertLike(PostId, UserID);
+               var UserLikePost = db.PostLikes.FirstOrDefault(x => x.UserID == UserID && x.PostID == PostId);
+                if (UserLikePost != null)
+                {
+                    post.CountLike--;
+                    db.PostLikes.Remove(UserLikePost);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.PostLikes.Add(like);
+                    post.CountLike++;
+                    db.SaveChanges();
+                }
             }
+        }
+        public void GetView(int PostID)
+        {
+            using (var db = new DataContext())
+            {
+                HttpCookie CookieReq = HttpContext.Current.Request.Cookies["Views"];
+                if (CookieReq ==null)
+                {
+                    HttpCookie ViewsCookie = new HttpCookie("Views");
+                  
+                    if (ViewsCookie == null || string.IsNullOrWhiteSpace(ViewsCookie.Value))
+                    {
+                        ModelViews View = new ModelViews();
+                        View.id = Guid.NewGuid();
+                        View.PostID = PostID;
+                        var NewView = ConvertViewsModel(View);
+                        db.Views.Add(NewView);
+                       var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
+                        post.CountViews++;
+                        db.SaveChanges();
+                        ViewsCookie.Expires.AddDays(1);
+                        ViewsCookie.Value = PostID.ToString();
+                        HttpContext.Current.Response.Cookies.Add(ViewsCookie);
+
+                    }
+
+                }
+              
+            }
+        }
+        /// <summary>
+        /// Конвертирует в модель PostLike
+        /// </summary>
+        /// <param name="PostId">Ид поста</param>
+        /// <param name="UserId">Ид пользователя</param>
+        /// <returns></returns>
+        private static PostLike ConvertLike(int PostId, int UserId )
+        {
+            return new PostLike
+            {
+               PostID = PostId,
+               UserID = UserId
+            };
+        }
+        /// <summary>
+        /// Конвертирует в модель "Views"
+        /// </summary>
+        /// <param name="PostId">Пост</param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private static Views ConvertViewsModel(ModelViews View)
+        {
+            return new Views
+            {
+                id = View.id,
+                PostID = View.PostID,
+               
+            };
         }
 
     }

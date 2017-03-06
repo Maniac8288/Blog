@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataModel.Models
+namespace IServices.Models.Post
 {
-   public class Views
+  public  class ModelViews
     {
+
         /// <summary>
         /// Индификатор с типом данных Guid
         /// </summary>

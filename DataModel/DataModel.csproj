@@ -62,10 +62,31 @@
     <Compile Include="Migrations\201703041002224_123.Designer.cs">
       <DependentUpon>201703041002224_123.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703060804114_Like.cs" />
+    <Compile Include="Migrations\201703060804114_Like.Designer.cs">
+      <DependentUpon>201703060804114_Like.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703060816239_Like2.cs" />
+    <Compile Include="Migrations\201703060816239_Like2.Designer.cs">
+      <DependentUpon>201703060816239_Like2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703060859518_Like3.cs" />
+    <Compile Include="Migrations\201703060859518_Like3.Designer.cs">
+      <DependentUpon>201703060859518_Like3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703060951107_Views.cs" />
+    <Compile Include="Migrations\201703060951107_Views.Designer.cs">
+      <DependentUpon>201703060951107_Views.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703060954320_Views1.cs" />
+    <Compile Include="Migrations\201703060954320_Views1.Designer.cs">
+      <DependentUpon>201703060954320_Views1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\PostDataStorage.cs" />
+    <Compile Include="Models\PostLike.cs" />
+    <Compile Include="Models\Views.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
@@ -87,6 +108,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703041002224_123.resx">
       <DependentUpon>201703041002224_123.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703060804114_Like.resx">
+      <DependentUpon>201703060804114_Like.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703060816239_Like2.resx">
+      <DependentUpon>201703060816239_Like2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703060859518_Like3.resx">
+      <DependentUpon>201703060859518_Like3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703060951107_Views.resx">
+      <DependentUpon>201703060951107_Views.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703060954320_Views1.resx">
+      <DependentUpon>201703060954320_Views1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

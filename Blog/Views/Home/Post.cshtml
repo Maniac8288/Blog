@@ -53,36 +53,7 @@
     </div>
     <!-- .author-info -->
 </div>
-@*<nav role="navigation" id="nav-below" class="post-navigation">
-    <h1 class="screen-reader-text">Post navigation</h1>
-    <div class="nav-previous"><span>Предыдущий пост</span><a href="@Url.Action("Post", "Home", new { id = Model.PostID - 1 })" rel="prev"><span class="meta-nav">←</span>
-                                                               @{try
-                                                                   {
-                                                                       Post newModel = db.Posts.Find(Model.PostID - 1);   @newModel.NamePost
-                                                                   }
-                                                                   catch (Exception ex)
-                                                                   {
-                                                                       @: Ничего не найдено
-                                                                    }
-                                                               }
-        </a></div>
 
-    
-    <div class="nav-next">
-        <span>Следующий пост</span><a href="@Url.Action("Post", "Home", new { id = Model.PostID + 1 })" rel="prev"><span class="meta-nav">←</span>
-        @{try
-            {
-                 Post newModel = db.Posts.Find(Model.PostID+1);   @newModel.NamePost
-            }
-            catch (Exception ex)
-            {
-                @: Ничего не найдено 
-                                                                    }
-        }
-        </a>
-    </div>
-
-</nav>*@
 <div id="comments" class="comments-area">
 
 
@@ -205,12 +176,13 @@
     <script>
         $(document).ready(function () {
             $('#GetLike').click(function () {
+                if ("@User.IsAuth" =="False") {
+                    alert("Необходимо авторизоваться")
+                }
+                else{
                     var formData = new FormData();
-                    
                     formData.append("PostId", @Model.PostID);
                     formData.append("UserID", @User.Id);
-
-
                     $.ajax({
                         url: '/Home/GetLike',
                         type: 'post',
@@ -218,15 +190,12 @@
                         processData: false,
                         data: formData,
                         success: function (data) {
-
-                            console.log(data);
-                            updateCategory();
+                            console.log(data); 
                         }
-
-
-                    });       
-              });
-          });
+                    });      
+                  }
+                });
+            });
     </script>
     
     
