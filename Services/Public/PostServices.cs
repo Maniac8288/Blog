@@ -83,7 +83,8 @@ namespace Services
                 Tags = post.Tags,
                 contentPost = post.contentPost,
                 Author = post.Author,
-                Description = post.Description
+                Description = post.Description,
+                CountLike= post.CountLike
                 
                 
             };
@@ -131,7 +132,15 @@ namespace Services
               
             };
         }
-        
+        public void GetLike(int PostId , int UserID)
+        {
+            using(var db = new DataContext())
+            {
+                var post = db.Posts.FirstOrDefault(x => x.PostID == PostId);
+                post.CountLike++;
+                db.SaveChanges();
+            }
+        }
 
     }
 }

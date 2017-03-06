@@ -21,7 +21,7 @@
     </div>
 
     <footer class="entry-meta entry-footer">
-        <span class="cat-links"><i class="ico-folder"></i> <a href="#" rel="category tag">@Model.selectedCategory.</a></span>
+        <span class="cat-links"><i class="ico-folder"></i> <a href="#" rel="category tag">@Model.selectedCategory.Name</a></span>
         <span class="tags-links"><i class="ico-tags"></i> 
         @foreach (var tags in Services.PostServices.collectionsTags)
         {
@@ -30,6 +30,12 @@
             </a>
         }	<!-- .entry-meta -->
         </span>
+
+        <a id="GetLike">
+            <span class="glyphicon glyphicon-heart" style="float:right;">
+                @Model.CountLike
+    </span>
+    </a> 
     </footer>
     <!-- #post-1241 -->
 </article>
@@ -176,7 +182,7 @@
 
 
 
-
+    @if (User.IsAuth) {
     <div id="respond" class="comment-respond">
         <h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/fashionista/about/page-with-comments#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="http://demo.athemes.com/fashionista/wp-comments-post.php" method="post" id="commentform" class="comment-form">
             <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required="true" required="required"></p>
@@ -187,9 +193,41 @@
                 <input type="hidden" name="comment_parent" id="comment_parent" value="0">
             </p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5756909453"></p><p style="display: none;"></p>			<input type="hidden" id="ak_js" name="ak_js" value="1486672254779">
         </form>
-    </div><!-- #respond -->
+    </div>
+    }
+    else
+    { <h3 id="reply-title" class="comment-reply-title">Чтобы оставить комментарий необходимо авторизоваться </h3>
+   
+    }<!-- #respond -->
 
 </div>
 
+    <script>
+        $(document).ready(function () {
+            $('#GetLike').click(function () {
+                    var formData = new FormData();
+                    
+                    formData.append("PostId", @Model.PostID);
+                    formData.append("UserID", @User.Id);
+
+
+                    $.ajax({
+                        url: '/Home/GetLike',
+                        type: 'post',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+
+                            console.log(data);
+                            updateCategory();
+                        }
+
+
+                    });       
+              });
+          });
+    </script>
+    
     
    

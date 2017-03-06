@@ -11,8 +11,20 @@ namespace IServices.Sublntefac.Public
     /// </summary>
    public  interface IUserServices
     {
-        #region Авторизация
+        #region Авторизация        
+        /// <summary>
+        /// Проверяет логин  и пароль пользователя
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         bool Login(string userName, string password);
+        /// <summary>
+        /// Возвращает ID пользователя
+        /// </summary>
+        /// <param name="UserName">Name of the user.</param>
+        /// <returns></returns>
+        int IdUser(string UserName);
         #endregion
         #region Регистрация 
         /// <summary>

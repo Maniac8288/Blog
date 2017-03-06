@@ -49,6 +49,19 @@ namespace DataModel.Models
         /// Автор поста
         /// </summary>
         public string Author { get; set; }
+        /// <summary>
+        /// Количество лайков 
+        /// </summary>
+        /// <value>
+        /// The count like.
+        /// </value>
+        public int CountLike { get; set; }
+        /// <summary>
+        /// Gets or sets the users.
+        /// </summary>
+        /// <value>
+        /// The users.
+        /// </value>
         public List<User> Users { get; set; }
 
     }

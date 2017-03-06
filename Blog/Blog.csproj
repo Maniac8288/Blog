@@ -169,6 +169,9 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -209,15 +212,15 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\NewPost.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\upUsers.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Categories.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\upCategories.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Posts.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\NewPost.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\AjaxUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Categories.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\AjaxCategories.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Posts.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\SelectCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\upPosts.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\EditPost.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\EditPost.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\AjaxPosts.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -266,6 +269,7 @@
     <Content Include="Views\Account\NewPassword.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
     <Content Include="Views\Home\Latest.cshtml" />
+    <Content Include="Views\Home\GetLike.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +279,7 @@
     <Folder Include="Areas\Admin\Metrionic\global\plugins\" />
     <Folder Include="Areas\Admin\Metrionic\global\scripts\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Ajax\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Images\" />
     <Folder Include="img\Users\" />

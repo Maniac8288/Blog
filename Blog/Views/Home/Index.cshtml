@@ -9,7 +9,7 @@
             <h3 class="site-title"><a href="@Url.Action("Post","Home", new { id = post.PostID })" rel="bookmark">@post.NamePost</a></h3>
 
             <div class="entry-meta">
-                <span class="posted-on"><a ><time class="entry-date published updated">@post.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a>@post.Author</a></span></span>
+                <span class="posted-on"><a ><time class="entry-date published updated">@post.dateAddPost.ToLongDateString()</time></a></span><span class="byline"><span class="author vcard"><a>@post.Author</a></span></span>
                 <!-- .entry-meta -->
             </div>
             <!-- .entry-header -->

@@ -24,7 +24,12 @@ namespace IServices.Sublntefac.Public
         /// </summary>
         /// <returns></returns>
         List<ModelPostPreview> PostPreview();
-    
+        /// <summary>
+        /// Ставит лайк посту
+        /// </summary>
+        /// <param name="PostId">Id поста</param>
+        /// <param name="UserID">Id пользователя</param>
+        void GetLike(int PostId, int UserID);
         ModelCategories GetCategory();
 
     }

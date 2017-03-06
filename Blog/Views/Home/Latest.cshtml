@@ -14,7 +14,7 @@
                 </div>
                 <div class="widget-entry-summary">
                     <h4><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })" title="Markup: Image Alignment" rel="bookmark">@lastPost.NamePost</a></h4>
-                    <span>@lastPost.dateAddPost</span>
+                    <span>@lastPost.dateAddPost.ToLongDateString()</span>
                 </div>
             </li>
 

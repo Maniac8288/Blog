@@ -16,7 +16,7 @@
                 <a href="javascript:;" class="btn btn-default btn-sm" id="deletePost" title="Удалить пост">
                     <i class="fa fa-minus"></i> Удалить пост
                 </a>
-               
+
             </div>
         </div>
         <div class="portlet-body">
@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th class="table-checkbox">
-                            
+
                         </th>
                         <th>
                             Название поста
@@ -42,30 +42,30 @@
                     {
                         <tr class="odd gradeX">
                             <td>
-                                 <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
+                                <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
                             </td>
-                            
-                                <td>
-                                    <a href="@Url.Action("EditPost","Admin", new { id = post.PostID })" title="Редактировать пост" id="deletePost" >
-                                        @post.NamePost
-                                    </a>
+
+                            <td>
+                                <a href="@Url.Action("EditPost","Admin", new { id = post.PostID })" title="Редактировать пост" id="deletePost">
+                                    @post.NamePost
+                                </a>
                             </td>
 
                             <td>
                                 @post.selectedCategory.Name
 
                             </td>
-                                <td>
-                                    @post.dateAddPost
-                                </td>
-                                <td>
+                            <td>
+                                @post.dateAddPost.ToLongDateString()
+                            </td>
+                            <td>
 
-                                    <span class="glyphicon glyphicon-trash">
-                                    </span>
+                                <span class="glyphicon glyphicon-trash">
+                                </span>
 
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -99,11 +99,10 @@
                     }
                 });
             });
-         
+
             function upPosts() {
 
                 $('#PanelPosts').load("http://localhost:62712/Admin/Admin/upPosts");
             };
         });
 </script>
-

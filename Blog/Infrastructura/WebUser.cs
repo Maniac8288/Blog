@@ -61,7 +61,7 @@ namespace Blog.Infrastructura
             if (Services.Users.Login(userName, password)) 
             {
 
-                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password };
+                CurrentUser = new ModelUser { UserName = userName, IsAuth = true, Password = password, Id=Services.Users.IdUser(userName)};
                 if (RememberMe)
                 {
                     HttpContext.Current.Response.Cookies.Add(new HttpCookie("data") { Value = Encrypt(CurrentUser), Expires = DateTime.Now.AddDays(1) });

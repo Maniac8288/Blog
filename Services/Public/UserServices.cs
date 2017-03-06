@@ -68,6 +68,20 @@ namespace Services
                 db.SaveChanges();
             }
         }
+        /// <summary>
+        /// Возвращает ID пользователя
+        /// </summary>
+        /// <param name="UserName">Имя пользователя</param>
+        /// <returns></returns>
+        public int IdUser(string UserName)
+        {
+            using (var db = new DataContext())
+            {
+              var user =  db.Users.FirstOrDefault(x => x.UserName == UserName);
+                return user.Id;
+
+            }
+        }
         #endregion
         #region Регистрация
         /// <summary>

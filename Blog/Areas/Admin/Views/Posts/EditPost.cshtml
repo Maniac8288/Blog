@@ -26,7 +26,7 @@
                     <input type="text" class="form-control" id="NamePost" name="NamePost" required value="@Model.NamePost" style="margin:10px;" />
                 </div>
             </div>
-            <div class="form-group">@Html.Action("SelectCategory", "Admin")</div>
+            <div class="form-group">@Html.Action("SelectCategory", "Categories")</div>
             <div class="form-group">
                 <label for="Description" class="col-sm-2 control-label">Краткое описание</label>
                 <div class="col-md-10">
@@ -108,7 +108,7 @@
                     processData: false,
                     data: data,
                     success: function (data) {
-                        window.location.href = "http://localhost:62712/Admin/Admin/Posts";
+                        window.location.href = "http://localhost:62712/Admin/Posts/Posts";
                         console.log(data);
                     }
                 });

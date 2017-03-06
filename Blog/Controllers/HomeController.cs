@@ -110,6 +110,11 @@ namespace Blog.Controllers
             var posts = Services.Post.PostPreview();
             return View(posts.OrderByDescending(x => x.dateAddPost));
         }
-
+        [HttpPost]
+        public ActionResult GetLike(int PostID, int UserID)
+        {
+            Services.Post.GetLike(PostID, UserID);
+            return Json("Запрос успешно выполнен");
+        }
     }
 }
