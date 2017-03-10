@@ -11,6 +11,9 @@ using IServices.Sublntefac;
 using IServices.Sublntefac.Admin;
 using IServices.Models.User;
 
+/// <summary>
+/// Функционал админки
+/// </summary>
 namespace Services.Admin
 {
     /// <summary>

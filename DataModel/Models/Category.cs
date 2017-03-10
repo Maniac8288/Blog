@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модели БД.
+/// </summary>
 namespace DataModel.Models
 {
     /// <summary>
@@ -36,11 +39,7 @@ namespace DataModel.Models
         /// </summary>
         /// <value>Дочерния категория.</value>
         public List<Category> Child { get; set; }
-        /// <summary>
-        /// Gets or sets the posts.
-        /// </summary>
-        /// <value>The posts.</value>
-        public List<Post> Posts { get; set; }
+  
 
     }
 }

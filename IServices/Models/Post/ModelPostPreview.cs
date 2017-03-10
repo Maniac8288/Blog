@@ -5,18 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {
- public   class ModelPostPreview
+    /// <summary>
+    /// Модель детального отобржания поста
+    /// </summary>
+    public class ModelPostPreview
     {
         /// <summary>
         /// Название поста
         /// </summary>
         public string NamePost { get; set; }
         /// <summary>
-        /// Выбраная категория
+        /// Id категории
         /// </summary>
-        public Category selectedCategory { get; set; }
+        public int CategoryId { get; set; }
         /// <summary>
         /// Краткое описание поста
         /// </summary>

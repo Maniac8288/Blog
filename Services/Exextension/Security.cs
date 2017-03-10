@@ -7,9 +7,15 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// The Exextension namespace.
+/// </summary>
 namespace Services.Exextension
 {
-  public static  class Security
+    /// <summary>
+    /// Класс отвечающий за защиту сайта.
+    /// </summary>
+    public static  class Security
     {
         /// <summary>
         /// Хэширует методом SHA256

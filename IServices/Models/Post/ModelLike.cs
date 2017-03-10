@@ -5,13 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {       /// <summary>
         /// Модель лайков
         /// </summary>
     public class ModelLike
     {
-        
+        /// <summary>
+        /// Ид лайка
+        /// </summary>
+        /// <value>ИД лайка.</value>
         public int id { get; set; }
         /// <summary>
         /// Пользователь

@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {
+    /// <summary>
+    /// Модель категории
+    /// </summary>
     public class ModelCategory
     {
         /// <summary>

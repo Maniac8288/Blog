@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модель БД.
+/// </summary>
 namespace DataModel.Models
 {
-   public class PostViews
+    /// <summary>
+    /// Модель просмотров постов
+    /// </summary>
+    public class PostViews
     {
   
         /// <summary>

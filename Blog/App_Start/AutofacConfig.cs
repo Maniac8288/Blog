@@ -7,11 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
- 
+/// <summary>
+/// The App_Start namespace.
+/// </summary>
 namespace Blog.App_Start
 {
+    /// <summary>
+    /// Class AutofacConfig.
+    /// </summary>
     public class AutofacConfig
     {
+        /// <summary>
+        /// Configures the container.
+        /// </summary>
         public static void ConfigureContainer()
         {
             // получаем экземпляр контейнера

@@ -11,6 +11,9 @@ using System.Data.Entity;
 using System.IO;
 using System.Web;
 
+/// <summary>
+/// Функционал админки
+/// </summary>
 namespace Services.Admin
 {
     /// <summary>

@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {
     /// <summary>
@@ -17,12 +19,9 @@ namespace IServices.Models.Post
         /// </summary>
         public string NamePost { get; set; }
         /// <summary>
-        /// Коллекция постов
+        /// Id категории
         /// </summary>
-        /// <summary>
-        /// Выбраная категория
-        /// </summary>
-        public Category selectedCategory { get; set; }
+        public int CategoryId { get; set; }
         /// <summary>
         /// Краткое описание поста
         /// </summary>
@@ -61,6 +60,10 @@ namespace IServices.Models.Post
         /// Количество просмотров
         /// </summary>
         public int CountViews { get; set; }
+        /// <summary>
+        /// Категория поста
+        /// </summary>
+        /// <value>Категория.</value>
         public ModelCategory Category { get; set; }
 
     }

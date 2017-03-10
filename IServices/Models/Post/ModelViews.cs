@@ -4,9 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {
-  public  class ModelViews
+    /// <summary>
+    /// Модель просмотров поста
+    /// </summary>
+    public class ModelViews
     {
 
         /// <summary>

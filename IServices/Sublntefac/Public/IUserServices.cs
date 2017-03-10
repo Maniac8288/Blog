@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Интерфейс функцианала публичной части
+/// </summary>
 namespace IServices.Sublntefac.Public
 {
     /// <summary>

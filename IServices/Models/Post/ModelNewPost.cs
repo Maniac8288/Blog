@@ -4,10 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Модели интерфейса для поста.
+/// </summary>
 namespace IServices.Models.Post
 {
-   public class ModelNewPost
+    /// <summary>
+    /// Модель нового поста
+    /// </summary>
+    public class ModelNewPost
     {
         /// <summary>
         /// Название поста
@@ -29,7 +34,6 @@ namespace IServices.Models.Post
         /// Тэги
         /// </summary>
         public string Tags { get; set; }
-        public List<string> CollectionTags = new List<string>();
         /// <summary>
         /// Дата создания
         /// </summary>

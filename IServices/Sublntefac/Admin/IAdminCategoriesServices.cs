@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Интерфейс функцианала админки
+/// </summary>
 namespace IServices.Sublntefac.Admin
 {
     /// <summary>

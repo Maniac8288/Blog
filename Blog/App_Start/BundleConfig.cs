@@ -1,11 +1,19 @@
 ﻿using System.Web;
 using System.Web.Optimization;
-
+/// <summary>
+/// The Blog namespace.
+/// </summary>
 namespace Blog
 {
+    /// <summary>
+    /// Класс реализует подключение JS и CSS .
+    /// </summary>
     public class BundleConfig
     {
-        //Дополнительные сведения об объединении см. по адресу: http://go.microsoft.com/fwlink/?LinkId=301862
+        /// <summary>
+        /// Registers the bundles.
+        /// </summary>
+        /// <param name="bundles">The bundles.</param>
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

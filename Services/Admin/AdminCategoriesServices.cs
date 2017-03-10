@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Функционал админки
+/// </summary>
 namespace Services.Admin
 {
     /// <summary>

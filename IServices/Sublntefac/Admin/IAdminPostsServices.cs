@@ -6,8 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
+/// <summary>
+/// Интерфейс функцианала админки
+/// </summary>
 namespace IServices.Sublntefac.Admin
 {
+    /// <summary>
+    /// Интерфейс, который реализует методы для управления постами
+    /// </summary>
     public interface IAdminPostsServices
     {
         /// <summary>

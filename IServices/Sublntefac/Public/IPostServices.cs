@@ -7,6 +7,9 @@ using IServices.Models;
 using IServices.Models.Post;
 using DataModel.Models;
 
+/// <summary>
+/// Интерфейс функцианала публичной части
+/// </summary>
 namespace IServices.Sublntefac.Public
 {
     /// <summary>

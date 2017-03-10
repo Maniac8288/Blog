@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Модели интерфейса для пользователя
+/// </summary>
 namespace IServices.Models.User
 {
     /// <summary>

@@ -1,9 +1,14 @@
 ﻿using DataModel.Models;
 using System;
 using System.Collections.Generic;
-
+/// <summary>
+/// The DataModel namespace.
+/// </summary>
 namespace DataModel
 {
+    /// <summary>
+    /// Модель пользователей.
+    /// </summary>
     public class User
     {
         /// <summary>
@@ -64,18 +69,35 @@ namespace DataModel
         
 
     }
+    /// <summary>
+    /// Enum EnumStatusUser
+    /// </summary>
     public enum EnumStatusUser
     {
         Locked,
         Confirmed,
         NConfirmed
     }
+    /// <summary>
+    /// Модель статуса пользователя.
+    /// </summary>
     public class StatusUser
     {
+        /// <summary>
+        /// Ид статуса.
+        /// </summary>
+        /// <value>ИД.</value>
         public EnumStatusUser Id { get; set; }
 
+        /// <summary>
+        /// Название статуса.
+        /// </summary>
+        /// <value>Имя.</value>
         public string Name { get; set; }
-
+        /// <summary>
+        /// Пользователи.
+        /// </summary>
+        /// <value>Пользователи.</value>
         public List<User> Users { get; set; }
     }
 }

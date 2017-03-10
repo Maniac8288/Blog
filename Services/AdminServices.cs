@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Services.Admin;
 
+/// <summary>
+/// Функционал сайта
+/// </summary>
 namespace Services
 {
     /// <summary>
