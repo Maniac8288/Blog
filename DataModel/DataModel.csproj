@@ -82,11 +82,15 @@
     <Compile Include="Migrations\201703060954320_Views1.Designer.cs">
       <DependentUpon>201703060954320_Views1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703061318362_PostViews.cs" />
+    <Compile Include="Migrations\201703061318362_PostViews.Designer.cs">
+      <DependentUpon>201703061318362_PostViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLike.cs" />
-    <Compile Include="Models\Views.cs" />
+    <Compile Include="Models\PostViews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
@@ -123,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703060954320_Views1.resx">
       <DependentUpon>201703060954320_Views1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703061318362_PostViews.resx">
+      <DependentUpon>201703061318362_PostViews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

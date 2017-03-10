@@ -6,16 +6,18 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
-
+/// <summary>
+/// Контролеры сайта.
+/// </summary>
 namespace Blog.Controllers
 {
+    /// <summary>
+    ///  Контролер отвечающий за автроризацию на сайте
+    /// </summary>
+    /// <seealso cref="System.Web.Mvc.Controller" />
     public class AccountController : Controller
     {
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
+      
         /// <summary>
         /// Страница с авторизацей 
         /// </summary>
@@ -95,7 +97,7 @@ namespace Blog.Controllers
         {
             if (salt != null)
             {
-                WebUser.Confrimed(salt,userName);
+                WebUser.Confirmed(salt,userName);
                 return RedirectToAction("index", "home");
             }
             return View("Error");

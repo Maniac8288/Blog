@@ -9,6 +9,9 @@ using IServices.Sublntefac.Public;
 using IServices.Models.Post;
 using System.Web;
 
+/// <summary>
+/// Функционал сайта.
+/// </summary>
 namespace Services
 {
     /// <summary>
@@ -42,61 +45,14 @@ namespace Services
                 return products;
             }
         }
-        /// <summary>
-        /// Перезапись модели Post  из модели ModelPostPreview
-        /// </summary>
-        /// <returns></returns>
-        public static Expression<Func<Post, ModelPostPreview>> Preview()
-        {
-            return post => new ModelPostPreview()
-            {
-                PostID = post.PostID,
-                NamePost = post.NamePost,
-                upload = post.upload,
-                selectedCategory = post.SelectCategories,
-                dateAddPost = post.dateAddPost,
-                Tags = post.Tags,
-                contentPost = post.contentPost,
-                Author = post.Author,
-                Description = post.Description
-            };
-        }
-       
+
+
+
 
         /// <summary>
-        /// Перезапись модели Post из ModelPost
+        /// Вывод всех категорий
         /// </summary>
-        /// <returns></returns>
-        public static Expression<Func<Post, ModelPost>> Details()
-        { 
-          
-            return post => new ModelPost()
-            {
-
-                PostID = post.PostID,
-                NamePost = post.NamePost,
-                upload = post.upload,
-                selectedCategory = post.SelectCategories,
-                dateAddPost = post.dateAddPost,
-                Tags = post.Tags,
-                contentPost = post.contentPost,
-                Author = post.Author,
-                Description = post.Description,
-                CountLike= post.CountLike,
-                CountViews = post.CountViews
-                
-
-                
-                
-            };
-        }
-        public static List<string> collectionsTags = new List<string>();
-        public static List<string> TagsSplit(ModelPostPreview model)
-        {
-            return model.Tags.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
-        }
-
-  
+        /// <returns>Модель Категории.</returns>
         public ModelCategories GetCategory()
         {
             using (var db = new DataContext())
@@ -117,22 +73,7 @@ namespace Services
                 return categories;
             }
         }
-        /// <summary>
-        /// Конвертирует из ModelCategory в Category
-        /// </summary>
-        /// <param name="category"></param>
-        /// <returns></returns>
-        private static ModelCategory ConverModelCategory(Category category)
-        {
-
-            return  new ModelCategory
-            {
-                Id = category.Id,
-                Name = category.Name,
-                ParentId = category.ParentId,
-              
-            };
-        }
+       
         /// <summary>
         /// Ставил лайк
         /// </summary>
@@ -160,35 +101,50 @@ namespace Services
                 }
             }
         }
+        /// <summary>
+        /// Добовляет просмотр к посту
+        /// </summary>
+        /// <param name="PostID">Номер поста</param>
         public void GetView(int PostID)
         {
             using (var db = new DataContext())
             {
-                HttpCookie CookieReq = HttpContext.Current.Request.Cookies["Views"];
-                if (CookieReq ==null)
+                ModelViews View = new ModelViews();
+                View.PostID = PostID;
+                HttpCookie CookieReq = HttpContext.Current.Request.Cookies["PostViews"];
+                if (CookieReq == null)
                 {
-                    HttpCookie ViewsCookie = new HttpCookie("Views");
-                  
+                    HttpCookie ViewsCookie = new HttpCookie("PostViews");
                     if (ViewsCookie == null || string.IsNullOrWhiteSpace(ViewsCookie.Value))
                     {
-                        ModelViews View = new ModelViews();
                         View.id = Guid.NewGuid();
-                        View.PostID = PostID;
                         var NewView = ConvertViewsModel(View);
-                        db.Views.Add(NewView);
-                       var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
-                        post.CountViews++;
+                        db.PostViews.Add(NewView);
+                        var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
                         db.SaveChanges();
                         ViewsCookie.Expires.AddDays(1);
-                        ViewsCookie.Value = PostID.ToString();
+                        ViewsCookie.Value = View.id.ToString();
                         HttpContext.Current.Response.Cookies.Add(ViewsCookie);
-
+                    }
+                }
+                else
+                {
+                    Guid Value = Guid.Parse(CookieReq.Value);
+                    if (db.PostViews.FirstOrDefault(x => x.id == Value && x.PostID == View.PostID) == null)
+                    {
+                        View.id = Value;
+                        var NewView = ConvertViewsModel(View);
+                        db.PostViews.Add(NewView);
+                        var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
+                        db.SaveChanges();
                     }
 
                 }
-              
+
             }
         }
+       
+        #region Конверт модели
         /// <summary>
         /// Конвертирует в модель PostLike
         /// </summary>
@@ -204,20 +160,82 @@ namespace Services
             };
         }
         /// <summary>
-        /// Конвертирует в модель "Views"
+        /// Конвертирует модель в PostViews
         /// </summary>
-        /// <param name="PostId">Пост</param>
-        /// <param name="id"></param>
+        /// <param name="View">Модель ModelViews</param>
         /// <returns></returns>
-        private static Views ConvertViewsModel(ModelViews View)
+        private static PostViews ConvertViewsModel(ModelViews View)
         {
-            return new Views
+            return new PostViews
             {
                 id = View.id,
                 PostID = View.PostID,
                
             };
         }
+        /// <summary>
+        /// Конвертирует из ModelCategory в Category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        private static ModelCategory ConverModelCategory(Category category)
+        {
+
+            return new ModelCategory
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ParentId = category.ParentId,
+
+            };
+        }
+
+        /// <summary>
+        /// Перезапись модели Post  из модели ModelPostPreview
+        /// </summary>
+        /// <returns></returns>
+        public static Expression<Func<Post, ModelPostPreview>> Preview()
+        {
+            return post => new ModelPostPreview()
+            {
+                PostID = post.PostID,
+                NamePost = post.NamePost,
+                upload = post.upload,
+                selectedCategory = post.SelectCategories,
+                dateAddPost = post.dateAddPost,
+                Tags = post.Tags,
+                contentPost = post.contentPost,
+                Author = post.Author,
+                Description = post.Description
+            };
+        }
+
+
+        /// <summary>
+        /// Перезапись модели Post из ModelPost
+        /// </summary>
+        /// <returns></returns>
+        public static Expression<Func<Post, ModelPost>> Details()
+        {
+
+            return post => new ModelPost()
+            {
+
+                PostID = post.PostID,
+                NamePost = post.NamePost,
+                upload = post.upload,
+                selectedCategory = post.SelectCategories,
+                dateAddPost = post.dateAddPost,
+                Tags = post.Tags,
+                contentPost = post.contentPost,
+                Author = post.Author,
+                Description = post.Description,
+                CountLike = post.CountLike,
+                CountViews = post.CountViews
+
+            };
+        }
+        #endregion
 
     }
 }

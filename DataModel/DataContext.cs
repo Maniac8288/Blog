@@ -24,7 +24,7 @@ namespace DataModel
         public DbSet<Post> Posts { get; set; }
         public DbSet<PostLike> PostLikes { get; set;}
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Views> Views { get; set; }
+        public DbSet<PostViews> PostViews { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().

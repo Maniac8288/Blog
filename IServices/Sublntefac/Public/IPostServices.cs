@@ -35,6 +35,7 @@ namespace IServices.Sublntefac.Public
         /// </summary>
         /// <param name="PostID">Номер поста</param>
         void GetView(int PostID);
+
         ModelCategories GetCategory();
 
     }

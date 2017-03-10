@@ -5,8 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+/// Контролеры админки.
+/// </summary>
 namespace Blog.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Контролер отвечающий за управлениями пользователями
+    /// </summary>
+    /// <seealso cref="Blog.Areas.Admin.Controllers.BaseController" />
     public class UsersController : BaseController
     {
 

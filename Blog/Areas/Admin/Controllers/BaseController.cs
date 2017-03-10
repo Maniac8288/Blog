@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+///Контролеры админки.
+/// </summary>
 namespace Blog.Areas.Admin.Controllers
 {
     /// <summary>
@@ -23,6 +26,9 @@ namespace Blog.Areas.Admin.Controllers
         /// </summary>
         public IAdminServices AdminServices { get; set; }
 
+        /// <summary>
+        /// Конструктор базового контролера админки <see cref="BaseController"/> .
+        /// </summary>
         public BaseController()
         {
             Services = DependencyResolver.Current.GetService<IMainServices>();

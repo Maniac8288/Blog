@@ -13,12 +13,19 @@ using Services.Exextension;
 using System.Net.Mail;
 using IServices.Models.User;
 using IServices.Models.Post;
-
+/// <summary>
+/// Инфраструктура сайта
+/// </summary>
 namespace Blog.Infrastructura
 {
-
+    /// <summary>
+    ///Класс отвечающий за авторизацию пользователя.
+    /// </summary>
     public class WebUser
     {
+        /// <summary>
+        /// The services
+        /// </summary>
         private static IMainServices Services = DependencyResolver.Current.GetService<IMainServices>();
         /// <summary>
         ///  Модель пользователя содержащия сессию и куки в которой находится информация о состояние пользователя
@@ -106,7 +113,7 @@ namespace Blog.Infrastructura
         /// </summary>
         /// <param name="salt">Случайное слово</param>
         /// <param name="userName">Никнейм</param>
-        public static void Confrimed(string salt,string userName)
+        public static void Confirmed(string salt,string userName)
         {
              Services.Users.ConfrimedEmail(salt,userName);
             }
@@ -121,7 +128,11 @@ namespace Blog.Infrastructura
             SmtpClient smtp = new SmtpClient();
             smtp.Send(msg);
         }
-
+        /// <summary>
+        /// Метод позволяющий воспользоваться функцией "Забыли пароль"
+        /// </summary>
+        /// <param name="email">Почта пользователя.</param>
+        /// <param name="password">Пароль пользователя.</param>
         public static void ForgotPW(string email, string password)
         {
             Services.Users.ForgotPW(email, password);
@@ -134,7 +145,11 @@ namespace Blog.Infrastructura
 
         static byte[] IV = Encoding.UTF8.GetBytes("Some salt value0");
 
-
+        /// <summary>
+        /// Шифровка модели.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>System.String.</returns>
         private static string Encrypt(ModelUser model)
         {
             using (Aes myAes = Aes.Create())
@@ -145,7 +160,11 @@ namespace Blog.Infrastructura
                 return new BigInteger(encrypted).ToString("x2");
             }
         }
-       
+        /// <summary>
+        /// Расшифрование модели.
+        /// </summary>
+        /// <param name="encrypted">The encrypted.</param>
+        /// <returns>ModelUser.</returns>
         private static ModelUser Decrypt(string encrypted)
         {
             using (Aes myAes = Aes.Create())
@@ -166,7 +185,20 @@ namespace Blog.Infrastructura
                 }
             }
         }
-
+        /// <summary>
+        /// Шифровка строки.
+        /// </summary>
+        /// <param name="plainText">The plain text.</param>
+        /// <param name="Key">The key.</param>
+        /// <param name="IV">The iv.</param>
+        /// <returns>System.Byte[].</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// plainText
+        /// or
+        /// Key
+        /// or
+        /// IV
+        /// </exception>
         static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments.
@@ -208,7 +240,20 @@ namespace Blog.Infrastructura
             return encrypted;
 
         }
-
+        /// <summary>
+        /// Расшифровка строки.
+        /// </summary>
+        /// <param name="cipherText">The cipher text.</param>
+        /// <param name="Key">The key.</param>
+        /// <param name="IV">The iv.</param>
+        /// <returns>System.String.</returns>
+        /// <exception cref="System.ArgumentNullException">
+        /// cipherText
+        /// or
+        /// Key
+        /// or
+        /// IV
+        /// </exception>
         static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments.

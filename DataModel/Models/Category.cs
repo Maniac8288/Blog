@@ -11,16 +11,35 @@ namespace DataModel.Models
     /// </summary>
     public class Category
     {
+        /// <summary>
+        ///Ид категории.
+        /// </summary>
+        /// <value>ИД.</value>
         public int Id { get; set; }
-
+        /// <summary>
+        /// Имя категории.
+        /// </summary>
+        /// <value>Имя.</value>
         public string Name { get; set; }
-
+        /// <summary>
+        /// Родительская категория.
+        /// </summary>
+        /// <value>Родитель.</value>
         public Category Parent { get; set; }
-
+        /// <summary>
+        /// Ид родительской категории.
+        /// </summary>
+        /// <value>ИД родителя.</value>
         public int? ParentId { get; set; }
-
+        /// <summary>
+        /// Дочерния категория.
+        /// </summary>
+        /// <value>Дочерния категория.</value>
         public List<Category> Child { get; set; }
-
+        /// <summary>
+        /// Gets or sets the posts.
+        /// </summary>
+        /// <value>The posts.</value>
         public List<Post> Posts { get; set; }
 
     }

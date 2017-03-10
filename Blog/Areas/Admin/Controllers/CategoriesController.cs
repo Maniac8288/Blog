@@ -4,8 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+/// Контролеры админки.
+/// </summary>
 namespace Blog.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Контролер отвечающий за управлением категории.
+    /// </summary>
+    /// <seealso cref="Blog.Areas.Admin.Controllers.BaseController" />
     public class CategoriesController : BaseController
     {
 
@@ -83,13 +90,19 @@ namespace Blog.Areas.Admin.Controllers
             return Json("Запрос успешно выполнен");
         }
 
-
-        public ActionResult upCategories()
+        /// <summary>
+        /// Ajax обновление категорий.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        public ActionResult AjaxCategories()
         {
 
             return View();
         }
-
+        /// <summary>
+        /// Вывод категорий.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult SelectCategory()
         {
             var model = Services.Post.GetCategory();

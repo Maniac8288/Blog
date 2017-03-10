@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataModel.Models
 {
-   public class Views
+   public class PostViews
     {
+  
         /// <summary>
-        /// Индификатор с типом данных Guid
+        /// Индификатор пользователя  с типом данных Guid
         /// </summary>
         public Guid id { get; set; }
         /// <summary>

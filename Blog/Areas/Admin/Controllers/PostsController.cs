@@ -5,8 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+/// Контролеры Админки
+/// </summary>
 namespace Blog.Areas.Admin.Controllers
 {
+    /// <summary>
+    /// Контролер отвечающий за управленние постами
+    /// </summary>
+    /// <seealso cref="Blog.Areas.Admin.Controllers.BaseController" />
     public class PostsController : BaseController
     {
         #region Управления постами
@@ -66,6 +73,11 @@ namespace Blog.Areas.Admin.Controllers
             AdminServices.ControlPosts.DeletePosts(list, map);
             return Json("Пост успешно удален");
         }
+        /// <summary>
+        /// Редактирование поста.
+        /// </summary>
+        /// <param name="id">ИД поста.</param>
+        /// <returns>ActionResult.</returns>
         public ActionResult EditPost(int id)
         {
             var model = AdminServices.ControlPosts.GetEditPost(id);
@@ -88,6 +100,10 @@ namespace Blog.Areas.Admin.Controllers
             return RedirectToAction("Posts");
 
         }
+        /// <summary>
+        /// Ajaxes обновление страницы.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
         public ActionResult AjaxPosts()
         {
             var posts = Services.Post.PostPreview();

@@ -5,8 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/// <summary>
+/// Контролеры сайта.
+/// </summary>
 namespace Blog.Controllers
 {
+    /// <summary>
+    /// Контролер для основной части сайта
+    /// </summary>
+    /// <seealso cref="Blog.Controllers.BaseController" />
     public class HomeController : BaseController
     {
         /// <summary>
@@ -110,6 +117,12 @@ namespace Blog.Controllers
             var posts = Services.Post.PostPreview();
             return View(posts.OrderByDescending(x => x.dateAddPost));
         }
+        /// <summary>
+        /// Ставит лайк над постом.
+        /// </summary>
+        /// <param name="PostID">Индифиактор поста.</param>
+        /// <param name="UserID">Индификатор пользователя.</param>
+        /// <returns>ActionResult.</returns>
         [HttpPost]
         public ActionResult GetLike(int PostID, int UserID)
         {
