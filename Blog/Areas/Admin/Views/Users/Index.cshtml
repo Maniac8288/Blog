@@ -11,7 +11,7 @@
         <div class="portlet box grey-cascade">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>Managed Table
+                    <i class="fa fa-globe"></i>Управление пользователями
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse" data-original-title="" title="">
@@ -89,7 +89,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $('#upUsers').load("http://localhost:62712/Admin/Users/upUsers");
+            $('#upUsers').load("@Url.Action("AjaxUsers","Users")");
 
 
             $('#AddUser').click(function () {

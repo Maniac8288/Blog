@@ -55,5 +55,15 @@ namespace IServices.Sublntefac.Admin
         /// <param name="mapPath">Путь для сохранения файла</param>
         /// <returns>Возвращает строку с Ajax запросом</returns>
         string ProcessRequest(HttpPostedFileBase upload, string CKEditorFuncNum, string mapPath, ModelNewPost model);
+        /// <summary>
+        /// Выводит пост с информацией "Preview"
+        /// </summary>
+        /// <returns></returns>
+         List<ModelPostPreview> PostPreview();
+        /// <summary>
+        /// Вывод всех категорий
+        /// </summary>
+        /// <returns>Модель Категории.</returns>
+        ModelCategories GetCategory();
     }
 }

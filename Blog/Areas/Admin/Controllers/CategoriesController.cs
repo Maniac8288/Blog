@@ -21,7 +21,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с категориями 
         /// </summary>
         /// <returns></returns>
-        public ActionResult Categories()
+        public ActionResult Index()
         {
             return View();
         }
@@ -43,7 +43,7 @@ namespace Blog.Areas.Admin.Controllers
         /// <param name="nameChild">Название новой дочерний категории</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult addChildCategory(string namePareantCategory, string nameChild)
+        public ActionResult AddChildCategory(string namePareantCategory, string nameChild)
         {
             AdminServices.Categories.addChildCategory(namePareantCategory, nameChild);
             return Json("Запрос успешно выполнен");
@@ -105,9 +105,10 @@ namespace Blog.Areas.Admin.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult SelectCategory()
         {
-            var model = Services.Post.GetCategory();
+            var model = AdminServices.ControlPosts.GetCategory();
             return View(model);
         }
+       
         #endregion
     }
 }

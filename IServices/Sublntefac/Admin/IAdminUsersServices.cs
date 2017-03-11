@@ -36,7 +36,13 @@ namespace IServices.Sublntefac.Admin
         /// <param name="id"></param>
         /// <param name="role"></param>
         void roleUsers(List<int> id, string role);
-
+        /// <summary>
+        /// Метод реализующий регистрацию 
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <param name="dataBird">Дата рождения пользователя</param>
+        string Register(string userName, string password, DateTime dataBird, string email);
 
     }
 }

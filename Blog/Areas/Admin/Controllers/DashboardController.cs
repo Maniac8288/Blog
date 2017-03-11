@@ -17,7 +17,7 @@ namespace Blog.Areas.Admin.Controllers
     /// Контролер главной части админки.
     /// </summary>
     /// <seealso cref="Blog.Areas.Admin.Controllers.BaseController" />
-    public class AdminController : BaseController
+    public class DashboardController : BaseController
     {
         // GET: Admin/Home
         /// <summary>

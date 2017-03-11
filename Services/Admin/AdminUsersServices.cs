@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using IServices.Sublntefac;
 using IServices.Sublntefac.Admin;
 using IServices.Models.User;
+using Services.Exextension;
 
 /// <summary>
 /// Функционал админки
@@ -75,21 +76,22 @@ namespace Services.Admin
         /// </summary>
         /// <param name="id">Список пользователй</param>
         /// <param name="role">Выбранная роль</param>
-        public void roleUsers(List<int> id,string role)
+        public void roleUsers(List<int> id,string roleID)
         {
             using (var db = new DataContext())
             {
                 
                 foreach (int item in id)
                 {
+
                     var user = db.Users.Include(x=>x.Roles).FirstOrDefault(_ => _.Id == item);
-                    if (role == "User")
+                    if (roleID == "User")
                     {
                 
                         user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList();
                      
                     }
-                    if (role == "Admin")
+                    if (roleID == "Admin")
                     {
                       
                         user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.Admin).ToList();
@@ -119,6 +121,44 @@ namespace Services.Admin
             };
            
         }
-        
+        /// <summary>
+        /// Метод реализующий регистрацию 
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
+        /// <param name="dataBird">Дата рождения пользователя</param>
+        public string Register(string userName, string password, DateTime dataBird, string email)
+        {
+
+            string salt = Security.getSalt();
+            using (var db = new DataContext())
+            {
+
+
+                User NewUser = new User()
+                {
+                    UserName = userName,
+                    Password = (salt + password).sha256(),
+                    Salt = salt,
+                    Datebirth = dataBird,
+                    Email = email,
+                    StatusUserId = EnumStatusUser.NConfirmed,
+                    CheckEmail = new CheckEmail
+                    {
+                        ConfirmedEmail = false,
+                        ConfirmationCode = salt
+                    },
+                    Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList()
+                };
+                db.Users.Add(NewUser);
+                db.SaveChanges();
+                return salt;
+
+
+
+            }
+
+        }
+
     }
 }

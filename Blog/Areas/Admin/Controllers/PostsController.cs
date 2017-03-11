@@ -56,7 +56,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с управлением постами
         /// </summary>
         /// <returns></returns>
-        public ActionResult Posts()
+        public ActionResult Index()
         {
 
             return View();
@@ -106,7 +106,7 @@ namespace Blog.Areas.Admin.Controllers
         /// <returns>ActionResult.</returns>
         public ActionResult AjaxPosts()
         {
-            var posts = Services.Post.PostPreview();
+            var posts = AdminServices.ControlPosts.PostPreview();
             return View(posts);
         }
         #endregion

@@ -22,7 +22,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с таблицей всех пользователй
         /// </summary>
         /// <returns></returns>
-        public ActionResult Users()
+        public ActionResult Index()
         {
 
             var usres = AdminServices.Users.Users();
@@ -71,7 +71,7 @@ namespace Blog.Areas.Admin.Controllers
         public JsonResult AddUser(string userName, string email, string password, DateTime dataBirth)
         {
 
-            var salt = Services.Users.Register(userName, password, dataBirth, email);
+            var salt = AdminServices.Users.Register(userName, password, dataBirth, email);
             WebUser.SendMail("Подтвердите регистрацию", email,
                 $@"Для завершения регистрации перейдите по 
                  <a href='{Url.Action("Confrimed", "Account", new { area = "", salt = salt, userName = userName }, Request.Url.Scheme)}'

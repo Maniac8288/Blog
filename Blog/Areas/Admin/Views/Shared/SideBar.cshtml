@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null; 
+}
+
+<div class="page-sidebar-wrapper">
+    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+    <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+    <div class="page-sidebar md-shadow-z-2-i  navbar-collapse collapse">
+
+        <ul class="page-sidebar-menu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+            <li class="start ">
+                <a href="@Url.Action("Index", "Dashboard")">
+                    <i class="icon-home"></i>
+                    <span class="title">Главная</span>
+                </a>
+            </li>
+            <li class="open">
+                <a href="javascript:;">
+                    <i class="icon-settings"></i>
+                    <span class="title">Меню</span>
+                    <span class="arrow  open"></span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Users")">
+                            <i class="icon-users"></i>
+                            Пользователи
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("NewPost","Posts")">
+                            <i class="icon-docs"></i>
+                            Создать пост
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Categories")">
+                            <i class="icon-puzzle"></i>
+                            Категории
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Posts")">
+                            <i class="icon-link"></i>
+                            Посты
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- END SIDEBAR MENU -->
+    </div>
+</div>
+

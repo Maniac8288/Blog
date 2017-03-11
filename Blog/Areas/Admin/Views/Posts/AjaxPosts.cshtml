@@ -52,7 +52,7 @@
                             </td>
 
                             <td>
-                                @post.selectedCategory.Name
+                                @post.CategoryId
 
                             </td>
                             <td>
@@ -102,7 +102,7 @@
 
             function upPosts() {
 
-                $('#PanelPosts').load("http://localhost:62712/Admin/Admin/upPosts");
+                $('#PanelPosts').load("@Url.Action("AjaxPost","Post")");
             };
         });
 </script>

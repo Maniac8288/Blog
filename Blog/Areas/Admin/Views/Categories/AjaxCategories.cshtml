@@ -78,151 +78,7 @@
         </div>
  </div>
 <!--Начало скрытых модальных окон-->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Добавить дочернию категорию</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="userName" class="col-sm-5 control-label">Родительская категория</label>
-                    <div class="col-sm-5">
-                        <select class="form-control" style="margin-bottom:10px;" id="namePareantCategory" name="namePareantCategory">
-                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
-                            {
-                                <option>@element.Name </option>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="nameChildCategory" class="col-sm-5 control-label">Название дочерней категории</label>
-                    <div class="col-sm-5">
-                        <input type="text" class="form-control form-inline" placeholder="Введите название " id="nameChildCategory" name="nameChildCategory" style="margin-bottom:10px;" />
-                    </div>
-                </div>
-
-
-
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" id="addChildCategory">Сохранить</button>
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="deletePareant" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Удалить родительскую категорию</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="namePareantCategory" class="col-sm-5 control-label">Выбрать родительскую категорию</label>
-                    <div class="col-sm-5">
-                        <select class="form-control" style="margin-bottom:10px;" id="selectPareantCategory" name="selectPareantCategory">
-                            @foreach (var element in Services.Admin.AdminCategoriesServices.GetCategoryPareants())
-                            {
-
-                                <option>@element.Name </option>
-
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" id="deletePareantSave">Сохранить</button>
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="deleteChild" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal" id="close1">×</button>
-                <h4 class="modal-title">Удалить дочернию категорию</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="nameChildCategory" class="col-sm-5 control-label">Выбрать дочернию категорию</label>
-                    <div class="col-sm-5">
-                        <select class="form-control" style="margin-bottom:10px;" id="selectChildCategory" name="selectChildCategory">
-                            @foreach (var element in Services.PostServices.GetCategories())
-                            {
-                                <optgroup label="@element.Name">
-                                    @foreach (var item in element.Child)
-                                    {
-                                        <option>@item.Name </option>
-                                    }
-                                </optgroup>
-                            }
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" id="deleteChildSave" data-dismiss="modal">Сохранить</button>
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="changeNamePareant" class="modal fade ">
-    <div class="modal-dialog  modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Изменить родительскую категорию</h4>
-            </div>
-            <div class="modal-body">
-                
-                <div class="form-group">
-                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название родительской категории</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="NewNamePareantCategory" name="NewNamePareantCategory" placeholder="Название категории" />
-                    </div>
-                </div>
-               
-                    <div class="modal-footer">
-                        <button class="btn btn-success" data-dismiss="modal" id="ChangeNamePareantSave">Сохранить</button>
-                        <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                    </div>
-                    
-                </div>
-        </div>
-    </div>
-</div>
-<div id="changeNameChild" class="modal fade">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button class="close" type="button" data-dismiss="modal" id="close1">×</button>
-                <h4 class="modal-title">Изменить дочернию категорию</h4>
-            </div>
-            <div class="modal-body">
-
-                <div class="form-group">
-                    <label for="selectChangeNamePareantCategory" class="col-sm-5 control-label">Название дочерний категории</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="NewNameChildCategory" name="NewNameChildCategory" placeholder="Название категории" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" id="changeNameChildSave" data-dismiss="modal">Сохранить</button>
-                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("ModalWindow")
 <!-- Конец скрытых модальных окон-->
 
 
@@ -274,7 +130,7 @@
 
 
                 $.ajax({
-                    url: 'addChildCategory',
+                    url: 'AddChildCategory',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -418,7 +274,7 @@
 
             function updateCategory() {
 
-                $('#PanelCategory').load("http://localhost:62712/Admin/Categories/AjaxCategories");
+                $('#PanelCategory').load("@Url.Action("AjaxCategories","Categories")");
             };
         });
     </script>

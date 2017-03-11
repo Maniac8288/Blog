@@ -17,10 +17,7 @@ namespace Blog.Areas.Admin.Controllers
     /// </summary>
     public class BaseController : Controller
     {   
-       /// <summary>
-       /// Интерфейс публичной части сайта
-       /// </summary>
-        public IMainServices Services { get; set; }
+     
         /// <summary>
         /// Интерфейс админки
         /// </summary>
@@ -31,7 +28,7 @@ namespace Blog.Areas.Admin.Controllers
         /// </summary>
         public BaseController()
         {
-            Services = DependencyResolver.Current.GetService<IMainServices>();
+           
             AdminServices = DependencyResolver.Current.GetService<IAdminServices>();
             User = WebUser.CurrentUser;
 

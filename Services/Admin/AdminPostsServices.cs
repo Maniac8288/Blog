@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.IO;
 using System.Web;
+using System.Linq.Expressions;
 
 /// <summary>
 /// Функционал админки
@@ -201,6 +202,67 @@ namespace Services.Admin
                     CKEditorFuncNum, url, message);
                 return output;
             }
+        }
+        /// <summary>
+        /// Выводит пост с информацией "Preview"
+        /// </summary>
+        /// <returns></returns>
+        public List<ModelPostPreview> PostPreview()
+        {
+            using (var db = new DataContext())
+            {
+                var posts = db.Posts.Select(Preview()).ToList();
+
+                return posts;
+            }
+        }
+
+        /// <summary>
+        /// Вывод всех категорий
+        /// </summary>
+        /// <returns>Модель Категории.</returns>
+        public ModelCategories GetCategory()
+        {
+            using (var db = new DataContext())
+            {
+                var categories = db.Categories.ToList();
+                return new ModelCategories { Categories = categories.Select(c => ConverModelCategory(c)).ToList() };
+            }
+        }
+        /// <summary>
+        /// Перезапись модели Post  из модели ModelPostPreview
+        /// </summary>
+        /// <returns></returns>
+        public static Expression<Func<Post, ModelPostPreview>> Preview()
+        {
+            return post => new ModelPostPreview()
+            {
+                PostID = post.PostID,
+                NamePost = post.NamePost,
+                upload = post.upload,
+                CategoryId = post.SelectCategories.Id,
+                dateAddPost = post.dateAddPost,
+                Tags = post.Tags,
+                contentPost = post.contentPost,
+                Author = post.Author,
+                Description = post.Description
+            };
+        }
+        /// <summary>
+        /// Конвертирует из ModelCategory в Category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        private static ModelCategory ConverModelCategory(Category category)
+        {
+
+            return new ModelCategory
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ParentId = category.ParentId,
+
+            };
         }
 
 

@@ -12,7 +12,7 @@
 @section scripts{
   <script>
             $(document).ready(function () {
-                $('#PanelPosts').load("http://localhost:62712/Admin/Posts/AjaxPosts");
+                $('#PanelPosts').load("@Url.Action("AjaxPost", "Post")");
 
 
             });
