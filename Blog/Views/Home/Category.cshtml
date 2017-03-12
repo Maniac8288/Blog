@@ -3,48 +3,77 @@
     ViewBag.Title = "Поиск по категориям";
 }
 
-
-@foreach (var item in Model)
-{
-    <article class="clearfix  post type-post status-publish format-standard has-post-thumbnail sticky hentry category-uncategorized tag-sticky-2 tag-template">
-        <header class="entry-header">
-            <h3 class="site-title"><a href="#" rel="bookmark">@item.NamePost</a></h3>
-
-            <div class="entry-meta">
-                <span class="posted-on"><a href="#" rel="bookmark"><time class="entry-date published updated">@item.dateAddPost</time></a></span><span class="byline"><span class="author vcard"><a class="url fn n" href="#">@item.Author</a></span></span>
-                <!-- .entry-meta -->
-            </div>
-            <!-- .entry-header -->
-        </header>
-
-        <div class="entry-thumbnail">
-            <a href="http://demo.athemes.com/fashionista/2012/01/template-sticky" title="Template: Sticky">
-                <img width="600" height="270" src="~/img/@item.PostID/@item.upload" alt="@item.NamePost" title="@item.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">
-            </a>
-        </div>
-
-
-        <div class="entry-summary">
-            <p>@item.contentPost</p>
-            <!-- .entry-summary -->
-        </div>
-        <a href="@Url.Action("Post","Home", new { id = item.PostID })" class="more-link">Читать продолжение<span class="meta-nav">→</span></a>
-        <footer class="entry-meta entry-footer">
-            <span class="cat-links">
-                <i class="ico-folder"></i> <a href="#" rel="category tag">@item.selectedCategory.Name</a>
-            </span>
-
-            <span class="tags-links">
-        <i class="ico-tags"></i>@{ Services.PostServices.collectionsTags = Services.PostServices.TagsSplit(item);}
-        @foreach (string tag in Services.PostServices.collectionsTags)
-        {
-            <a class="btn btn-default btn-sm" href="@Url.Action("Tag","Home", new { tags = tag })">
-                @tag
-            </a>
-        }
-    </span>
-            <!-- .entry-meta -->
-        </footer>
-        <!-- #post-1241-->
-    </article>
+<div id="content" class="">
+    <div class="inner">
+        <div class="block_slider_type_1 general_not_loaded">
+            <div id="slider" class="slider flexslider">
+                <ul class="slides">
+                    @foreach (var post in Model)
+                    {
+                        <li>
+                            <img src="~/img/@post.PostID/Preview/@post.upload" style="width:940px; height:450px">
+                            <div class="animated_item text_1_1" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.Description</p></div>
+                            <div class="animated_item text_1_2" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.NamePost</p></div>
+                            <div class="animated_item text_1_3" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><a href="@Url.Action("Post","Home",new { id=post.PostID})" class="general_button_type_1">Читать дальше</a></div>
+                        </li>
                     }
+
+                </ul>
+            </div>
+
+            <script type="text/javascript">
+						jQuery(function() {
+							init_slider_1('#slider');
+						});
+            </script>
+        </div>
+
+        <div class="block_general_title_1 w_margin_1">
+            <h1>Новые статьи</h1>
+
+        </div>
+
+        <div class="block_posts type_1 type_sort">
+            <div class="posts isotope" style="position: relative; overflow: hidden; height: 1376px;">
+            
+                @foreach (var post in Model)
+                {
+                   
+                     <article class="post_type_1 isotope-item">
+                    <div class="feature">
+                        <div class="image">
+                            <a href="@Url.Action("Post","Home",new { id = post.PostID})">
+                                @if (post.upload != null)
+                                {
+                                    <img width="540" height="270" src="~/img/@post.PostID/Preview/@post.upload" alt="@post.NamePost" title="@post.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">}
+                            </a>
+
+                        </div>
+                    </div>
+                         <div class="content ">
+                             <div class="info">
+                                 <div class="tags" style="margin-right:15px;"><a href="@Url.Action("Post","Home",new {id=post.PostID })">@post.NamePost</a> </div>
+                                 <div class="tags"><a href="@Url.Action("Category","Home",new {category=post.CategoryId })">@post.Category.Name </a></div>
+                                 <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
+                                 <div class="stats">
+                                     <div class="likes">@post.CountLike</div>
+                                     <div class="comments">7</div>
+                                 </div>
+                             </div>
+
+                             <div class="title">
+                                 <a href="@Url.Action("Post","Home",new { id = post.PostID})"> @post.Description</a>
+                             </div>
+                         </div>
+                </article>
+                }
+
+            </div>
+
+            @*<div class="controls">
+                    <a href="#" id="button_load_more" data-target=".block_posts.type_sort .posts" class="load_more_1"><span>Load more posts</span></a>
+                </div>*@
+        </div>
+    </div>
+</div>
+<!-- CONTENT END -->

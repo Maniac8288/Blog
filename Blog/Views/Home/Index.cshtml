@@ -36,7 +36,8 @@
         <div class="block_posts type_1 type_sort">
             <div class="posts isotope" style="position: relative; overflow: hidden; height: 1376px;">
                 @foreach (var post in Model)
-                {  <article class="post_type_1 isotope-item">
+                {  
+                    <article class="post_type_1 isotope-item" >
                     <div class="feature">
                         <div class="image">
                             <a href="@Url.Action("Post","Home",new { id = post.PostID})">
@@ -48,12 +49,13 @@
                         </div>
                     </div>
 
-                    <div class="content">
-                        <div class="info">
-                            <div class="tags"><a href="#">@post.Tags</a></div>
-                            <div class="date">@post.CategoryId</div>
+                    <div class="content " >
+                        <div class="info" >
+                            <div class="tags" style="margin-right:15px;"><a href="@Url.Action("Post","Home",new {id=post.PostID })">@post.NamePost</a> </div>
+                            <div class="tags"><a href="@Url.Action("Category","Home",new {category=post.CategoryId })">@post.Category.Name </a></div>
+                            <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
                             <div class="stats">
-                                <div class="likes">15</div>
+                                <div class="likes">@post.CountLike</div>
                                 <div class="comments">7</div>
                             </div>
                         </div>

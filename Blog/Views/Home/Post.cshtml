@@ -7,13 +7,13 @@
     <div class="inner">
         <div class="block_general_title_2">
             <h1>@Model.NamePost</h1>
-            <h2><a href="#" class="tags">@Model.CategoryId</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">by <a href="#">@Model.Author</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
+            <h2><a href="@Url.Action("Category","Home",new {category=Model.CategoryId })" class="tags">@Model.Category.Name</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">by <a href="#">@Model.Author</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
             <div class="stats">
-                <a class="GetLike"> <div class="likes">@Model.CountLike</div></a>
+                <a id="GetLikes"> <div class="likes">@Model.CountLike</div></a>
                 <div class="comments">7</div>
             </div>
         </div>
-
+      
         <div class="main_content">
             <div class="block_content" style="overflow-x:hidden;">
                 
@@ -33,16 +33,16 @@
                 </div>
                
                 <div class="rating "  style="float:none;">
-                    <div class="title"><span>Rating</span></div>
+                    <div class="title"><span>Рейтинг</span></div>
 
                     <div class="text">
-                        <div class="num">1568</div>
-                        <div class="type">views</div>
+                        <div class="num">@Model.CountViews</div>
+                        <div class="type"><h6>Просмотров</h6></div>
                     </div>
 
                     <div class="text">
                         <div class="num">26</div>
-                        <div class="type">Comments</div>
+                        <div class="type"><h6>Комментарий</h6></div>
                     </div>
 
                     <div class="line"></div>
@@ -229,7 +229,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#GetLike').click(function () {
+            $('#GetLikes').click(function () {
                 if ("@User.IsAuth" =="False") {
                     alert("Необходимо авторизоваться")
                 }

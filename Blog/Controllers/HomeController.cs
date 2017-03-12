@@ -71,12 +71,12 @@ namespace Blog.Controllers
         /// </summary>
         /// <param name="category"></param>
         /// <returns>Вывод постов из БД по выбранной категории</returns>
-        //public ActionResult Category(string category)
-        //{
-        //    var posts = Services.Post.PostPreview();
-        //    var Category = posts.Where(x => x.selectedCategory.Name == category);
-        //    return View(Category);
-        //}
+        public ActionResult Category(int category)
+        {
+            var posts = Services.Post.PostPreview().Where(x=>x.CategoryId == category);
+           
+            return View(posts);
+        }
         /// <summary>
         /// Страница с определенным постом
         /// </summary>

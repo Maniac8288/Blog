@@ -27,8 +27,14 @@ namespace Services
         {
             using (var db = new DataContext())
             {
-                var posts = db.Posts.Select(Preview()).ToList();
-             
+                var postCollection = db.Posts.Select(Preview()).ToList();
+                var posts = new List<ModelPostPreview>();
+                foreach (var post in postCollection)
+                {
+                    post.Category = GetCategoryByID(post.CategoryId);
+                    posts.Add(post);
+                }
+              
                 return posts;
             }
         }
@@ -41,11 +47,24 @@ namespace Services
         {
             using (var db = new DataContext())
             {
-                var products = db.Posts.Select(Details()).ToList();
-                return products;
+                var postCollection = db.Posts.Select(Details()).ToList();
+                var posts = new List<ModelPost>();
+                foreach(var post in postCollection)
+                {
+                    post.Category = GetCategoryByID(post.CategoryId);
+                    posts.Add(post);
+                }
+                return posts;
             }
         }
-
+        private static ModelCategory GetCategoryByID(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.Select(ConverToModelCategory()).FirstOrDefault(x => x.Id == id);
+                return category;
+            }
+        }
 
 
 
@@ -121,6 +140,7 @@ namespace Services
                         var NewView = ConvertViewsModel(View);
                         db.PostViews.Add(NewView);
                         var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
+                        post.CountViews++;
                         db.SaveChanges();
                         ViewsCookie.Expires.AddDays(1);
                         ViewsCookie.Value = View.id.ToString();
@@ -136,6 +156,7 @@ namespace Services
                         var NewView = ConvertViewsModel(View);
                         db.PostViews.Add(NewView);
                         var post = db.Posts.FirstOrDefault(x => x.PostID == PostID);
+                        post.CountViews++;
                         db.SaveChanges();
                     }
 
@@ -206,7 +227,10 @@ namespace Services
                 Tags = post.Tags,
                 contentPost = post.contentPost,
                 Author = post.Author,
-                Description = post.Description
+                Description = post.Description,
+                CountLike = post.CountLike
+                
+                
             };
         }
 
@@ -235,7 +259,18 @@ namespace Services
 
             };
         }
-        #endregion
-
+        public static Expression<Func<Category, ModelCategory>> ConverToModelCategory() 
+            { 
+                return category => new ModelCategory()
+                 {
+                        Id = category.Id, 
+                        Name = category.Name, 
+                        ParentId = category.ParentId, 
+                    };
     }
+
+
+    #endregion
+
+}
 }

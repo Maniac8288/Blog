@@ -5,19 +5,19 @@
 
 
 
-        <div class="block_bottom_menu">
+        <div class="block_top_menu" style="float:none; display:inline-block;" align="center">
 
             <nav>
                 <ul>
                     @foreach (var categories in Model.GetParents())
                     {
                         <li>
-                            <a href="index.html">@categories.Name</a>
+                            <a href="index.html"><h3>@categories.Name</h3></a>
 
-                            <ul>
+                            <ul style="display: none;" >
                                 @foreach (var Child in Model.GetChild(categories.Id))
                                 {
-                                    <li class="current_page_item"><a href="index.html">@Child.Name</a></li>
+                                    <li class="current_page_item"><a href="@Url.Action("Category","Home",new { category = Child.Id})">@Child.Name</a></li>
                                 }
                             </ul>
                         </li>

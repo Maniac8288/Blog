@@ -65,6 +65,10 @@ namespace IServices.Models.Post
         /// </summary>
         /// <value>Категория.</value>
         public ModelCategory Category { get; set; }
+        /// <summary>
+        /// Количество просмотров
+        /// </summary>
+       
 
     }
 }

@@ -59,23 +59,24 @@
 
                 <section class="middle">
                     <div class="inner">
-                        <div id="logo_top"><a href="index.html"><img src="~/Content/images/Logo.png" alt="Enterprise" title="Enterprise"></a></div>
+                        <div id="logo_top"><a href="@Url.Action("Index","Home")"><img src="~/Content/images/Logo.png" alt="Enterprise" title="Enterprise"></a></div>
                     </div>
                 </section>
-
+               
                 <section class="bottom">
 
-                    <div class="inner">
+                    <div class="inner" align="center">
 
-
+                        <div class="line_1" style="margin-bottom:20px;"></div>
 
                         @Html.Action("Categories", "Home")
-
+                        <div class="line_1"></div>  
                     </div>
                 </section>
                 <br>
             </div>
         </header>
+       
         <!-- HEADER END -->
         <!-- CONTENT BEGIN -->
       @RenderBody()

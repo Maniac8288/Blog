@@ -236,6 +236,7 @@
     <Content Include="Areas\Admin\Views\Categories\ModalWindow.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\SideBar.cshtml" />
     <Content Include="fonts\20_db.otf" />
+    <Content Include="fonts\3966.ttf" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
