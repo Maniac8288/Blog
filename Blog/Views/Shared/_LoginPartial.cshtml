@@ -2,15 +2,16 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
-          @User.UserName
+            <a> @User.UserName</a> 
         </li>
         <li><a href="@Url.Action("LogOut", "Account")">Выйти</a></li>
     </ul>
 }
 else
 {
+   
     <ul class="nav navbar-nav navbar-right">
-        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">@Html.ActionLink("Регистрация", "Register", "Account")</li>
+        <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676" >@Html.ActionLink("Регистрация", "Register", "Account")</li>
         <li>@Html.ActionLink("Выполнить вход", "Login", "Account")</li>
     </ul>
 }

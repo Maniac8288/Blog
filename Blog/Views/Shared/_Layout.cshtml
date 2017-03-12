@@ -1,121 +1,147 @@
 ﻿
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – Кинолюбитель</title>
+ 
+    
+
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="layout/plugins/html5.js"></script>
+    <![endif]-->
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/site")
+
+
 </head>
-<body>
-    <nav id="top-navigation" class="main-navigation" role="navigation">
-        <div class="clearfix container">
-            <div class="sf-menu">
-                <ul id="menu-main-menu" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
-                    <li id="menu-item-1662" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1662">@Html.ActionLink("Блог", "Index", "Home")</li>
-                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">@Html.ActionLink("Новости", "News", "Home")</li>
-                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Контакты", "Contact", "Home")</li>
-                    <li id="menu-item-1676" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1676">>@Html.ActionLink("Личный кабинет", "Cabinet", "Home")</li>
-                    @Html.Partial("_LoginPartial")
-                </ul>
 
-            </div>
+<body class="sticky_footer">
+    <div class="wrapper">
+        <!-- HEADER BEGIN -->
+        <header>
+            <div id="header">
+                <section class="top">
+                    <div class="inner">
+                        <div class="block_top_menu">
+                            <nav>
+                                <ul>
+                                    <li class="current_page_item">
+                                        <a href="@Url.Action("Index","Home")">Главная</a>
+                                    </li>
+                                    <li>
+                                      @Html.ActionLink("Контакты", "Contact", "Home")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("Личный кабинет", "Cabinet", "Home")
+                                    </li>
+                         
+                                    </ul>
+                       
+                            </nav>
+                         
+                        </div>
 
-        </div>
+                        @Html.Partial("_LoginPartial")
+                 
 
-        <!-- #top-navigation -->
-    </nav>
+                        <div class="clearboth"></div>
+                    </div>
+                </section>
 
-    <div class="container body-content">
+                <section class="middle">
+                    <div class="inner">
+                        <div id="logo_top"><a href="index.html"><img src="~/Content/images/Logo.png" alt="Enterprise" title="Enterprise"></a></div>
+                    </div>
+                </section>
 
-        <header id="masthead" class="clearfix container site-header" role="banner">
-            <div class="site-branding">
+                <section class="bottom">
 
-                <h1 class="site-title">
-                    @Html.ActionLink("Cinema Blog", "Index", "Home")
-                </h1>
-                <div class="site-description">Блог для кинолюбителей</div>
-
-            </div>
+                    <div class="inner">
 
 
-        </header>
-        @Html.Action("Categories","Home")
 
-        <div id="main" class="site-main">
-            <div class="clearfix container">
-                <div id="primary" class="content-area">
-                    <div id="content" class="site-content" role="main">
-
-                        @RenderBody()
-
-                        <script src="~/Scripts/jquery-1.11.1.min.js"></script>
+                        @Html.Action("Categories", "Home")
 
                     </div>
-                </div>
-
-                <div id="widget-area-2" class="site-sidebar widget-area" role="complementary">
-                    <aside id="search-3" class="widget">
-                        <form role="search" method="get" class="search-form" action="#">
-                            <label>
-                                <span class="screen-reader-text">Search for:</span>
-                                <input type="search" class="search-field" placeholder="Search …" value="" name="s" title="Search for:">
-                            </label>
-                            <input type="submit" class="search-submit pull-right" value="Search">
-                        </form>
-                    </aside>
-                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
-                    
-                            <h3 class="widget-title">Популярные</h3>
-                     
-                        <div class="widget-tab-content">
-                            <div class="tab-pane active" id="widget-tab-popular">
-                             @Html.Action("Latest","Home")
-                            </div>
-                        </div>
-                    </aside><!-- #widget-area-2 -->
-                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
-                        <h3 class="widget-title">Последние</h3>
-                        <div class="widget-tab-content">
-                            <div class="tab-pane active" id="widget-tab-popular">
-                                @Html.Action("Latest", "Home")
-                            </div>
-                        </div>
-                    </aside><!-- #widget-area-2 -->
-                    <aside id="athemes_tabs-2" class="widget widget_athemes_tabs">
-                        <h3 class="widget-title">Тэги</h3>
-                        <div class="widget-tab-content">
-                            <div class="tab-pane active" id="widget-tab-popular">
-                                @Html.Action("Latest", "Home")
-                            </div>
-                            <div class="tab-pane" id="widget-tab-tags">
-                            </div>
-                        </div>
-                    </aside><!-- #widget-area-2 -->
-                </div>
-                <hr />
+                </section>
+                <br>
             </div>
-        </div>
+        </header>
+        <!-- HEADER END -->
+        <!-- CONTENT BEGIN -->
+      @RenderBody()
+        <!-- FOOTER BEGIN -->
+        <footer>
+            <div id="footer" class="col-md-12">
+                <section class="top">
+                    <div class="inner">
+                        <div class="block_footer_widgets " >
+                          
+
+                            <div class="column  col-md-offset-4 ">
+                                <div class="block_footer_tags">
+                                    <h3>Tags cloud</h3>
+
+                                    <ul>
+                                        <li><a href="#">Peoples</a></li>
+                                        <li><a href="#">Design</a></li>
+                                        <li><a href="#">Technology</a></li>
+                                        <li><a href="#">Travel</a></li>
+                                        <li><a href="#">Music</a></li>
+                                        <li><a href="#">Photography</a></li>
+                                        <li><a href="#">Fashion</a></li>
+                                        <li><a href="#">Creative</a></li>
+                                        <li><a href="#">Apple</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">Development</a></li>
+                                    </ul>
+                                </div>
+
+                               
+                            </div>
+
+                           
+                    </div>
+                        </div>
+                </section>
+
+                <section class="middle">
+                    <div class="inner">
+                        <div class="block_bottom_menu">
+                            <nav>
+                                <ul>
+                                    <li><a href="index.html">HOMEPAGE</a></li>
+                                    <li><a href="blog_post.html">POSTS</a></li>
+                                    <li><a href="category_photography.html">CATEGORIES</a></li>
+                                    <li><a href="full_width.html">PAGES</a></li>
+                                    <li><a href="shortcodes.html">FEATURES</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bottom">
+                    <div class="inner">
+                        <div class="block_copyrights"><p>&copy; Copyright 2013 by WebLionMedia. All Rights Reserved.</p></div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
     </div>
-    <footer id="colophon" class="site-footer" role="contentinfo">
-        <div class="clearfix container">
-            <div class="site-info">
-                © 2017 Cinema-Blog. All rights reserved.
-            </div><!-- .site-info -->
-
-            <div class="site-credit">
-                <a href="#">TirScript</a>
-            </div><!-- .site-credit -->
-        </div>
-        <!-- #colophon -->
-    </footer>
-
-    @Scripts.Render("~/bundles/jquery")
+  
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

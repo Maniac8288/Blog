@@ -3,22 +3,26 @@
     Layout = null;
 }
 
-<div class="tab-pane active" id="widget-tab-popular">
-    <ul>
-            @foreach(var lastPost in Model )
-            {
-                
-            <li class="clearfix">
-                <div class="widget-entry-thumbnail">
-                    <a href="@Url.Action("Post","Home", new { id = lastPost.PostID })" title="Markup: Image Alignment"><img width="50" height="50" src="~/img/@lastPost.PostID/Preview/@lastPost.upload" class="attachment-thumb-small size-thumb-small wp-post-image" alt="" title="Markup: Image Alignment"></a>
-                </div>
-                <div class="widget-entry-summary">
-                    <h4><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })" title="Markup: Image Alignment" rel="bookmark">@lastPost.NamePost</a></h4>
-                    <span>@lastPost.dateAddPost.ToLongDateString()</span>
-                </div>
-            </li>
+<aside>
+    <div class="sidebar_title_1" style="font-weight:bold;">Популярные посты</div>
 
-            }
-        </ul>
-</div>
+    <div class="block_sidebar_popular_posts">
+   @foreach (var lastPost in Model)
+   {
+        <article>
+            <div class="image"><a href="@Url.Action("Post","Home", new { id = lastPost.PostID })"><img src="~/img/@lastPost.PostID/Preview/@lastPost.upload" alt="@lastPost.NamePost" width="86" height="66"></a></div>
 
+            <div class="content">
+                <div class="title">
+                    <a href="blog_post.html">@lastPost.Description</a>
+                </div>
+
+                <div class="info">
+                    <div class="tags"><a href="#">@lastPost.CategoryId</a>, <a href="#">@lastPost.NamePost</a></div>
+                    <div class="date">27, 2013</div>
+                </div>
+            </div>
+        </article>
+   }
+    </div>
+</aside>

@@ -166,6 +166,21 @@ namespace Services
                 else return false;
             }
         }
+        /// <summary>
+        /// Проверка роли пользователя
+        /// </summary>
+        /// <param name="role">Роль пользователя</param>
+        /// <param name="userName">Имя пользователя</param>
+        /// <returns></returns>
+        public bool CheckRole(string userName, string role)
+        {
+            using (var db = new DataContext())
+            {
+                var users = db.Users.Where(x => x.Roles.Any(y => y.Name == role));
+                bool included = users.Any(x => x.UserName == userName);
+                return included;
+            }
+        }
         #endregion
     }
 }

@@ -22,6 +22,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с таблицей всех пользователй
         /// </summary>
         /// <returns></returns>
+        [FilterUser(Roles = "Admin")]
         public ActionResult Index()
         {
 

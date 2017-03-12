@@ -24,6 +24,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Главная страница админки
         /// </summary>
         /// <returns></returns>
+        [FilterUser(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();

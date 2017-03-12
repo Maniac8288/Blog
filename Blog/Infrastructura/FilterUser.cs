@@ -21,9 +21,17 @@ namespace Blog.Infrastructura
         /// <param name="filterContext">Контекст фильтра, инкапсулирующий сведения для использования объекта <see cref="T:System.Web.Mvc.AuthorizeAttribute" />.</param>
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
-            
-            base.OnAuthorization(filterContext);
+            // Переадресация
+            if (!AuthorizeCore(filterContext.HttpContext))
+            {
+                filterContext.Result = new RedirectToRouteResult(
+                new System.Web.Routing.RouteValueDictionary {
+                    { "area", "" }, { "controller", "Account" }, { "action", "Login" }
+            });
+            }
+
         }
+
         /// <summary>
         /// В случае переопределения предоставляет точку входа для пользовательской проверки авторизации.
         /// </summary>
@@ -31,35 +39,24 @@ namespace Blog.Infrastructura
         /// <returns>Значение true, если пользователь авторизован. В противном случае — значение false.</returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            /// Извлечение имен и ролей пользователей, авторизованных 
-            /// для получения доступа 
+
+            /// Извлечение имен и ролей пользователей, авторизованных
+            /// для получения доступа
             var role = Roles;
             var user = Users;
-          
-            var cookie = httpContext.Request.Cookies["User"];
-            string UserName;
-            bool IsAuth = false;
-            if (WebUser.CurrentUser.UserName == null && cookie != null)
-            {
-                UserName = cookie.Values["UserName"];
-                if (cookie.Values["IsAuth"] == "True") IsAuth = true;
-            }
-            else
-            {
-                UserName = WebUser.CurrentUser.UserName;
-            }
-            bool check = false;
+
+            bool included = false;
             if (role != "")
             {
-                check = Services.UserServices.check(check, role, WebUser.CurrentUser.UserName);
-             
+                included = WebUser.CheckRole(WebUser.CurrentUser.UserName, role);
             }
-            if (user == UserName || check)
+            if (user == WebUser.CurrentUser.UserName || included)
             {
                 return WebUser.CurrentUser.IsAuth;
             }
             return false;
 
         }
+
     }
-}
+    }

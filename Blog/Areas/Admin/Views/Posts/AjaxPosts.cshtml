@@ -42,11 +42,11 @@
                     {
                         <tr class="odd gradeX">
                             <td>
-                                <span><a href="@Url.Action("EditPost","Admin", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
+                                <span><a href="@Url.Action("EditPost","Posts", new { id = post.PostID })"><i class="fa fa-cogs" title="Редактировать пост"></i> </a></span>
                             </td>
 
                             <td>
-                                <a href="@Url.Action("EditPost","Admin", new { id = post.PostID })" title="Редактировать пост" id="deletePost">
+                                <a href="@Url.Action("EditPost","Posts", new { id = post.PostID })" title="Редактировать пост" id="deletePost">
                                     @post.NamePost
                                 </a>
                             </td>
@@ -102,7 +102,7 @@
 
             function upPosts() {
 
-                $('#PanelPosts').load("@Url.Action("AjaxPost","Post")");
+                $('#PanelPosts').load("@Url.Action("AjaxPosts", "Posts")");
             };
         });
 </script>

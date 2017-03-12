@@ -137,8 +137,17 @@ namespace Blog.Infrastructura
         {
             Services.Users.ForgotPW(email, password);
         }
+        /// <summary>
+        /// Проверка роли пользователя
+        /// </summary>
+        /// <param name="userName">Имя пользователя</param>
+        /// <param name="role">Роль пользователя</param>
+        /// <returns><c>true</c> если роль совпадает, <c>false</c> иначе.</returns>
+        public static bool CheckRole(string userName, string role)
+        {
+            return (Services.Users.CheckRole(userName, role));
+        }
 
-      
         #region Криптография
 
         static byte[] key = Encoding.UTF8.GetBytes("Some salt value0Some salt value0");

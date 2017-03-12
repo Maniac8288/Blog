@@ -90,6 +90,10 @@
     <Compile Include="Migrations\201703101049593_category.Designer.cs">
       <DependentUpon>201703101049593_category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703121459071_roles.cs" />
+    <Compile Include="Migrations\201703121459071_roles.Designer.cs">
+      <DependentUpon>201703121459071_roles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101049593_category.resx">
       <DependentUpon>201703101049593_category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703121459071_roles.resx">
+      <DependentUpon>201703121459071_roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,28 +5,25 @@
 
 
 
-<nav id="main-navigation" class="container main-navigation" role="navigation">
-    <a href="#main-navigation" class="nav-open">Menu</a>
-    <a href="#" class="nav-close">Close</a>
-    <div class="sf-menu">
-        <ul id="menu-short" class="menu sf-js-enabled sf-arrows " style="touch-action: pan-y;">
+        <div class="block_bottom_menu">
 
-            @foreach (var category in Model.GetParents())
-            {
-                <li id="menu-item-1629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1629">
-                    <a href="#">@category.Name</a>  <ul class="sub-menu sf-js-enabled sf-arrows">
+            <nav>
+                <ul>
+                    @foreach (var categories in Model.GetParents())
+                    {
+                        <li>
+                            <a href="index.html">@categories.Name</a>
 
-                        @foreach (var childCategory in Model.GetChild(category.Id))
-                {
-                            <li><a href="@Url.Action("Category","Home", new { category = childCategory.Name })">@childCategory.Name</a></li> }
+                            <ul>
+                                @foreach (var Child in Model.GetChild(categories.Id))
+                                {
+                                    <li class="current_page_item"><a href="index.html">@Child.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            </div>
 
 
-                    </ul>
-                </li>
-            }
-
-
-        </ul>
-
-    </div>	
-</nav>

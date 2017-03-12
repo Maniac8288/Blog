@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Infrastructura;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с категориями 
         /// </summary>
         /// <returns></returns>
+        [FilterUser(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();

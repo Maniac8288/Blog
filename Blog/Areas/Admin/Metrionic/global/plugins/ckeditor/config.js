@@ -38,6 +38,6 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removePlugins = 'elementspath';
 	config.resize_enabled = false;
 	config.extraPlugins = 'autogrow,SimpleLink';
-	config.filebrowserUploadUrl = "http://localhost:62712/Admin/Admin/addImage";
+	config.filebrowserUploadUrl = "http://localhost:62712/Admin/Posts/addImage";
 
 };

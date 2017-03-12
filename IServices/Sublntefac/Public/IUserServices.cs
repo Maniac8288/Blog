@@ -58,6 +58,13 @@ namespace IServices.Sublntefac.Public
         /// <param name="email">Почта пользователя</param>
         /// <returns></returns>
         bool CheckExistUser(string userName, string email);
+        /// <summary>
+        /// Проверка роли пользователя
+        /// </summary>
+        /// <param name="role">Роль пользователя</param>
+        /// <param name="userName">Имя пользователя</param>
+        /// <returns></returns>
+        bool CheckRole(string userName, string role);
         #endregion
     }
 }

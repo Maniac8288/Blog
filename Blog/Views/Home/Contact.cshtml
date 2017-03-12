@@ -1,20 +1,87 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<article id="post-1631" class="clearfix post-1631 page type-page status-publish hentry">
-    <header class="entry-header">
-        <h1 class="entry-title">About The Tests</h1>
-    </header><!-- .entry-header -->
+<div id="content" class="sidebar_right">
+    <div class="inner">
+        <div class="block_general_title_1">
+            <h1>Contact Us - sidebar</h1>
+            <h2>ENTER THE SUB TITLE FOR THIS SECTION</h2>
+        </div>
 
+        <div class="main_content">
+            <div class="block_form_1">
+                <form action="#" id="contact_form">
+                    <div class="text">
+                        <p>Enterprise includes a built-in AJAX contact form with an anti-spam filter. Display your contact form anywhere on your site using the contact-form shortcode.</p>
+                    </div>
 
+                    <div class="form">
+                        <div class="label">Name <span>*</span></div>
+                        <div class="field"><input type="text" name="name" class="to_send w_focus_mark w_validation required"></div>
 
-    <div class="clearfix entry-content">
-        <p>This site is using the standard WordPress Theme Unit Test Data for content. The Theme Unit Test is a series of posts and pages that match up with a checklist on the WordPress codex. You can use the data and checklist together to test your theme.</p>
-        <h2>WordPress Theme Development Resources</h2>
-        <ol>
-            <li>See <a href="http://codex.wordpress.org/Theme_Development">Theme Development</a> for <a href="http://codex.wordpress.org/Theme_Development#Code_Standards">code standards</a>, examples of best practices, and <a href="http://codex.wordpress.org/Theme_Development#Resources_and_References">resources for Theme development</a>.</li>
-            <li>See <a href="http://codex.wordpress.org/Theme_Unit_Test">Theme Unit Test</a> for a robust test suite for your Theme and get the latest version of the test data you see here.</li>
-            <li>See <a href="http://codex.wordpress.org/Theme_Review">Theme Review</a> for a guide to submitting your Theme to the <a href="http://wordpress.org/extend/themes/">Themes Directory</a>.</li>
-        </ol>
-    </div><!-- .entry-content -->
-</article>
+                        <div class="label">E-mail <span>*</span></div>
+                        <div class="field"><input type="text" name="email" class="to_send w_focus_mark w_validation required email"></div>
+
+                        <div class="label">Subject</div>
+                        <div class="field"><input type="text" name="subject" class="to_send w_focus_mark w_validation"></div>
+
+                        <div class="label">Message <span>*</span></div>
+                        <div class="textarea"><textarea name="message" class="to_send w_focus_mark w_validation required" cols="1" rows="1"></textarea></div>
+
+                        <div class="button"><a href="#" class="general_button_type_3 submit">Send message</a></div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="line_1" style="margin:36px 0px 40px;"></div>
+
+            <div class="block_map_1">
+                <h2>Google map</h2>
+                <div id="map"></div>
+                <script type="text/javascript">
+							init_map(
+								'map', //map container
+								'14 Rue du Bois de Boulogne, Paris, France', //write here address you need
+								'My Office, 14 Rue du Bois de Boulogne, Paris, France', //write here description you need
+								'images/marker_map_1.png' //path to your custom marker
+							);
+                </script>
+            </div>
+        </div>
+
+        <div class="sidebar">
+         @Html.Action("Latest","Home")
+               
+
+            <aside>
+                <div class="sidebar_title_1">Calendar</div>
+
+                <div class="block_sidebar_calendar_1">
+                    <div id="sidebar_calendar"></div>
+
+                    <a href="#" class="prev_month">
+                </div>
+            </aside>
+        </div>
+
+        <script type="text/javascript">
+							init_calendar(
+								'#sidebar_calendar',
+								{
+									days : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+									daysShort : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+									daysMin : ['S', 'M', 'T', 'W', 'T', 'F', 'S', 'S'],
+									months : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+									monthsShort : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+									weekMin : 'wk'
+								}
+							);
+        </script>
+      
+
+    </div>
+
+    <div class="clearboth"></div>
+
+</div>
+		</div>

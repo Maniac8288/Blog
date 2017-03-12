@@ -46,7 +46,7 @@ namespace Blog.Controllers
         /// Страница с личным кабинетам , с доступом "Пользователи"
         /// </summary>
         /// <returns></returns>
-        [FilterUser(Roles ="User")]
+        [FilterUser(Roles ="Admin")]
         public ActionResult Cabinet()
         {
             return View();

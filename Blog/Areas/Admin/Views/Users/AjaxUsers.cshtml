@@ -142,7 +142,7 @@
                 }).get();
                 formaData.append("list", values);
                 $.ajax({
-                    url: 'DeleteUsers',
+                    url: 'Users/ DeleteUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -169,7 +169,7 @@
                 }).get();
                 formaData.append("list", values);
                 $.ajax({
-                    url: 'BlockUsers',
+                    url: 'Users/BlockUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -197,7 +197,7 @@
                 formaData.append("list", values);
                 formaData.append("role",role);
                 $.ajax({
-                    url: 'roleUsers',
+                    url: 'Users/roleUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -225,7 +225,7 @@
                 formaData.append("list", values);
                 formaData.append("role", role);
                 $.ajax({
-                    url: 'roleUsers',
+                    url: 'Users/roleUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,
