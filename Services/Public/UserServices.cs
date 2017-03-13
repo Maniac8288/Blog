@@ -29,17 +29,20 @@ namespace Services
         {
             using (var db = new DataContext())
             {
-                var sha = db.Users.FirstOrDefault(_ => _.UserName == userName);
-                string ShaPassword = (sha.Salt + password).sha256();
+             
+                    var sha = db.Users.FirstOrDefault(_ => _.UserName == userName);
 
-                var auth = db.Users.Any(_ => _.UserName == userName && _.Password == ShaPassword && _.StatusUserId != EnumStatusUser.Locked);
-                 if (auth)
-                {
-                 var user =  db.Users.FirstOrDefault(_ => _.UserName == userName);
-                    user.LastVisit = DateTime.Now; 
-                    db.SaveChanges();
-                }
-                return auth;
+                    string ShaPassword = (sha.Salt + password).sha256();
+
+
+                    var auth = db.Users.Any(_ => _.UserName == userName && _.Password == ShaPassword && _.StatusUserId != EnumStatusUser.Locked);
+                    if (auth)
+                    {
+                        var user = db.Users.FirstOrDefault(_ => _.UserName == userName);
+                        user.LastVisit = DateTime.Now;
+                        db.SaveChanges();
+                    }
+                    return auth;    
             }
         }
         /// <summary>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IServices.Models.Post.ModelPostPreview>
+﻿@model IEnumerable<IServices.Models.Post.ModelPost>
 @{
     Layout = null;
 }
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="info">
-                    <div class="tags"><a href="#">@lastPost.CategoryId</a>, <a href="#">@lastPost.NamePost</a></div>
+                    <div class="tags"> <a href="@Url.Action("Post","Home", new { id = lastPost.PostID })">@lastPost.NamePost</a>, <a href="@Url.Action("Category","Home", new { category = lastPost.CategoryId })">@lastPost.Category.Name</a></div>
                     <div class="date">27, 2013</div>
                 </div>
             </div>

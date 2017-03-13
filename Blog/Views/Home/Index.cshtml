@@ -8,7 +8,7 @@
         <div class="block_slider_type_1 general_not_loaded" >
             <div id="slider" class="slider flexslider">
                 <ul class="slides">
-                    @foreach (var post in Model)
+                    @foreach (var post in Model.Take(4))
                     {
                     <li>
                         <img src="~/img/@post.PostID/Preview/@post.upload" style="width:940px; height:450px">
@@ -22,9 +22,10 @@
             </div>
 
             <script type="text/javascript">
-						jQuery(function() {
-							init_slider_1('#slider');
-						});
+                        jQuery(function() {
+
+                            init_slider_1('#slider');
+                    });
             </script>
         </div>
 

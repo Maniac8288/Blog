@@ -50,6 +50,7 @@
                     <div class="col-md-10">
                         <textarea cols="150" rows="3" class="form-control" id="Tags" name="Tags" required placeholder="Введите тэги через запятую" style="margin:10px;"></textarea>
                     </div>
+
                 </div>
                 <div class="form-group ">
                     <label for="dateAddPost" class="col-sm-2 control-label">Дата создания</label>
@@ -109,7 +110,7 @@
                     processData: false,
                     data: data,
                     success: function (data) {
-                        window.location.href = "http://localhost:62712/Admin/Posts/Posts";
+                        window.location.reload();
                         console.log(data);
                     }
                 });

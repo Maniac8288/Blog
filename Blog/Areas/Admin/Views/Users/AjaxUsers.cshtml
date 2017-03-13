@@ -5,8 +5,7 @@
 }
 
 <div id="sample_1_wrapper" class="dataTables_wrapper no-footer">
-    <div class="row"><div class="col-md-6 col-sm-6"><div class="dataTables_length" id="sample_1_length"><label>Show <select name="sample_1_length" aria-controls="sample_1" class="form-control input-xsmall input-inline"><option value="5">5</option><option value="15">15</option><option value="20">20</option><option value="-1">All</option></select> records</label></div></div><div class="col-md-6 col-sm-6"><div id="sample_1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-small input-inline" placeholder="" aria-controls="sample_1"></label></div></div></div>
-    <div class="table-scrollable">
+      <div class="table-scrollable">
 
         <table class="table table-striped table-bordered table-hover" id="sample_1">
             <thead>
@@ -42,9 +41,9 @@
                             @user.UserName
                         </td>
                         <td>
-                            <a href="mailto:userwow@gmail.com">
+                            
                                 @user.Email
-                            </a>
+                            
                         </td>
                         <td>
                             @user.LastVisit
@@ -93,8 +92,7 @@
         </div>
     </div>
     <br />
-    <div class="row"><div class="col-md-5 col-sm-5"><div class="dataTables_info" id="sample_1_info" role="status" aria-live="polite">Showing 1 to 5 of 25 records</div></div><div class="col-md-7 col-sm-7"><div class="dataTables_paginate paging_bootstrap_full_number" id="sample_1_paginate"><ul class="pagination" style="visibility: visible;"><li class="prev disabled"><a href="#" title="First"><i class="fa fa-angle-double-left"></i></a></li><li class="prev disabled"><a href="#" title="Prev"><i class="fa fa-angle-left"></i></a></li><li class="active"><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li class="next"><a href="#" title="Next"><i class="fa fa-angle-right"></i></a></li><li class="next"><a href="#" title="Last"><i class="fa fa-angle-double-right"></i></a></li></ul></div></div></div>
-</div>
+   </div>
 
 
 <div id="roleModal" class="modal fade">
@@ -142,7 +140,7 @@
                 }).get();
                 formaData.append("list", values);
                 $.ajax({
-                    url: 'Users/ DeleteUsers',
+                    url: 'Users/DeleteUsers',
                     type: 'post',
                     contentType: false,
                     processData: false,

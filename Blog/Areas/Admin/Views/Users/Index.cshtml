@@ -106,10 +106,11 @@
                 data: data,
                 success: function (result) {
                     console.log(result);
+                    updateUsers();
                 },
                 error: function (xhr) {
                     console.log(xhr.responseText);
-                    updateUsers()
+                   
                 }
             });
             });

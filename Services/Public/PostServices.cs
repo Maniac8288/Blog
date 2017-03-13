@@ -38,7 +38,25 @@ namespace Services
                 return posts;
             }
         }
-      
+        /// <summary>
+        /// Вывод популярных постов
+        /// </summary>
+        /// <returns></returns>
+        public List<ModelPost> PostPopular()
+        {
+            using (var db = new DataContext())
+            {
+                var postCollection = db.Posts.Select(Details()).ToList();
+                var posts = new List<ModelPost>();
+                foreach (var post in postCollection)
+                {
+                    post.Category = GetCategoryByID(post.CategoryId);
+                    posts.Add(post);
+                }
+                return posts;
+            }
+        }
+
         /// <summary>
         /// Выводит пост с информацией "Детальней"
         /// </summary>

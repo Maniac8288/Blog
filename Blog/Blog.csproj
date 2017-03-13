@@ -294,8 +294,9 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\NewPassword.cshtml" />
     <Content Include="Views\Home\Categories.cshtml" />
-    <Content Include="Views\Home\Latest.cshtml" />
+    <Content Include="Views\Home\Popular.cshtml" />
     <Content Include="Views\Home\AjaxGetLike.cshtml" />
+    <Content Include="Views\Shared\SideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

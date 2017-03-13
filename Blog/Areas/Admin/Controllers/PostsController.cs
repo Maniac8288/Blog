@@ -1,4 +1,5 @@
-﻿using IServices.Models.Post;
+﻿using Blog.Infrastructura;
+using IServices.Models.Post;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,7 @@ namespace Blog.Areas.Admin.Controllers
         /// Страница с управлением постами
         /// </summary>
         /// <returns></returns>
+        [FilterUser(Roles = "Admin")]
         public ActionResult Index()
         {
 
@@ -69,7 +71,7 @@ namespace Blog.Areas.Admin.Controllers
         public ActionResult DeletePosts()
         {
             string map = Server.MapPath("~/img/");
-            var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
+           var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
             AdminServices.ControlPosts.DeletePosts(list, map);
             return Json("Пост успешно удален");
         }

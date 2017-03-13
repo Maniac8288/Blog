@@ -10,7 +10,7 @@
                 <i class="fa fa-cogs"></i>Управление постами
             </div>
             <div class="actions">
-                <a href="NewPost" class="btn btn-default btn-sm" title="Добавить пост">
+                <a href="@Url.Action("NewPost","Posts")" class="btn btn-default btn-sm" title="Добавить пост">
                     <i class="fa fa-plus"></i> Добавить пост
                 </a>
                 <a href="javascript:;" class="btn btn-default btn-sm" id="deletePost" title="Удалить пост">
@@ -59,10 +59,11 @@
                                 @post.dateAddPost.ToLongDateString()
                             </td>
                             <td>
-
-                                <span class="glyphicon glyphicon-trash">
-                                </span>
-
+                                <a id="deletePost" alt="@post.PostID">
+                                    <span class="glyphicon glyphicon-trash">
+                                        
+                                    </span>
+                                </a>
 
                             </td>
                         </tr>
@@ -73,21 +74,31 @@
     </div>
     <!-- END EXAMPLE TABLE PORTLET-->
 </div>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Вы действительно хотите удалить данный пост?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" align="center">
+                    <button class="btn btn-danger" data-dismiss="modal" id="deletePostYes" >Да</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Нет</button>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
 <script>
         $(document).ready(function () {
             $('#deletePost').click(function () {
-                var data = new FormData();
-                var list = $('#check').attr("name");
-                var listVal = $('#check').attr("value");
-                values = $("input[name=list]").map(function () {
-                    if ($(this)[0].checked) {
-                        return $(this).val();
-                    }
-
-                }).get();
+       
+            var values = document.getElementById("deletePost").valueOf();
+            var data = new FormData()
                 data.append("list", values);
                 $.ajax({
-                    url: 'DeletePosts',
+                    url: 'Posts/DeletePosts',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -98,8 +109,8 @@
                         console.log(data);
                     }
                 });
+        
             });
-
             function upPosts() {
 
                 $('#PanelPosts').load("@Url.Action("AjaxPosts", "Posts")");

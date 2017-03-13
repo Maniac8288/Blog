@@ -112,10 +112,16 @@ namespace Blog.Controllers
         /// Последние посты
         /// </summary>
         /// <returns>Вывод последних постов отсортированных по дате</returns>
-        public ActionResult Latest()
+        public ActionResult Popular()
+        {
+            var posts = Services.Post.PostPopular();
+            return View(posts.OrderByDescending(x => x.CountViews).Take(4));
+        }
+        public ActionResult SideBar()
         {
             var posts = Services.Post.PostPreview();
             return View(posts.OrderByDescending(x => x.dateAddPost));
+
         }
         /// <summary>
         /// Ставит лайк над постом.

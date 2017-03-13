@@ -49,21 +49,7 @@
             </div>
         </div>
 
-        <div class="sidebar">
-         @Html.Action("Latest","Home")
-               
-
-            <aside>
-                <div class="sidebar_title_1">Calendar</div>
-
-                <div class="block_sidebar_calendar_1">
-                    <div id="sidebar_calendar"></div>
-
-                    <a href="#" class="prev_month">
-                </div>
-            </aside>
-        </div>
-
+        @Html.Action("SideBar", "Home")
         <script type="text/javascript">
 							init_calendar(
 								'#sidebar_calendar',
@@ -84,4 +70,4 @@
     <div class="clearboth"></div>
 
 </div>
-		</div>
+		
