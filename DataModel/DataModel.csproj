@@ -94,11 +94,16 @@
     <Compile Include="Migrations\201703121459071_roles.Designer.cs">
       <DependentUpon>201703121459071_roles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703131041558_Tags.cs" />
+    <Compile Include="Migrations\201703131041558_Tags.Designer.cs">
+      <DependentUpon>201703131041558_Tags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLike.cs" />
     <Compile Include="Models\PostViews.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />
@@ -144,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703121459071_roles.resx">
       <DependentUpon>201703121459071_roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703131041558_Tags.resx">
+      <DependentUpon>201703131041558_Tags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

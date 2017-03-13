@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<!-- Начало статистики сайта -->
+@Html.Action("CountsUsers", "Dashboard")
+@Html.Action("CountPosts", "Dashboard")
+@Html.Action("Likes", "Dashboard")
+@Html.Action("Viwes", "Dashboard")
+<!-- Конец статистики сайта -->

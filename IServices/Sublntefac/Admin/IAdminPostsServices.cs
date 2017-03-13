@@ -65,5 +65,25 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <returns>Модель Категории.</returns>
         ModelCategories GetCategory();
+        /// <summary>
+        /// Подсчитывает количество просмотров
+        /// </summary>
+        /// <returns></returns>
+        int CountViews();
+        /// <summary>
+        /// Подсчитывает количество просмотров
+        /// </summary>
+        /// <returns></returns>
+        int CountLike();
+        /// <summary>
+        /// Подсчитывает количество постов
+        /// </summary>
+        /// <returns></returns>
+        int CountPosts();
+        /// <summary>
+        /// Подсчитывает количество пользователей
+        /// </summary>
+        /// <returns></returns>
+        int CountUsers();
     }
 }

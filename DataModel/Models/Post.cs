@@ -69,6 +69,7 @@ namespace DataModel.Models
         /// The users.
         /// </value>
         public List<User> Users { get; set; }
+        public List<Tag> CollectionTag { get; set; }
 
     }
 }

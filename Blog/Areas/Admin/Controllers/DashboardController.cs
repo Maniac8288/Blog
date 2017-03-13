@@ -29,9 +29,42 @@ namespace Blog.Areas.Admin.Controllers
         {
             return View();
         }
-
-
-
+        /// <summary>
+        /// Информация о количестве просмотров
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Viwes()
+        {
+            int count = AdminServices.ControlPosts.CountViews();
+            return View(count);
+        }
+        /// <summary>
+        /// Информация о количестве лайков
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Likes()
+        {
+            int count = AdminServices.ControlPosts.CountLike();
+            return View(count);
+        }
+        /// <summary>
+        /// Информация о количестве постов
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CountPosts()
+        {
+            int count = AdminServices.ControlPosts.CountPosts();
+            return View(count);
+        }
+        /// <summary>
+        /// Информация о количестве пользователей
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CountsUsers()
+        {
+            int count = AdminServices.ControlPosts.CountUsers();
+            return View(count);
+        }
     }
 
 

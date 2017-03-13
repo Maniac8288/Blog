@@ -21,11 +21,9 @@ namespace DataModel.Migrations
         protected override void Seed(DataModel.DataContext context)
         {
 
-            context.Roles.AddOrUpdate(p => p.Id,
-                new Role { Id = TypeRoles.Admin, Name = "Admin" },
-                new Role { Id = TypeRoles.User, Name = "User" }
+        
 
-                );
+               
         }
     }
 }

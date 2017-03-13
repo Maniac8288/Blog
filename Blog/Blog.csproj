@@ -237,6 +237,10 @@
     <Content Include="Areas\Admin\Views\Shared\SideBar.cshtml" />
     <Content Include="fonts\20_db.otf" />
     <Content Include="fonts\3966.ttf" />
+    <Content Include="Areas\Admin\Views\Dashboard\Viwes.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Likes.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\CountPosts.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\CountsUsers.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

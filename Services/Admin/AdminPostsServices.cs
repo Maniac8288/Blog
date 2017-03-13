@@ -230,6 +230,55 @@ namespace Services.Admin
             }
         }
         /// <summary>
+        /// Подсчитывает количество просмотров
+        /// </summary>
+        /// <returns></returns>
+        public int CountViews() {
+            using (var db = new DataContext())
+            {
+                var count = db.PostViews.Count();
+                return count;
+            }
+        }
+        /// <summary>
+        /// Подсчитывает количество Лайков
+        /// </summary>
+        /// <returns></returns>
+        public int CountLike()
+        {
+            using (var db = new DataContext())
+            {
+                var count = db.PostLikes.Count();
+                return count;
+            }
+        }
+        /// <summary>
+        /// Подсчитывает количество постов
+        /// </summary>
+        /// <returns></returns>
+        public int CountPosts()
+        {
+            using (var db = new DataContext())
+            {
+                var count = db.Posts.Count();
+                return count;
+            }
+        }
+        /// <summary>
+        /// Подсчитывает количество пользователей
+        /// </summary>
+        /// <returns></returns>
+        public int CountUsers()
+        {
+            using (var db = new DataContext())
+            {
+                var count = db.Users.Count();
+                return count;
+            }
+        }
+
+
+        /// <summary>
         /// Перезапись модели Post  из модели ModelPostPreview
         /// </summary>
         /// <returns></returns>
