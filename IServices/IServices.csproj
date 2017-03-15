@@ -62,6 +62,7 @@
     <Compile Include="Models\User\ModelRole.cs" />
     <Compile Include="Models\User\ModelUser.cs" />
     <Compile Include="Models\Post\ModelPost.cs" />
+    <Compile Include="Models\User\ModelUserComment.cs" />
     <Compile Include="Models\User\ModelUserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAdminServices.cs" />

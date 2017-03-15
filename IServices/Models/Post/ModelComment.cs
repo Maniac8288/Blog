@@ -25,12 +25,15 @@ namespace IServices.Models.Post
         /// Пользователь которому пренадлежит комментарий
         /// </summary>
         /// <value>The user.</value>
-        public List<ModelUser> User { get; set; }
+        public List<ModelUserComment> User { get; set; }
         /// <summary>
         /// Пост которому пренадлежит комментарий
         /// </summary>
         /// <value>The post.</value>
         public List<ModelPost> Post { get; set; }
-
+        /// <summary>
+        /// Дата добавление поста
+        /// </summary>
+        public DateTime DateAddPost { get; set; }
     }
 }

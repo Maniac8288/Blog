@@ -62,9 +62,9 @@
                                 @post.dateAddPost.ToLongDateString()
                             </td>
                             <td>
-                               <a class="deletePost" alt="@post.PostID" >
+                                <a data-toggle="modal" data-target="#deltePostModal" style="text-decoration: none; " class="deletePost" alt="@post.PostID">
                                     <span class="glyphicon glyphicon-trash">
-                                        
+
                                     </span>
                                 </a>
 
@@ -74,10 +74,14 @@
                 </tbody>
             </table>
         </div>
+       
+     
+
     </div>
     <!-- END EXAMPLE TABLE PORTLET-->
 </div>
-<div id="myModal" class="modal fade">
+ <!-- Начало модальных окн-->
+<div id="deltePostModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -93,21 +97,24 @@
         </div>
     </div>
 </div>
+<!--Конец модальных окн-->
 <script>
-        $(document).ready(function () {
-            $('.deletePost').click(function () {
-               
-                var values = $(this).attr('alt');
-               
+    $(document).ready(function () {
+        var deletePost;
+        $('.deletePost').click(function () {
+            deletePost = $(this).attr('alt');
+        })
+        $('#deletePostYes').click(function () {
+                
                 var data = new FormData();
-                data.append("id", values);
+                data.append("id", deletePost);
                 $.ajax({
                     url: 'Posts/DeletePosts',
                     type: 'post',
                     contentType: false,
                     processData: false,
                     data: data,
-                    beforeSend: function () { console.log(values); },
+                    beforeSend: function () { console.log(deletePost); },
                     success: function (data) {
                         upPosts();
                         console.log(data);

@@ -30,5 +30,9 @@ namespace DataModel.Models
         /// </summary>
         /// <value>The user.</value>
         public List<User> User { get; set; }
+        /// <summary>
+        /// Время добавления поста
+        /// </summary>
+        public DateTime DateAddComment { get; set;}
     }
 }

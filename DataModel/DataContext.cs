@@ -89,8 +89,13 @@ namespace DataModel
                 .HasColumnType("datetime2")
                 .HasPrecision(0)
                 .IsRequired();
+            modelBuilder.Entity<Comment>().
+              Property(p => p.DateAddComment)
+              .HasColumnType("datetime2")
+              .HasPrecision(0)
+              .IsRequired();
         }
-  
 
+        
     }
 }

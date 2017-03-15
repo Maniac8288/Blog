@@ -1,4 +1,5 @@
 ﻿using Blog.Infrastructura;
+using IServices.Models.Post;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Blog.Controllers
         /// Страница с новостями
         /// </summary>
         /// <returns></returns>
-       public ActionResult News()
+        public ActionResult News()
         {
             return View();
         }
@@ -37,7 +38,7 @@ namespace Blog.Controllers
         /// Страница с контактами
         /// </summary>
         /// <returns></returns>
-        
+
         public ActionResult Contact()
         {
             return View();
@@ -46,7 +47,7 @@ namespace Blog.Controllers
         /// Страница с личным кабинетам , с доступом "Пользователи"
         /// </summary>
         /// <returns></returns>
-        [FilterUser(Roles ="Admin")]
+        [FilterUser(Roles = "Admin")]
         public ActionResult Cabinet()
         {
             return View();
@@ -58,12 +59,12 @@ namespace Blog.Controllers
         /// <returns>Список постов из БД по выбранному тэгу</returns>
         public ActionResult Tag(string tags)
         {
-            if(tags == null)
+            if (tags == null)
             {
                 return HttpNotFound();
             }
             var posts = Services.Post.PostDetails();
-           
+
             var tag = posts.Where(x => x.Tags.Contains(tags));
             return View(tag);
         }
@@ -74,8 +75,8 @@ namespace Blog.Controllers
         /// <returns>Вывод постов из БД по выбранной категории</returns>
         public ActionResult Category(int category)
         {
-            var posts = Services.Post.PostPreview().Where(x=>x.CategoryId == category);
-           
+            var posts = Services.Post.PostPreview().Where(x => x.CategoryId == category);
+
             return View(posts);
         }
         /// <summary>
@@ -85,7 +86,7 @@ namespace Blog.Controllers
         /// <returns>Вывод поста по определенному ID</returns>
         public ActionResult Post(int id)
         {
-            
+
             var posts = Services.Post.PostDetails();
             var post = posts.FirstOrDefault(x => x.PostID == id);
             post.CollectionTags = post.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -145,16 +146,36 @@ namespace Blog.Controllers
         /// </summary>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult AddComment(string ContentComment, int UserId, int PostId)
+        public ActionResult AddComment(ModelComment comment, int UserId, int PostId)
         {
-            Services.Post.AddComent(ContentComment, UserId, PostId);
+            Services.Post.AddComent(comment, UserId, PostId);
             return Json("Запрос прошел успешно");
         }
+        /// <summary>
+        /// Вывод комментарий
+        /// </summary>
+        /// <param name="Id">Ид поста</param>
+        /// <returns></returns>
         public ActionResult AjaxComment(int Id)
         {
             var comment = Services.Post.Comment(Id);
             return View(comment);
         }
-    
+        /// <summary>
+        /// Число комментарий
+        /// </summary>
+        /// <param name="id">Ид поста</param>
+        /// <returns></returns>
+        public ActionResult AjaxCountComment(int id)
+        {
+            int count = Services.Post.CountComment(id);
+            return View(count);
+        }
+        public ActionResult LatestComments()
+        {
+            var comments = Services.Post.LatestComments();
+            return View(comments);
+        }
+
     }
 }

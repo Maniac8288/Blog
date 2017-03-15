@@ -36,26 +36,9 @@
         </div>
     </aside>
 
-    <aside>
-        <div class="sidebar_title_1">Latest Comments</div>
-
-        <div class="block_sidebar_latest_comments">
-            <article>
-                <div class="num">1</div>
-                <div class="content">
-                    <div class="author"><span>Mark Summers</span> says:</div>
-                    <div class="comment">Aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione.</div>
-                </div>
-            </article>
-
-            <article>
-                <div class="num">2</div>
-                <div class="content">
-                    <div class="author"><span>Sara hornet</span> says:</div>
-                    <div class="comment">Magni dolores eos qui ratione voluptatem sequi nesciunt.</div>
-                </div>
-            </article>
-        </div>
-    </aside>
-
-</div>
+    <div class="sidebar_title_1"><h3>Последние комментарии</h3></div>
+    <div class="line_1"></div>
+    <div class="block_sidebar_latest_comments">
+        @Html.Action("LatestComments", "Home");
+    </div>
+    </div>

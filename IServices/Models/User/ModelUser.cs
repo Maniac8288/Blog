@@ -42,5 +42,9 @@ namespace IServices.Models.User
         /// Авторизован пользователь или нет
         /// </summary>
         public bool IsAuth { get; set; }
+        /// <summary>
+        /// Роль пользователя
+        /// </summary>
+        public List<ModelRole> Roles { get; set; }
     }
 }

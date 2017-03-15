@@ -32,8 +32,6 @@ namespace Services.Admin
         {
             using (var db = new DataContext())
             {
-               
-               
                     var posts = db.Posts.FirstOrDefault(_ => _.PostID == id);
                     string dir = mapPath + posts.PostID;
                     if (System.IO.Directory.Exists(dir))
@@ -66,7 +64,6 @@ namespace Services.Admin
                     db.Tags.Add(new Tag() { NameTag=item});
                     db.SaveChanges();   
                 }
-
                 posts.SelectCategories = category;
                 db.Posts.Add(posts);
                 db.SaveChanges();
@@ -125,9 +122,6 @@ namespace Services.Admin
                 Tags = posts.Tags,
                 upload = posts.upload,
                 Description = posts.Description,
-          
-
-               
             };
         }
         private static Tag ConvertTag(ModelTags tag)
@@ -139,7 +133,6 @@ namespace Services.Admin
 
             };
         }
-
         /// <summary>
         /// Конвертирует модель Post в ModelPost
         /// </summary>
@@ -236,7 +229,6 @@ namespace Services.Admin
         {
             using (var db = new DataContext())
             {
-
                 var postCollection = db.Posts.Select(Preview()).ToList();
                 var posts = new List<ModelPostPreview>();
                 foreach (var post in postCollection)
@@ -244,7 +236,6 @@ namespace Services.Admin
                     post.Category = GetCategoryByID(post.CategoryId);
                     posts.Add(post);
                 }
-
                 return posts;
             }
         }
@@ -265,7 +256,6 @@ namespace Services.Admin
                 ParentId = category.ParentId,
             };
         }
-
         /// <summary>
         /// Вывод всех категорий
         /// </summary>
@@ -286,6 +276,18 @@ namespace Services.Admin
             using (var db = new DataContext())
             {
                 var count = db.PostViews.Count();
+                return count;
+            }
+        }
+        /// <summary>
+        /// Подсчитывает количество комментарий
+        /// </summary>
+        /// <returns></returns>
+        public int CountComments()
+        {
+            using (var db = new DataContext())
+            {
+                var count = db.Comments.Count();
                 return count;
             }
         }
@@ -325,8 +327,6 @@ namespace Services.Admin
                 return count;
             }
         }
-     
-
         /// <summary>
         /// Перезапись модели Post  из модели ModelPostPreview
         /// </summary>
@@ -362,13 +362,11 @@ namespace Services.Admin
         /// <returns></returns>
         private static ModelCategory ConverModelCategory(Category category)
         {
-
             return new ModelCategory
             {
                 Id = category.Id,
                 Name = category.Name,
-                ParentId = category.ParentId,
-
+                ParentId = category.ParentId
             };
         }
 

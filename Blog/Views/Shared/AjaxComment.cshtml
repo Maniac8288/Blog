@@ -4,13 +4,18 @@
 }
 @foreach (var comment in Model)
 {
-<div class="comments">
+
     <div class="comment">
         <div class="inside">
-            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
+            @if (comment.User[0].Photo == null)
+            { <div class="avatar"><a href="#"><img src="~/img/Users/avatar.png" alt=""></a></div>}
+            else
+            {
+            <div class="avatar"><a href="#"><img src="~/img/Users/@comment.User[0].Id/@comment.User[0].Photo" alt=""></a></div>
+            }
             <div class="content">
-                <div class="author"><a href="#">@comment.User</a></div>
-                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
+                <div class="author"><a href="#">@comment.User[0].UserName</a></div>
+                <div class="info">@comment.DateAddPost.ToLongDateString()<a href="#">Ответить</a></div>
                 <div class="text">
                     <p>@comment.ContentComment</p>
                 </div>
@@ -19,6 +24,6 @@
             <div class="clearboth"></div>
         </div>
     </div>
-</div>
+
 }
 

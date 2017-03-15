@@ -41,7 +41,6 @@
 
                 @foreach (var post in Model)
                 {
-
                     <article class="post_type_1 isotope-item">
                         <div class="feature">
                             <div class="image">
@@ -50,7 +49,6 @@
                                     {
                                         <img width="540" height="270" src="~/img/@post.PostID/Preview/@post.upload" alt="@post.NamePost" title="@post.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">}
                                 </a>
-
                             </div>
                         </div>
                         <div class="content ">
@@ -60,7 +58,7 @@
                                 <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
                                 <div class="stats">
                                     <div class="likes">@post.CountLike</div>
-                                    <div class="comments">7</div>
+                                    <div class="comments">@Html.Action("AjaxCountComment", "Home", new { id = post.PostID })</div>
                                 </div>
                             </div>
 

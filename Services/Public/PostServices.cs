@@ -57,7 +57,18 @@ namespace Services
                 return posts;
             }
         }
-
+        /// <summary>
+        /// Последние комментарии
+        /// </summary>
+        /// <returns></returns>
+        public List<ModelComment> LatestComments()
+        {
+            using (var db = new DataContext())
+            {
+                var comments = db.Comments.Select(ConvertComment()).ToList();
+                return comments.OrderByDescending(x=>x.Id).Take(3).ToList();
+            }
+        }
         /// <summary>
         /// Выводит пост с информацией "Детальней"
         /// </summary>
@@ -80,6 +91,10 @@ namespace Services
                 return posts;
             }
         }
+        /// <summary>
+        /// Вывод облако тегов
+        /// </summary>
+        /// <returns></returns>
         public List<ModelTags> CloudTags()
         {
             using (var db = new DataContext())
@@ -90,6 +105,11 @@ namespace Services
 
             }
         }
+        /// <summary>
+        /// Нахождение категории по ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private static ModelCategory GetCategoryByID(int id)
         {
             using (var db = new DataContext())
@@ -98,6 +118,10 @@ namespace Services
                 return category;
             }
         }
+       /// <summary>
+       /// Нахождение пользователя по ID
+       /// </summary>
+       /// <returns></returns>
         private static List<ModelUser> GetUserByID()
         {
             using (var db = new DataContext())
@@ -212,13 +236,14 @@ namespace Services
         /// <param name="ContentComment">Содержимое комментария</param>
         /// <param name="UserId">ИД пользователя.</param>
         /// <param name="PostId">Ид поста</param>
-        public void AddComent(string ContentComment, int UserId, int PostId)
+        public void AddComent(ModelComment model, int UserId, int PostId)
         {
             using (var db = new DataContext())
             {
                 var user = db.Users.FirstOrDefault(x=>x.Id==UserId);
                 var post = db.Posts.FirstOrDefault(x=>x.PostID==PostId);
-               var comment = db.Comments.Add(ConvertComment(ContentComment));
+               var comment = db.Comments.Add(ConvertComment(model));
+                comment.DateAddComment = DateTime.Now;
                 comment.Post.Add(post);
                 comment.User.Add(user);
                 db.SaveChanges();
@@ -236,8 +261,22 @@ namespace Services
                 
                 var commentCollection = db.Comments.Where(x=>x.Post.FirstOrDefault(c=>c.PostID==PostID).PostID==PostID);
                 var comment = commentCollection.Select(ConvertComment()).ToList();
+               
                 return comment;
 
+            }
+        }
+        /// <summary>
+        /// Подсчитывает количество комментарий данного поста
+        /// </summary>
+        /// <param name="PostId">Ид поста</param>
+        /// <returns></returns>
+        public int CountComment(int PostId)
+        {
+            using (var db = new DataContext())
+            {
+                var commentCollection = db.Comments.Where(x => x.Post.FirstOrDefault(c => c.PostID == PostId).PostID == PostId);
+                return commentCollection.Count();
             }
         }
         #region Конверт модели
@@ -248,17 +287,19 @@ namespace Services
             return comment => new ModelComment()
             {
                 Id = comment.Id,
-                ContentComment = comment.ContetntComment
+                ContentComment = comment.ContetntComment,
+                DateAddPost = comment.DateAddComment,
+                User = comment.User.Select(u => new ModelUserComment { Id=u.Id,UserName=u.UserName,Photo=u.Photo }).ToList()
 
             };
         }
-        public static Expression<Func<User, ModelUser>> ConvertUsers()
+        public static Expression<Func<User, ModelUserComment>> ConvertUsers()
         {
-            return user => new ModelUser()
+            return user => new ModelUserComment()
             {
                Id = user.Id,
                UserName = user.UserName,
-               Email = user.Email
+               Photo = user.Photo
             };
         }
      
@@ -277,11 +318,12 @@ namespace Services
                 UserID = UserId
             };
         }
-        private static Comment ConvertComment(string contentComment)
+        private static Comment ConvertComment(ModelComment comment)
         {
             return new Comment
             {
-                ContetntComment = contentComment,
+                ContetntComment = comment.ContentComment,
+                DateAddComment= comment.DateAddPost,
                 Post = new List<Post>{ },
                 User = new List<User> { }
             };

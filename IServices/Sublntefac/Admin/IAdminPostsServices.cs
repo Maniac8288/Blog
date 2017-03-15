@@ -86,5 +86,11 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <returns></returns>
         int CountUsers();
+        /// <summary>
+        /// Подсчитывает количество комментарий
+        /// </summary>
+        /// <returns></returns>
+        int CountComments();
+      
     }
 }

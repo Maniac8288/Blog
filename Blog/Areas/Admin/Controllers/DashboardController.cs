@@ -65,6 +65,15 @@ namespace Blog.Areas.Admin.Controllers
             int count = AdminServices.ControlPosts.CountUsers();
             return View(count);
         }
+        /// <summary>
+        /// Информация о количестве комментарий
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CountsComments()
+        {
+            int count = AdminServices.ControlPosts.CountComments();
+            return View(count);
+        }
     }
 
 

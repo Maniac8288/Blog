@@ -7,10 +7,10 @@
     <div class="inner">
         <div class="block_general_title_2">
             <h1>@Model.NamePost</h1>
-            <h2><a href="@Url.Action("Category","Home",new {category=Model.CategoryId })" class="tags">@Model.Category.Name</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">by <a href="#">@Model.User[0].UserName</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
+            <h2><a href="@Url.Action("Category","Home",new {category=Model.CategoryId })" class="tags">@Model.Category.Name</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">Автор <a href="#">@Model.User[0].UserName</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
             <div class="stats">
                 <a id="GetLikes"> <div class="likes">@Model.CountLike</div></a>
-                <div class="comments">7</div>
+                <div class="comments">@Html.Action("AjaxCountComment", "Home", new { id = Model.PostID })</div>
             </div>
         </div>
       
@@ -40,20 +40,21 @@
                         <div class="num">@Model.CountViews</div>
                         <div class="type"><h6>Просмотров</h6></div>
                     </div>
-
-                    <div class="text">
-                        <div class="num">26</div>
-                        <div class="type"><h6>Комментарий</h6></div>
+                  
+                        <div class="comments" id="comments">
+                            <div class="text">
+                                <div class="num">@Html.Action("AjaxCountComment","Home",new {id=Model.PostID })</div>
+                                <div class="type"><h6>Комментарий</h6></div>
+                            </div>
+                        </div>
+                        <div class="line"></div>
                     </div>
-
-                    <div class="line"></div>
-                </div>
 
         
 
             </div>
 
-           
+       
             <div class="line_1"></div>
 
            
@@ -100,7 +101,7 @@
                 else{
                     var formData = new FormData();
                     formData.append("PostId", @Model.PostID);
-                    formData.append("UserID", @User.Id);      
+                    formData.append("UserID", @User.Id);
                     $.ajax({
                         url: '/Home/GetLike',
                         type: 'post',
@@ -108,13 +109,14 @@
                         processData: false,
                         data: formData,
                         success: function (data) {
-                            console.log(data); 
+                            console.log(data);
                         }
-                    });      
+                    });
                   }
             });
-            $('#AddComment').click(function () { 
+            $('#AddComment').click(function () {
                 var data = new FormData();
+
                 data.append("ContentComment",$('#ContentComment').val());
                 data.append("UserId", $("#User").val());
                 data.append("PostId",$('#PostId').val());
@@ -126,10 +128,14 @@
                     data: data,
                     success: function (data) {
                         console.log(data);
+                        updateComment();
                     }
                 });
             });
+            function updateComment() {
 
+             $('#Comments').load("@Url.Action("AjaxComment", "Home",new {id=Model.PostID })");
+            };
             });
     </script>
     

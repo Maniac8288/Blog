@@ -1,0 +1,25 @@
+﻿@model IEnumerable<IServices.Models.Post.ModelComment>
+@{ 
+    Layout = null;
+}
+
+<aside>
+    
+        @foreach (var comment in Model)
+        {
+        <article>
+            @if (comment.User[0].Photo == null)
+            { <div class="avatar"><a href="#"><img src="~/img/Users/avatar.png" alt="" style="height:30px;width:30px;float:left; margin-right:10px;"></a></div>}
+            else
+            {
+                <div class="avatar"><a href="#"><img src="~/img/Users/@comment.User[0].Id/@comment.User[0].Photo" alt=""></a></div>
+            }
+            <div class="content">
+                <div class="author"><span>@comment.User[0].UserName</span> </div>
+                <div class="comment">@comment.ContentComment</div>
+            </div>
+        </article>
+        }
+  
+</aside>
+        

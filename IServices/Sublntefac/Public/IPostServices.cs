@@ -54,14 +54,24 @@ namespace IServices.Sublntefac.Public
         /// <param name="ContentComment">Содержимое комментария</param>
         /// <param name="UserId">ИД пользователя.</param>
         /// <param name="PostId">Ид поста</param>
-        void AddComent(string ContentComment, int UserId, int PostId);
+        void AddComent(ModelComment comment, int UserId, int PostId);
         /// <summary>
         /// Вывод комментарий
         /// </summary>
         /// <param name="PostID">Ид поста</param>
  
          List<ModelComment> Comment(int PostID);
-       
+        /// <summary>
+        /// Подсчитывает количество комментарий данного поста
+        /// </summary>
+        /// <param name="PostId">Ид поста</param>
+        /// <returns></returns>
+        int CountComment(int PostId);
+        /// <summary>
+        /// Последние комментарии
+        /// </summary>
+        /// <returns></returns>
+        List<ModelComment> LatestComments();
 
     }
 }

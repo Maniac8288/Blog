@@ -59,7 +59,7 @@
                                  <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
                                  <div class="stats">
                                      <div class="likes">@post.CountLike</div>
-                                     <div class="comments">7</div>
+                                     <div class="comments">@Html.Action("AjaxCountComment", "Home", new { id = post.PostID })</div>
                                  </div>
                              </div>
 

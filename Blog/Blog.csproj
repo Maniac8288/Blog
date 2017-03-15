@@ -205,6 +205,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\images\Logo.png" />
+    <Content Include="img\Users\avatar.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -241,6 +242,7 @@
     <Content Include="Areas\Admin\Views\Dashboard\Likes.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\CountPosts.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\CountsUsers.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\CountsComments.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -304,6 +306,8 @@
     <Content Include="Views\Shared\CloudTags.cshtml" />
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
     <Content Include="Views\Shared\AjaxComment.cshtml" />
+    <Content Include="Views\Shared\AjaxCountComment.cshtml" />
+    <Content Include="Views\Home\LatestComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -315,7 +319,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Ajax\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="img\Users\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
