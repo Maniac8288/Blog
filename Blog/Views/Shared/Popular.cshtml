@@ -15,7 +15,7 @@
 
             <div class="content">
                 <div class="title">
-                    <a href="blog_post.html">@lastPost.Description</a>
+                    <a href="@Url.Action("Post","Home", new { id = lastPost.PostID })">@lastPost.Description</a>
                 </div>
 
                 <div class="info">

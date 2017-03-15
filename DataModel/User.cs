@@ -66,7 +66,7 @@ namespace DataModel
         /// <summary>
         /// Список статусов
         /// </summary>
-        
+        public List<Comment> Comments { get; set; }
 
     }
     /// <summary>

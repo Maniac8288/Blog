@@ -50,7 +50,7 @@ namespace DataModel.Models
         /// <summary>
         /// Автор поста
         /// </summary>
-        public string Author { get; set; }
+        public int AuthorID { get; set; }
         /// <summary>
         /// Количество лайков 
         /// </summary>
@@ -70,6 +70,7 @@ namespace DataModel.Models
         /// </value>
         public List<User> Users { get; set; }
         public List<Tag> CollectionTag { get; set; }
+        public List<Comment> Comments { get; set; }
 
     }
 }

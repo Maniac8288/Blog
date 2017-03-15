@@ -8,6 +8,7 @@ using DataModel.Models;
 using IServices.Sublntefac.Public;
 using IServices.Models.Post;
 using System.Web;
+using IServices.Models.User;
 
 /// <summary>
 /// Функционал сайта.
@@ -34,7 +35,7 @@ namespace Services
                     post.Category = GetCategoryByID(post.CategoryId);
                     posts.Add(post);
                 }
-              
+
                 return posts;
             }
         }
@@ -67,12 +68,26 @@ namespace Services
             {
                 var postCollection = db.Posts.Select(Details()).ToList();
                 var posts = new List<ModelPost>();
-                foreach(var post in postCollection)
+                foreach (var post in postCollection)
                 {
+                    
                     post.Category = GetCategoryByID(post.CategoryId);
+                    post.User = GetUserByID().Where(x=>x.Id==post.AuthorID).ToList();
                     posts.Add(post);
+                    
                 }
+                
                 return posts;
+            }
+        }
+        public List<ModelTags> CloudTags()
+        {
+            using (var db = new DataContext())
+            {
+                var tags = db.Tags.Distinct().Take(10).Select(Tags()).ToList();
+                return tags;
+
+
             }
         }
         private static ModelCategory GetCategoryByID(int id)
@@ -81,6 +96,14 @@ namespace Services
             {
                 var category = db.Categories.Select(ConverToModelCategory()).FirstOrDefault(x => x.Id == id);
                 return category;
+            }
+        }
+        private static List<ModelUser> GetUserByID()
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.Select(ConvertToModelUser()).ToList();
+                return user;
             }
         }
 
@@ -110,20 +133,20 @@ namespace Services
                 return categories;
             }
         }
-       
+
         /// <summary>
         /// Ставил лайк
         /// </summary>
         /// <param name="PostId">ИД поста</param>
         /// <param name="UserID">ИД пользователя</param>
-        public void GetLike(int PostId , int UserID)
+        public void GetLike(int PostId, int UserID)
         {
-            using(var db = new DataContext())
+            using (var db = new DataContext())
             {
-                
+
                 var post = db.Posts.FirstOrDefault(x => x.PostID == PostId);
                 var like = ConvertLike(PostId, UserID);
-               var UserLikePost = db.PostLikes.FirstOrDefault(x => x.UserID == UserID && x.PostID == PostId);
+                var UserLikePost = db.PostLikes.FirstOrDefault(x => x.UserID == UserID && x.PostID == PostId);
                 if (UserLikePost != null)
                 {
                     post.CountLike--;
@@ -138,6 +161,7 @@ namespace Services
                 }
             }
         }
+       
         /// <summary>
         /// Добовляет просмотр к посту
         /// </summary>
@@ -182,20 +206,84 @@ namespace Services
 
             }
         }
-       
+        /// <summary>
+        /// Добавление комментария
+        /// </summary>
+        /// <param name="ContentComment">Содержимое комментария</param>
+        /// <param name="UserId">ИД пользователя.</param>
+        /// <param name="PostId">Ид поста</param>
+        public void AddComent(string ContentComment, int UserId, int PostId)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x=>x.Id==UserId);
+                var post = db.Posts.FirstOrDefault(x=>x.PostID==PostId);
+               var comment = db.Comments.Add(ConvertComment(ContentComment));
+                comment.Post.Add(post);
+                comment.User.Add(user);
+                db.SaveChanges();
+            }
+        }
+        /// <summary>
+        /// Вывод комментарий
+        /// </summary>
+        /// <param name="PostID">Ид поста</param>
+        /// <returns>List&lt;ModelComment&gt;.</returns>
+        public List<ModelComment> Comment(int PostID)
+        {
+            using (var db = new DataContext())
+            {
+                
+                var commentCollection = db.Comments.Where(x=>x.Post.FirstOrDefault(c=>c.PostID==PostID).PostID==PostID);
+                var comment = commentCollection.Select(ConvertComment()).ToList();
+                return comment;
+
+            }
+        }
         #region Конверт модели
+        public static Expression<Func<Comment, ModelComment>> ConvertComment()
+        {
+
+
+            return comment => new ModelComment()
+            {
+                Id = comment.Id,
+                ContentComment = comment.ContetntComment
+
+            };
+        }
+        public static Expression<Func<User, ModelUser>> ConvertUsers()
+        {
+            return user => new ModelUser()
+            {
+               Id = user.Id,
+               UserName = user.UserName,
+               Email = user.Email
+            };
+        }
+     
+
         /// <summary>
         /// Конвертирует в модель PostLike
         /// </summary>
         /// <param name="PostId">Ид поста</param>
         /// <param name="UserId">Ид пользователя</param>
         /// <returns></returns>
-        private static PostLike ConvertLike(int PostId, int UserId )
+        private static PostLike ConvertLike(int PostId, int UserId)
         {
             return new PostLike
             {
-               PostID = PostId,
-               UserID = UserId
+                PostID = PostId,
+                UserID = UserId
+            };
+        }
+        private static Comment ConvertComment(string contentComment)
+        {
+            return new Comment
+            {
+                ContetntComment = contentComment,
+                Post = new List<Post>{ },
+                User = new List<User> { }
             };
         }
         /// <summary>
@@ -209,7 +297,7 @@ namespace Services
             {
                 id = View.id,
                 PostID = View.PostID,
-               
+
             };
         }
         /// <summary>
@@ -244,11 +332,11 @@ namespace Services
                 dateAddPost = post.dateAddPost,
                 Tags = post.Tags,
                 contentPost = post.contentPost,
-                Author = post.Author,
+                AuthorID = post.AuthorID,
                 Description = post.Description,
                 CountLike = post.CountLike
-                
-                
+
+
             };
         }
 
@@ -270,25 +358,48 @@ namespace Services
                 dateAddPost = post.dateAddPost,
                 Tags = post.Tags,
                 contentPost = post.contentPost,
-                Author = post.Author,
                 Description = post.Description,
                 CountLike = post.CountLike,
-                CountViews = post.CountViews
+                CountViews = post.CountViews,
+                AuthorID = post.AuthorID
+            
+                
+                
 
             };
         }
-        public static Expression<Func<Category, ModelCategory>> ConverToModelCategory() 
-            { 
-                return category => new ModelCategory()
-                 {
-                        Id = category.Id, 
-                        Name = category.Name, 
-                        ParentId = category.ParentId, 
-                    };
+        public static Expression<Func<Tag, ModelTags>> Tags()
+        {
+
+            return tag => new ModelTags()
+            {
+                Id= tag.Id,
+                NameTag = tag.NameTag
+            };
+        }
+        public static Expression<Func<Category, ModelCategory>> ConverToModelCategory()
+        {
+            return category => new ModelCategory()
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ParentId = category.ParentId,
+            };
+        }
+        public static Expression<Func<User, ModelUser>> ConvertToModelUser()
+        {
+            return user => new ModelUser()
+            {
+                Id= user.Id,
+                UserName=user.UserName,
+                Email = user.Email
+            };
+        }
+
+
+
+
+        #endregion
+
     }
-
-
-    #endregion
-
-}
 }

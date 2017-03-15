@@ -7,7 +7,7 @@
     <div class="inner">
         <div class="block_general_title_2">
             <h1>@Model.NamePost</h1>
-            <h2><a href="@Url.Action("Category","Home",new {category=Model.CategoryId })" class="tags">@Model.Category.Name</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">by <a href="#">@Model.Author</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
+            <h2><a href="@Url.Action("Category","Home",new {category=Model.CategoryId })" class="tags">@Model.Category.Name</a>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="author">by <a href="#">@Model.User[0].UserName</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span class="date">@Model.dateAddPost.ToShortDateString()</span></h2>
             <div class="stats">
                 <a id="GetLikes"> <div class="likes">@Model.CountLike</div></a>
                 <div class="comments">7</div>
@@ -23,12 +23,13 @@
 
             <div class="block_info_1 type_1">
                 <div class="tags">
-                    <div class="title"><span>Tags Cloud</span></div>
+                    <div class="title"><span>Тэги</span></div>
 
                     <ul>
-                        <li><a href="#">Peoples</a></li>
-                        <li><a href="#">Photography</a></li>
-                        <li><a href="#">Clear</a></li>
+                        @foreach (var tag in Model.CollectionTags)
+                        {
+                        <li><a href="@Url.Action("Tag","Home",new { tags=tag})">@tag</a></li>
+                        }
                     </ul>
                 </div>
                
@@ -57,123 +58,41 @@
 
            
 
-            <div class="block_comments_1">
-                <h3>Comments <span>26</span></h3>
-
-                <div class="comments">
-                    <div class="comment">
-                        <div class="inside">
-                            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
-                            <div class="content">
-                                <div class="author"><a href="#">Rojer Moor</a></div>
-                                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
-                                <div class="text">
-                                    <p>Natus sit voluptatem accusantium dolore laudantium, totam rem aperiam, eaque ipsa quae.  Ab illo inventore veritatis.</p>
-                                </div>
-                            </div>
-
-                            <div class="clearboth"></div>
-                        </div>
-                    </div>
-
-                    <div class="comment">
-                        <div class="inside">
-                            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
-                            <div class="content">
-                                <div class="author"><a href="#">Simon Fowler</a></div>
-                                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
-                                <div class="text">
-                                    <p>Accusantium dolore laudantium, totam rem aperiam, eaque ipsa quae.  Ab illo inventore veritatis et quasiarc.</p>
-                                </div>
-                            </div>
-
-                            <div class="clearboth"></div>
-                        </div>
-
-                        <div class="comment">
-                            <div class="inside">
-                                <div class="avatar"><a href="#"><img src="images/ava_1.jpg" alt=""></a></div>
-                                <div class="content">
-                                    <div class="author"><a href="#">Admin</a></div>
-                                    <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
-                                    <div class="text">
-                                        <p>Dolore laudantium, totam rem aperiam, eaque ipsa quae.  Ab illo inventore veritatis et quasiarchitecto.</p>
-                                    </div>
-                                </div>
-
-                                <div class="clearboth"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="comment">
-                        <div class="inside">
-                            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
-                            <div class="content">
-                                <div class="author"><a href="#">Ronald King</a></div>
-                                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
-                                <div class="text">
-                                    <p>Qolore laudantium, totam rem aperiam, eaque ipsa quae.  Ab illo inventore veritatis et quasiarchitecto beatae vitae.</p>
-                                </div>
-                            </div>
-
-                            <div class="clearboth"></div>
-                        </div>
-                    </div>
-
-                    <div class="comment last_comment">
-                        <div class="inside">
-                            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
-                            <div class="content">
-                                <div class="author"><a href="#">Sandra Downing</a></div>
-                                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
-                                <div class="text">
-                                    <p>Ratus sit voluptatem accusantium dolore laudantium, totam rem aperiam, eaque ipsa quae.</p>
-                                </div>
-                            </div>
-
-                            <div class="clearboth"></div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="block_comments_1" id="Comments">
+                
             </div>
-
+            @if (User.IsAuth)
+            {
             <div class="block_leave_comment_1 type_1">
-                <h3>Live a comment</h3>
+                <h3 style="text-align:center;">Оставить комментарий</h3>
 
                 <div class="form">
-                    <form action="#">
-                        <div class="fields">
-                            <div class="label">Name <span>*</span></div>
-                            <div class="field"><input type="text" name="name" class="w_focus_mark required"></div>
-
-                            <div class="label">E-mail <span>*</span></div>
-                            <div class="field"><input type="text" name="email" class="w_focus_mark required"></div>
-
-                            <div class="label">Subject</div>
-                            <div class="field"><input type="text" name="subject" class="w_focus_mark"></div>
-                        </div>
-
+                    <form method="post" action="AddComment">
                         <div class="oh">
-                            <div class="label">Message <span>*</span></div>
-                            <div class="textarea"><textarea name="message" class="w_focus_mark" cols="1" rows="1"></textarea></div>
-
-                            <div class="button"><a href="#" class="general_button_type_3 submit">Submit Your Comment</a></div>
+                            <div class="textarea"><textarea name="ContentComment" class="w_focus_mark" cols="1" rows="1" id="ContentComment"></textarea></div>
+                            <div class="button" id="AddComment"><a class="general_button_type_3 submit">Введите ваш комментарий</a></div>
+                            <input type="hidden" id="User" value="@User.Id" />
+                            <input type="hidden" id="PostId" value="@Model.PostID" />
                         </div>
                     </form>
                 </div>
             </div>
+            }
+            else
+            { 
+                <div class="block_leave_comment_1 type_1" align="center">
+            <h3>Чтобы оставить комментарий необходимо <a href="@Url.Action("Login","Account")"><b>АВТОРИЗОВАТЬСЯ</b></a></h3> </div>}
         </div>
-        
-        @Html.Action("SideBar", "Home")
-
-        <div class="clearboth"></div>
-    </div>
+            @Html.Action("SideBar", "Home")
+            <div class="clearboth"></div>
+        </div>
 </div>
 
     <script>
         $(document).ready(function () {
+            $('#Comments').load("@Url.Action("AjaxComment", "Home",new {id=Model.PostID })");
+
+
             $('#GetLikes').click(function () {
                 if ("@User.IsAuth" =="False") {
                     alert("Необходимо авторизоваться")
@@ -181,7 +100,7 @@
                 else{
                     var formData = new FormData();
                     formData.append("PostId", @Model.PostID);
-                    formData.append("UserID", @User.Id);
+                    formData.append("UserID", @User.Id);      
                     $.ajax({
                         url: '/Home/GetLike',
                         type: 'post',
@@ -193,7 +112,24 @@
                         }
                     });      
                   }
+            });
+            $('#AddComment').click(function () { 
+                var data = new FormData();
+                data.append("ContentComment",$('#ContentComment').val());
+                data.append("UserId", $("#User").val());
+                data.append("PostId",$('#PostId').val());
+                $.ajax({
+                    url: '/Home/AddComment',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                    }
                 });
+            });
+
             });
     </script>
     

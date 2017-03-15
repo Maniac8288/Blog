@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Web;
 using System.Linq.Expressions;
+using IServices.Models.User;
 
 /// <summary>
 /// Функционал админки
@@ -27,20 +28,20 @@ namespace Services.Admin
         /// </summary>
         /// <param name="id">Выбраные посты</param>
         /// <param name="mapPath">Расположение к папке с постом</param>
-        public void DeletePosts(List<int> id, string mapPath)
+        public void DeletePosts(int id, string mapPath)
         {
             using (var db = new DataContext())
             {
-                foreach (int item in id)
-                {
-                    var posts = db.Posts.FirstOrDefault(_ => _.PostID == item);
+               
+               
+                    var posts = db.Posts.FirstOrDefault(_ => _.PostID == id);
                     string dir = mapPath + posts.PostID;
                     if (System.IO.Directory.Exists(dir))
                     {
                         System.IO.Directory.Delete(dir, true);
                     }
                     db.Posts.Remove(posts);
-                }
+             
                 db.SaveChanges();
             }
         }
@@ -49,18 +50,30 @@ namespace Services.Admin
         /// </summary>
         /// <param name="model">Модель поста</param>
         /// <param name="IdCategory">Ид категории</param>
-        public void AddPost(ModelNewPost model, int IdCategory)
+        /// <param name="UserID">Ид автора</param>
+        public void AddPost(ModelNewPost model, int IdCategory, int UserID)
         {
             using (var db = new DataContext())
             {
                 var category = db.Categories.FirstOrDefault(x => x.Id == IdCategory);
-                var posts = ConverModelPost(model);
+                 var posts = ConverModelPost(model);
+                posts.Users = db.Users.Where(x => x.Id == UserID).ToList();
+                
+                posts.AuthorID = UserID;
+                var CollTags = posts.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                foreach (var item in CollTags)
+                {
+                    db.Tags.Add(new Tag() { NameTag=item});
+                    db.SaveChanges();   
+                }
+
                 posts.SelectCategories = category;
                 db.Posts.Add(posts);
                 db.SaveChanges();
-
             }
         }
+    
+
         /// <summary>
         /// Возвращает нужуню модель поста для редактирования 
         /// </summary>
@@ -105,16 +118,28 @@ namespace Services.Admin
             return new Post
             {
                 PostID = posts.PostID,
-                Author = posts.Author,
+                 AuthorID = posts.AuthorID,
                 dateAddPost = posts.dateAddPost,
                 contentPost = posts.contentPost,
                 NamePost = posts.NamePost,
                 Tags = posts.Tags,
                 upload = posts.upload,
-                Description = posts.Description
+                Description = posts.Description,
+          
+
+               
+            };
+        }
+        private static Tag ConvertTag(ModelTags tag)
+        {
+            return new Tag
+            {
+                Id= tag.Id,
+                NameTag = tag.NameTag
 
             };
         }
+
         /// <summary>
         /// Конвертирует модель Post в ModelPost
         /// </summary>
@@ -125,7 +150,7 @@ namespace Services.Admin
             return new ModelPost
             {
                 PostID = post.PostID,
-                Author = post.Author,
+                AuthorID = post.AuthorID,
                 dateAddPost = post.dateAddPost,
                 contentPost = post.contentPost,
                 NamePost = post.NamePost,
@@ -211,10 +236,34 @@ namespace Services.Admin
         {
             using (var db = new DataContext())
             {
-                var posts = db.Posts.Select(Preview()).ToList();
+
+                var postCollection = db.Posts.Select(Preview()).ToList();
+                var posts = new List<ModelPostPreview>();
+                foreach (var post in postCollection)
+                {
+                    post.Category = GetCategoryByID(post.CategoryId);
+                    posts.Add(post);
+                }
 
                 return posts;
             }
+        }
+        private static ModelCategory GetCategoryByID(int id)
+        {
+            using (var db = new DataContext())
+            {
+                var category = db.Categories.Select(ConverToModelCategory()).FirstOrDefault(x => x.Id == id);
+                return category;
+            }
+        }
+        public static Expression<Func<Category, ModelCategory>> ConverToModelCategory()
+        {
+            return category => new ModelCategory()
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ParentId = category.ParentId,
+            };
         }
 
         /// <summary>
@@ -276,7 +325,7 @@ namespace Services.Admin
                 return count;
             }
         }
-
+     
 
         /// <summary>
         /// Перезапись модели Post  из модели ModelPostPreview
@@ -293,8 +342,17 @@ namespace Services.Admin
                 dateAddPost = post.dateAddPost,
                 Tags = post.Tags,
                 contentPost = post.contentPost,
-                Author = post.Author,
+                AuthorID = post.AuthorID,
                 Description = post.Description
+            };
+        }
+        public static Expression<Func<User, ModelUser>> UserConvert()
+        {
+            return user => new ModelUser()
+            {
+              Id = user.Id,
+              UserName = user.UserName,
+              Email = user.Email
             };
         }
         /// <summary>

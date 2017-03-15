@@ -98,8 +98,21 @@
     <Compile Include="Migrations\201703131041558_Tags.Designer.cs">
       <DependentUpon>201703131041558_Tags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703141305226_authorID.cs" />
+    <Compile Include="Migrations\201703141305226_authorID.Designer.cs">
+      <DependentUpon>201703141305226_authorID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703150307268_Comments.cs" />
+    <Compile Include="Migrations\201703150307268_Comments.Designer.cs">
+      <DependentUpon>201703150307268_Comments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703150309048_Comments2.cs" />
+    <Compile Include="Migrations\201703150309048_Comments2.Designer.cs">
+      <DependentUpon>201703150309048_Comments2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostLike.cs" />
     <Compile Include="Models\PostViews.cs" />
@@ -152,6 +165,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703131041558_Tags.resx">
       <DependentUpon>201703131041558_Tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703141305226_authorID.resx">
+      <DependentUpon>201703141305226_authorID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150307268_Comments.resx">
+      <DependentUpon>201703150307268_Comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703150309048_Comments2.resx">
+      <DependentUpon>201703150309048_Comments2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

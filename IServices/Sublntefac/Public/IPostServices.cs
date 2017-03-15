@@ -38,9 +38,30 @@ namespace IServices.Sublntefac.Public
         /// </summary>
         /// <param name="PostID">Номер поста</param>
         void GetView(int PostID);
-    
+        /// <summary>
+        /// Вывод облако тегов
+        /// </summary>
+        List<ModelTags> CloudTags();
         ModelCategories GetCategory();
+        /// <summary>
+        /// Вывод популярных постов
+        /// </summary>
+     
         List<ModelPost> PostPopular();
+        /// <summary>
+        /// Добавление комментария
+        /// </summary>
+        /// <param name="ContentComment">Содержимое комментария</param>
+        /// <param name="UserId">ИД пользователя.</param>
+        /// <param name="PostId">Ид поста</param>
+        void AddComent(string ContentComment, int UserId, int PostId);
+        /// <summary>
+        /// Вывод комментарий
+        /// </summary>
+        /// <param name="PostID">Ид поста</param>
+ 
+         List<ModelComment> Comment(int PostID);
+       
 
     }
 }

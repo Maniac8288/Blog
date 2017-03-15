@@ -1,4 +1,5 @@
 ﻿using DataModel.Models;
+using IServices.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,9 @@ namespace IServices.Models.Post
         /// <summary>
         /// Автор поста
         /// </summary>
-        public string Author { get; set; }
+        public int AuthorID { get; set; }
+        public List<ModelUser> Users {get;set;}
+       
 
     }
 }

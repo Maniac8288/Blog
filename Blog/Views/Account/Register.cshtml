@@ -1,12 +1,13 @@
 ﻿
 @{
     ViewBag.Title = "Регистрация";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
 }
 
 <p style="color:red;"> @ViewData["Message"] </p>
 <div class="container">
-    <form class="form-horizontal" role="form" method="post" id="form">
+    <form class="form-horizontal" role="form" method="post" id="form" style="margin-top:150px;">
+        <div align="center"><h2>Регистрация</h2></div><hr />
         <div class="form-group">
             <label for="login" class="col-sm-4 control-label">Логин</label>
             <div class="col-sm-6">

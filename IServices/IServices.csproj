@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMainServices.cs" />
+    <Compile Include="Models\Post\ModelComment.cs" />
+    <Compile Include="Models\Post\ModelTags.cs" />
     <Compile Include="Models\Post\ModelCategories.cs" />
     <Compile Include="Models\Post\ModelCategory.cs" />
     <Compile Include="Models\Post\ModelLike.cs" />

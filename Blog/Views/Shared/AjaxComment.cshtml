@@ -1,0 +1,24 @@
+﻿@model IEnumerable<IServices.Models.Post.ModelComment>
+@{
+    Layout = null;
+}
+@foreach (var comment in Model)
+{
+<div class="comments">
+    <div class="comment">
+        <div class="inside">
+            <div class="avatar"><a href="#"><img src="images/ava_default_1.jpg" alt=""></a></div>
+            <div class="content">
+                <div class="author"><a href="#">@comment.User</a></div>
+                <div class="info">Sept 24, 2013<a href="#">REPLY</a></div>
+                <div class="text">
+                    <p>@comment.ContentComment</p>
+                </div>
+            </div>
+
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+}
+

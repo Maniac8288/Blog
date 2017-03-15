@@ -2,8 +2,8 @@
 @{
     Layout = null;
 }
-<div id="listCategories">
-        <div class="col-md-6">
+<div id="listCategories" >
+        <div class="col-md-4" >
             <div class="portlet box red-sunglo">
                 <div class="portlet-title">
                     <div class="caption">
@@ -16,20 +16,20 @@
                             @foreach (var element in Services.PostServices.GetCategories())
                              {
                                 <li>
-                                    <h3><a data-toggle="modal" data-target="#changeNamePareant"  style="text-decoration: none; "> <i class="fa fa-cogs" title="Редактировать категорию"></i>  @element.Name</a></h3>
+                                    <h3> <a data-toggle="modal" data-target="#changeNamePareant"  style="text-decoration: none; " class="changeNamePareant" alt="@element.Name"> <i class="fa fa-cogs" title="Редактировать категорию"></i>  @element.Name</a> <a data-toggle="modal" data-target="#deletePareant" style="text-decoration: none; " class="deletePareantCategory" alt="@element.Name">    <i class="fa fa-trash-o"></i>   </a></h3>
                                     <ul style="list-style-type:none;">
                                         @foreach (var item in element.Child)
                                         {
                                             <li>
-                                                <a  data-toggle="modal" data-target="#changeNameChild" style="text-decoration: none; ">   <i class="fa fa-cogs" title="Редактировать категорию"></i>       @item.Name </a>
-                                            </li>                                           
+                                                <a data-toggle="modal" data-target="#deleteChild" style="text-decoration: none; " class="deleteChildCategory" alt="@element.Name" title="@item.Name">    <i class="fa fa-trash-o"></i>   </a>     <a data-toggle="modal" data-target="#changeNameChild" style="text-decoration: none; " class="changeNameChildCategory" alt="@element.Name" title="@item.Name"> <i class="fa fa-cogs" title="Редактировать категорию"></i>       @item.Name  </a>
+</li>                                           
                                         }
                                        
-                                   <shadow><a data-toggle="modal" data-target="#myModal" style="text-decoration: none; "> <i class="fa fa-plus"></i> Добавить  категорию </a></shadow>
+                                   <shadow><a data-toggle="modal" data-target="#addChildModal" style="text-decoration: none; " class="addChildeNamePearant" alt="@element.Name"> <i class="fa fa-plus"></i> Добавить  категорию </a></shadow>
                                     </ul>
                                 </li>
                             }
-                            <li><a data-toggle="modal" data-target="#myModal" style="text-decoration: none; "><h3> <i class="fa fa-plus"></i> Добавить категорию </h3> </a></li>
+                            <li><a data-toggle="modal" data-target="#addPareantModal" style="text-decoration: none;" ><h3> <i class="fa fa-plus"></i> Добавить категорию </h3> </a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,46 +37,6 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="portlet box blue-hoki">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-gift"></i>Управления категориями
-                </div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse" data-original-title="" title="">
-                    </a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <ul>
-                    <li>
-                        <input type="button" class="btn btn-primary" value="Добавить главную категорию" id="addMainCategory" name="addMainCategory" style="width:250px; margin: 5px;" />
-                      <ul id="nameCategoryList"></ul>
-                    </li>
-                    <li>
-
-                        <button  class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width:250px; margin: 5px;">
-                            Добавить дочернию категорию
-                        </button>
-
-                    </li>
-                    
-                    <li>
-                        <input type="button" class="btn btn-primary" value="Изменить название категории" id="changeName" name="changeName" style="width:250px; margin: 5px;" />
-                        <ul id="PareantOrChild"></ul>
-
-                    </li>
-                    <li>
-                        <input type="button" class="btn btn-danger" value="Удалить категорию" id="deleteCategory" name="deleteCategory" style="width:250px; margin: 5px;" />
-                        <ul id="nameDeleteCategoryList"></ul>
-
-                    </li>
-                </ul>
-
-            </div>
-        </div>
- </div>
 <!--Начало скрытых модальных окон-->
 @Html.Partial("ModalWindow")
 <!-- Конец скрытых модальных окон-->
@@ -87,155 +47,103 @@
 
     <script>
         $(document).ready(function () {
-            $('#addMainCategory').click(function () {
-                var nameCategoryList = $('#nameCategoryList');
-                var nameCategory = $('nameCategory');
-                var li = $('<li/>').appendTo(nameCategoryList);
-                if ($("#nameCategoryList .btn").hasClass("btn-info")) {
-                    nameCategoryList.empty();
-                };
-                var inputName = $('<input/>');
-                var submitName = $('<input/>');
-                inputName.attr({ "type": "text", "placeholder": "Введите имя категории", "id": "inputName", "style": "width:200px;" }).appendTo(li);
-                submitName.attr({ "type": "submit", "class": " btn btn-info", "id": "submitName", "style": "margin-left:10px" }).appendTo(li);
-
-                $('#submitName').click(function () {
-                    var formData = new FormData();
-                    var value = document.getElementById("inputName").value;
-                    formData.append("name", value);
-
-
-                    $.ajax({
-                        url: 'AddMainCategory',
-                        type: 'post',
-                        contentType: false,
-                        processData: false,
-                        data: formData,
-                        success: function (data) {
-
-                            console.log(data);
-                            updateCategory();
-                        }
-
-
-                    });
+            var changeNamePareant;
+            var changeNameChildCategoryNamePareant;
+            var changeNameChildCategoryNameChild;
+            var addChildNamePareant;
+            var deleteChildCategory;
+            var deleteChildCategoryNamePareant;
+            var deleteChildCategoryNameChild;
+            var deletePareantCategoryName;
+            $('.changeNamePareant').click(function () {
+                changeNamePareant = $(this).attr("alt");
+            });
+            $('#addPareantCategory').click(function () {
+                var formData = new FormData();
+                var value = document.getElementById("inputName").value;
+                formData.append("name", value);
+                $.ajax({
+                    url: 'Categories/AddMainCategory',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    success: function (data) {
+                        console.log(data);
+                        updateCategory();
+                    }
                 });
+            });
+            $('.addChildeNamePearant').click(function () {
+                addChildNamePareant =  $(this).attr('alt');
             });
             $('#addChildCategory').click(function () {
                 var formData = new FormData();
-                var valuePareant = document.getElementById("namePareantCategory").value;
                 var valueChild = document.getElementById("nameChildCategory").value;
-                formData.append("namePareantCategory", valuePareant);
+                formData.append("namePareantCategory", addChildNamePareant);
                 formData.append("nameChild", valueChild);
-
-
                 $.ajax({
-                    url: 'AddChildCategory',
+                    url: 'Categories/AddChildCategory',
                     type: 'post',
                     contentType: false,
                     processData: false,
                     data: formData,
                     success: function (data) {
-                        
-
                         console.log(data);
                         updateCategory();
                     }
-
-
                 });
-                    
 
             });
-            $('#deleteCategory').click(function () {
-                var nameDeleteCategoryList = $('#nameDeleteCategoryList');
-                var li = $('<li/>').appendTo(nameDeleteCategoryList);
-
-                if ($("#nameDeleteCategoryList .btn").hasClass("btn-danger")) {
-                    nameDeleteCategoryList.empty();
-                };
-
-                var pareantInput = $('<button> Удалить родительскую категорию </button>');
-
-                var childInput = $('<button> Удалить дочернию категорию </button>');
-                pareantInput.attr({ "class": "btn btn-danger", "data-toggle": "modal", "id": "deletePareantCategory", "data-target": "#deletePareant", "style": "width:270px; margin: 5px;" }).appendTo(li);
-                childInput.attr({ "class": " btn btn-danger", "data-toggle": "modal", "id": "deleteChildCategory", "data-target": "#deleteChild", "style": "width:270px; margin: 5px;" }).appendTo(li);
-
+            $('.deletePareantCategory').click(function () {
+                deletePareantCategoryName = $(this).attr('alt');
             });
             $('#deletePareantSave').click(function () {
-                var formData = new FormData();
-                var valueSelectPareant = document.getElementById("selectPareantCategory").value;
-                formData.append("name", valueSelectPareant);
+                var formData = new FormData();   
+                formData.append("name", deletePareantCategoryName);
 
                 $.ajax({
-                    url: 'DeletePareant',
+                    url: 'Categories/DeletePareant',
                     type: 'post',
                     contentType: false,
                     processData: false,
                     data: formData,
                     success: function (data) {
-                       
-                    
                         console.log(data);
                         updateCategory();
                     }
-
-
                 });
-                
+
+            });
+            $('.deleteChildCategory').click(function () {
+                deleteChildCategoryNamePareant = $(this).attr('alt');
+                deleteChildCategoryNameChild = $(this).attr('title');
             });
             $('#deleteChildSave').click(function () {
                 var formDataDelete = new FormData();
-
-                var item = document.getElementById("selectChildCategory");
-                var selected = $(':selected', item);
-               
-                    var valueOptgroup = selected.closest('optgroup').attr('label');
-                    var valueSelectChild = selected.val();
-               
-                    formDataDelete.append("NameChild", valueSelectChild);
-                    formDataDelete.append("NamePareant", valueOptgroup);
-                
-               
-              
+                formDataDelete.append("NameChild", deleteChildCategoryNameChild);
+                formDataDelete.append("NamePareant", deleteChildCategoryNamePareant);
                 $.ajax({
-                    url: 'DeleteChild',
+                    url: 'Categories/DeleteChild',
                     type: 'post',
                     contentType: false,
                     processData: false,
                     data: formDataDelete,
                     success: function (data) {
-
                         console.log(data);
                         updateCategory();
                     }
-
-
                 });
-              
-            });
-            $('#changeName').click(function () {
-                var PareantOrChild = $('#PareantOrChild');
-                var li = $('<li/>').appendTo(PareantOrChild);
-
-                if ($("#PareantOrChild .btn").hasClass("btn-info")) {
-                    PareantOrChild.empty();
-                };
-
-                var changePareantInput = $('<button> Изменить родительскую категорию </button>');
-                var changeChildInput = $('<button> Изменить дочернию категорию </button>');
-                changePareantInput.attr({ "class": "btn btn-info", "data-toggle": "modal", "id": "changePareantCategory", "data-target": "#changeNamePareant", "style": "width:270px; margin: 5px;" }).appendTo(li);
-                changeChildInput.attr({ "class": " btn btn-info", "data-toggle": "modal", "id": "changeChildCategory", "data-target": "#changeNameChild", "style": "width:270px; margin: 5px;" }).appendTo(li);
 
             });
+          
             $('#ChangeNamePareantSave').click(function () {
                 var formData = new FormData();
-                var valueSelectPareant = document.getElementById("selectChangeNamePareantCategory").value;
                 var valueInputPareant = document.getElementById("NewNamePareantCategory").value;
-                formData.append("namePareant", valueSelectPareant);
+                formData.append("namePareant", changeNamePareant);
                 formData.append("newName", valueInputPareant);
                 $.ajax({
-                    url: 'ChangeNamePareant',
+                    url: 'Categories/ChangeNamePareant',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -246,18 +154,18 @@
                     }
                 });
             });
+            $('.changeNameChildCategory').click(function () {
+                changeNameChildCategory = $(this).attr("alt");
+                changeNameChildCategoryNameChild = $(this).attr("title");
+            });
             $('#changeNameChildSave').click(function () {
                 var formDataDelete = new FormData();
-                var item = document.getElementById("selectChangeNameChild");
-                var selected = $(':selected', item);
-                var valueOptgroup = selected.closest('optgroup').attr('label');
-                var valueSelectChild = selected.val();
                 var valueInputName = document.getElementById("NewNameChildCategory").value;
-                formDataDelete.append("childName", valueSelectChild);
-                formDataDelete.append("namePareant", valueOptgroup);
+                formDataDelete.append("childName", changeNameChildCategoryNameChild);
+                formDataDelete.append("namePareant", changeNameChildCategory);
                 formDataDelete.append("newName", valueInputName);
                 $.ajax({
-                    url: 'ChangeNameChild',
+                    url: 'Categories/ChangeNameChild',
                     type: 'post',
                     contentType: false,
                     processData: false,
@@ -266,8 +174,6 @@
                         console.log(data);
                         updateCategory();
                     }
-
-
                 });
 
             });

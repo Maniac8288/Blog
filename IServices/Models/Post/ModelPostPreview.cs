@@ -51,7 +51,7 @@ namespace IServices.Models.Post
         /// <summary>
         /// Автор поста
         /// </summary>
-        public string Author { get; set; }
+        public int AuthorID { get; set; }
         public ModelCategory Category { get; set; }
         public int CountLike { get; set; }
     }

@@ -21,13 +21,14 @@ namespace IServices.Sublntefac.Admin
         /// </summary>
         /// <param name="id">Выбраные посты</param>
         /// <param name="mapPath">Расположение к папке с постом</param>
-        void DeletePosts(List<int> id,string map);
+        void DeletePosts(int id,string map);
         /// <summary>
         /// Добавление  нового поста
         /// </summary>
         /// <param name="model">Модель поста</param>
         /// <param name="IdCategory">Ид категории</param>
-        void AddPost(ModelNewPost model,int IdCategory);
+        /// <param name="UserID">Ид автора</param>
+        void AddPost(ModelNewPost model,int IdCategory,int UserID);
         /// <summary>
         /// Возвращает модель редактирование поста
         /// </summary>

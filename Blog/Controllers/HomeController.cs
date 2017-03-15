@@ -62,7 +62,8 @@ namespace Blog.Controllers
             {
                 return HttpNotFound();
             }
-            var posts = Services.Post.PostPreview();
+            var posts = Services.Post.PostDetails();
+           
             var tag = posts.Where(x => x.Tags.Contains(tags));
             return View(tag);
         }
@@ -87,11 +88,10 @@ namespace Blog.Controllers
             
             var posts = Services.Post.PostDetails();
             var post = posts.FirstOrDefault(x => x.PostID == id);
+            post.CollectionTags = post.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
             if (post != null)
             {
                 Services.Post.GetView(id);
-
-
                 return View(post);
             }
             return View("Error");
@@ -102,11 +102,8 @@ namespace Blog.Controllers
         /// <returns></returns>
         public ActionResult Categories()
         {
-
             var model = Services.Post.GetCategory();
             return View(model);
-
-
         }
         /// <summary>
         /// Последние посты
@@ -134,6 +131,29 @@ namespace Blog.Controllers
         {
             Services.Post.GetLike(PostID, UserID);
             return Json("Запрос успешно выполнен");
+        }
+        /// <summary>
+        /// Выводит облако тегов
+        /// </summary>
+        public ActionResult CloudTags()
+        {
+            var tags = Services.Post.CloudTags();
+            return View(tags);
+        }
+        /// <summary>
+        /// Добавление комментария
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        [HttpPost]
+        public ActionResult AddComment(string ContentComment, int UserId, int PostId)
+        {
+            Services.Post.AddComent(ContentComment, UserId, PostId);
+            return Json("Запрос прошел успешно");
+        }
+        public ActionResult AjaxComment(int Id)
+        {
+            var comment = Services.Post.Comment(Id);
+            return View(comment);
         }
     
     }

@@ -35,6 +35,9 @@
                         <th>
                             Дата создания поста
                         </th>
+                        <th class="table-checkbox">
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,14 +55,14 @@
                             </td>
 
                             <td>
-                                @post.CategoryId
+                                @post.Category.Name
 
                             </td>
                             <td>
                                 @post.dateAddPost.ToLongDateString()
                             </td>
                             <td>
-                                <a id="deletePost" alt="@post.PostID">
+                               <a class="deletePost" alt="@post.PostID" >
                                     <span class="glyphicon glyphicon-trash">
                                         
                                     </span>
@@ -92,11 +95,12 @@
 </div>
 <script>
         $(document).ready(function () {
-            $('#deletePost').click(function () {
-       
-            var values = document.getElementById("deletePost").valueOf();
-            var data = new FormData()
-                data.append("list", values);
+            $('.deletePost').click(function () {
+               
+                var values = $(this).attr('alt');
+               
+                var data = new FormData();
+                data.append("id", values);
                 $.ajax({
                     url: 'Posts/DeletePosts',
                     type: 'post',

@@ -1,4 +1,5 @@
 ﻿using DataModel.Models;
+using IServices.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +52,7 @@ namespace IServices.Models.Post
         /// <summary>
         /// Автор поста
         /// </summary>
-        public string Author { get; set;}
+        public int AuthorID { get; set;}
         /// <summary>
         /// Количество лайков
         /// </summary>
@@ -65,10 +66,9 @@ namespace IServices.Models.Post
         /// </summary>
         /// <value>Категория.</value>
         public ModelCategory Category { get; set; }
-        /// <summary>
-        /// Количество просмотров
-        /// </summary>
-       
+        public List<ModelUser> User { get; set; }
+      
+
 
     }
 }

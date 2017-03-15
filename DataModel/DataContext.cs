@@ -62,6 +62,7 @@ namespace DataModel
         /// <value>Просмотры.</value>
         public DbSet<PostViews> PostViews { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         /// <summary>
         /// Этот метод вызывается, когда модель производного контекста инициализирована
         /// </summary>

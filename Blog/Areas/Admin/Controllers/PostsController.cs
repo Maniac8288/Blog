@@ -1,5 +1,6 @@
 ﻿using Blog.Infrastructura;
 using IServices.Models.Post;
+using IServices.Models.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,11 @@ namespace Blog.Areas.Admin.Controllers
         /// <returns></returns>
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult NewPost(ModelNewPost model, int IdCategory, HttpPostedFileBase Upload)
+        public ActionResult NewPost(ModelNewPost model, int IdCategory, HttpPostedFileBase Upload, int User)
         {
             string map = Server.MapPath("~/img/");
             AdminServices.ControlPosts.Image(Upload, map, model);
-            AdminServices.ControlPosts.AddPost(model, IdCategory);
+            AdminServices.ControlPosts.AddPost(model, IdCategory,User);
             return RedirectToAction("Posts");
         }
         /// <summary>
@@ -68,11 +69,11 @@ namespace Blog.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id">Список выбраных постов</param>
         /// <returns></returns>
-        public ActionResult DeletePosts()
+        public ActionResult DeletePosts(int id)
         {
             string map = Server.MapPath("~/img/");
-           var list = Request.Form["list"].Split(',').Select(Int32.Parse).ToList();
-            AdminServices.ControlPosts.DeletePosts(list, map);
+         
+            AdminServices.ControlPosts.DeletePosts(id, map);
             return Json("Пост успешно удален");
         }
         /// <summary>
