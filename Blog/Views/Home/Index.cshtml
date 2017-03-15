@@ -5,75 +5,70 @@
 }
 <div id="content" class="">
     <div class="inner">
-        <div class="block_slider_type_1 general_not_loaded" >
+        <div class="block_slider_type_1 general_not_loaded">
             <div id="slider" class="slider flexslider">
                 <ul class="slides">
                     @foreach (var post in Model.Take(4))
                     {
-                    <li>
-                        <img src="~/img/@post.PostID/Preview/@post.upload" style="width:940px; height:450px">
-                        <div class="animated_item text_1_1" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown" ><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.Description</p></div>
-                        <div class="animated_item text_1_2" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.NamePost</p></div>
-                        <div class="animated_item text_1_3" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><a href="@Url.Action("Post","Home",new { id=post.PostID})" class="general_button_type_1">Читать дальше</a></div>
-                    </li>
+                        <li>
+                            <img src="~/img/@post.PostID/Preview/@post.upload" style="width:940px; height:450px">
+                            <div class="animated_item text_1_1" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.Description</p></div>
+                            <div class="animated_item text_1_2" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><p style="text-shadow: 1px 1px 2px black, 0 0 1em black;">@post.NamePost</p></div>
+                            <div class="animated_item text_1_3" data-animation-show="fadeInUp" data-animation-hide="fadeOutDown"><a href="@Url.Action("Post","Home",new { id=post.PostID})" class="general_button_type_1">Читать дальше</a></div>
+                        </li>
                     }
 
                 </ul>
             </div>
-
             <script type="text/javascript">
-                        jQuery(function() {
+                jQuery(function () {
 
-                            init_slider_1('#slider');
-                    });
+                    init_slider_1('#slider');
+                });
             </script>
         </div>
 
         <div class="block_general_title_1 w_margin_1">
             <h1>Новые статьи</h1>
-            
         </div>
-
         <div class="block_posts type_1 type_sort">
             <div class="posts isotope" style="position: relative; overflow: hidden; height: 1376px;">
                 @foreach (var post in Model)
-                {  
-                    <article class="post_type_1 isotope-item" >
-                    <div class="feature">
-                        <div class="image">
-                            <a href="@Url.Action("Post","Home",new { id = post.PostID})">
-                                @if (post.upload != null)
-                            {
-                                <img width="540" height="270" src="~/img/@post.PostID/Preview/@post.upload" alt="@post.NamePost" title="@post.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">}
-                        </a>
-
-                        </div>
-                    </div>
-
-                    <div class="content " >
-                        <div class="info" >
-                            <div class="tags" style="margin-right:15px;"><a href="@Url.Action("Post","Home",new {id=post.PostID })">@post.NamePost</a> </div>
-                            <div class="tags"><a href="@Url.Action("Category","Home",new {category=post.CategoryId })">@post.Category.Name </a></div>
-                            <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
-                            <div class="stats">
-                                <div class="likes">@post.CountLike</div>
-                                <div class="comments">@Html.Action("AjaxCountComment", "Home", new { id = post.PostID })</div>
+                {
+                    <article class="post_type_1 isotope-item">
+                        <div class="feature">
+                            <div class="image">
+                                <a href="@Url.Action("Post","Home",new { id = post.PostID})">
+                                    @if (post.upload != null)
+                                    {
+                                        <img width="540" height="270" src="~/img/@post.PostID/Preview/@post.upload" alt="@post.NamePost" title="@post.NamePost" class="attachment-thumb-featured size-thumb-featured wp-post-image">}
+                                </a>
                             </div>
                         </div>
+                        <div class="content ">
+                            <div class="info">
+                                <div class="tags" style="margin-right:15px;"><a href="@Url.Action("Post","Home",new {id=post.PostID })">@post.NamePost</a> </div>
+                                <div class="tags"><a href="@Url.Action("Category","Home",new {category=post.CategoryId })">@post.Category.Name </a></div>
+                                <div class="date" style="margin-left:15px;">@post.dateAddPost.ToLongDateString()</div>
+                                <div class="stats">
+                                    <div class="likes">@post.CountLike</div>
+                                    <div class="comments">@Html.Action("AjaxCountComment", "Home", new { id = post.PostID })</div>
+                                </div>
+                            </div>
 
-                        <div class="title">
-                            <a href="@Url.Action("Post","Home",new { id = post.PostID})"> @post.Description</a>
+                            <div class="title">
+                                <a href="@Url.Action("Post","Home",new { id = post.PostID})"> @post.Description</a>
+                            </div>
                         </div>
-                    </div>
-                </article> 
+                    </article>
                 }
-   
+
             </div>
 
             @*<div class="controls">
-                <a href="#" id="button_load_more" data-target=".block_posts.type_sort .posts" class="load_more_1"><span>Load more posts</span></a>
-            </div>*@
-        </div>
+                    <a href="#" id="button_load_more" data-target=".block_posts.type_sort .posts" class="load_more_1"><span>Load more posts</span></a>
+                </div>*@
         </div>
     </div>
+</div>
 <!-- CONTENT END -->

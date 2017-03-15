@@ -247,6 +247,10 @@ namespace Services.Admin
                 return category;
             }
         }
+        /// <summary>
+        /// Конверт медели "ModelCategory" 
+        /// </summary>
+        /// <returns></returns>
         public static Expression<Func<Category, ModelCategory>> ConverToModelCategory()
         {
             return category => new ModelCategory()
@@ -346,6 +350,10 @@ namespace Services.Admin
                 Description = post.Description
             };
         }
+        /// <summary>
+        /// Конверт категории "ModelUser"
+        /// </summary>
+        /// <returns></returns>
         public static Expression<Func<User, ModelUser>> UserConvert()
         {
             return user => new ModelUser()
