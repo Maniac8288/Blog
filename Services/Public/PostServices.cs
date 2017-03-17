@@ -250,6 +250,27 @@ namespace Services
             }
         }
         /// <summary>
+        /// Добавление дочернего комментария комментария
+        /// </summary>
+        /// <param name="ContentComment">Содержимое комментария</param>
+        /// <param name="UserId">ИД пользователя.</param>
+        /// <param name="PostId">Ид поста</param>
+        public void AddComentChild(ModelComment model, int UserId, int PostId,int PareantId)
+        {
+            using (var db = new DataContext())
+            {
+                var user = db.Users.FirstOrDefault(x => x.Id == UserId);
+                var post = db.Posts.FirstOrDefault(x => x.PostID == PostId);
+                var Pareant = db.Comments.FirstOrDefaultAsync(x => x.Id == PareantId);
+                var comment = db.Comments.Add(ConvertComment(model));
+                comment.PareantId = Pareant.Id;
+                comment.DateAddComment = DateTime.Now;
+                comment.Post.Add(post);
+                comment.User.Add(user);
+                db.SaveChanges();
+            }
+        }
+        /// <summary>
         /// Вывод комментарий
         /// </summary>
         /// <param name="PostID">Ид поста</param>
@@ -287,6 +308,7 @@ namespace Services
             return comment => new ModelComment()
             {
                 Id = comment.Id,
+                PareantId = comment.PareantId,
                 ContentComment = comment.ContetntComment,
                 DateAddPost = comment.DateAddComment,
                 User = comment.User.Select(u => new ModelUserComment { Id=u.Id,UserName=u.UserName,Photo=u.Photo }).ToList()

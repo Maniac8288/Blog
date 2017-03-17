@@ -28,10 +28,8 @@ namespace Services.Admin
         /// <returns></returns>
         public List<ModelUserInfo> Users()
         {
-           
             using (var db = new DataContext())
             {
-               
                 var user = db.Users.Select(ShowUsers()).ToList();
                 return user;
             }
@@ -80,20 +78,15 @@ namespace Services.Admin
         {
             using (var db = new DataContext())
             {
-                
                 foreach (int item in id)
                 {
-
                     var user = db.Users.Include(x=>x.Roles).FirstOrDefault(_ => _.Id == item);
                     if (roleID == "User")
                     {
-                
                         user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.User).ToList();
-                     
                     }
                     if (roleID == "Admin")
                     {
-                      
                         user.Roles = db.Roles.Where(_ => _.Id == TypeRoles.Admin).ToList();
                     }
                   

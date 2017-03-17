@@ -98,12 +98,9 @@ namespace Services
         /// <param name="dataBird">Дата рождения пользователя</param>
         public string Register(string userName, string password, DateTime dataBird, string email)
         {
-
             string salt = Security.getSalt();
             using (var db = new DataContext())
             {
-              
-                
                     User NewUser = new User()
                     {
                         UserName = userName,
@@ -122,9 +119,6 @@ namespace Services
                     db.Users.Add(NewUser);
                     db.SaveChanges();
                     return salt;
-                
-               
-               
             }
             
         }

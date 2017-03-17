@@ -15,15 +15,26 @@
             }
             <div class="content">
                 <div class="author"><a href="#">@comment.User[0].UserName</a></div>
-                <div class="info">@comment.DateAddPost.ToLongDateString()<a href="#">Ответить</a></div>
+                <div class="info">@comment.DateAddPost.ToLongDateString()</div>
                 <div class="text">
                     <p>@comment.ContentComment</p>
                 </div>
             </div>
-
+            <button class="answerComment btn btn-info" style="float:right;" value="@comment.Id" title="@comment.User[0].UserName ,"> Ответить</button>
             <div class="clearboth"></div>
         </div>
     </div>
+    <script>
+
+        $('.answerComment').click(function () {
+            var PareantId = $(this).attr('value');
+            var userNamePareant = $(this).attr('title');
+            $('#ContentComment').val(userNamePareant);
+            var ContentComment = document.getElementById('ContentComment');
+            ContentComment.setAttribute('title', PareantId);
+        });
+    </script>
 
 }
+    
 

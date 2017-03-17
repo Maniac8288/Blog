@@ -22,6 +22,21 @@ namespace IServices.Models.Post
         /// </summary>
         public string ContentComment { get; set; }
         /// <summary>
+        /// Родительский комментарий
+        /// </summary>
+        /// <value>Родитель.</value>
+        public ModelComment Pareant { get; set; }
+        /// <summary>
+        /// Ид родительского комментария
+        /// </summary>
+        /// <value>Ид Родителя.</value>
+        public int? PareantId { get; set; }
+        /// <summary>
+        /// Дочерний комментарий.
+        /// </summary>
+        /// <value>Дочерний комментарий.</value>
+        public List<ModelComment> Child { get; set; }
+        /// <summary>
         /// Пользователь которому пренадлежит комментарий
         /// </summary>
         /// <value>The user.</value>

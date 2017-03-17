@@ -20,6 +20,9 @@ namespace DataModel.Models
         /// Содержимое комментария
         /// </summary>
         public string ContetntComment { get; set; }
+        public Comment Pareant { get; set; }
+        public int? PareantId { get; set; }
+        public List<Comment> Child { get; set; }
         /// <summary>
         /// Пост которому пренадлежит комментарий
         /// </summary>
