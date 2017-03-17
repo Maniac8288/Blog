@@ -54,7 +54,7 @@ namespace IServices.Sublntefac.Public
         /// <param name="ContentComment">Содержимое комментария</param>
         /// <param name="UserId">ИД пользователя.</param>
         /// <param name="PostId">Ид поста</param>
-        void AddComent(ModelComment comment, int UserId, int PostId);
+        void AddComent(ModelComment comment, int UserId, int PostId,int? PareantId);
         /// <summary>
         /// Вывод комментарий
         /// </summary>

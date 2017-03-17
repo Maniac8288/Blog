@@ -146,9 +146,9 @@ namespace Blog.Controllers
         /// </summary>
         /// <returns>ActionResult.</returns>
         [HttpPost]
-        public ActionResult AddComment(ModelComment comment, int UserId, int PostId)
+        public ActionResult AddComment(ModelComment comment, int UserId, int PostId, int? PareantId)
         {
-            Services.Post.AddComent(comment, UserId, PostId);
+            Services.Post.AddComent(comment, UserId, PostId, PareantId);
             return Json("Запрос прошел успешно");
         }
         /// <summary>

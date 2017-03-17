@@ -125,7 +125,7 @@
                 data.append("ContentComment",$('#ContentComment').val());
                 data.append("UserId", $("#User").val());
                 data.append("PostId",$('#PostId').val());
-                formData.append("PareantId",PareantId);
+                data.append("PareantId",PareantId);
                 $.ajax({
                     url: '/Home/AddComment',
                     type: 'post',
@@ -133,6 +133,9 @@
                     processData: false,
                     data: data,
                     success: function (data) {
+                        var ContentComment = document.getElementById('ContentComment');
+                        ContentComment.setAttribute('title', "");
+                        $('#ContentComment').val("");
                         console.log(data);
                         updateComment();
                     }
