@@ -4,30 +4,7 @@
 }
 @foreach (var comment in Model)
 {
-    if (comment.PareantId != null)
-    {
-    
-        <div class="comment" style="margin-left:80px;">
-            <div class="inside">
-                @if (comment.User[0].Photo == null)
-                { <div class="avatar"><a href="#"><img src="~/img/Users/avatar.png" alt=""></a></div>}
-                else
-                {
-                    <div class="avatar"><a href="#"><img src="~/img/Users/@comment.User[0].Id/@comment.User[0].Photo" alt=""></a></div>
-                }
-                <div class="content">
-                    <div class="author"><a href="#">@comment.User[0].UserName</a></div>
-                    <div class="info">@comment.DateAddPost.ToLongDateString()</div>
-                    <div class="text">
-                        <p>@comment.ContentComment</p>
-                    </div>
-                </div>
-              
-                <div class="clearboth"></div>
-            </div>
-        </div>
-    }
-    else
+    if (comment.PareantId == null)
     {
     <div class="comment">
         <div class="inside">
@@ -35,7 +12,7 @@
             { <div class="avatar"><a href="#"><img src="~/img/Users/avatar.png" alt=""></a></div>}
             else
             {
-            <div class="avatar"><a href="#"><img src="~/img/Users/@comment.User[0].Id/@comment.User[0].Photo" alt=""></a></div>
+                <div class="avatar"><a href="#"><img src="~/img/Users/@comment.User[0].Id/@comment.User[0].Photo" alt=""></a></div>
             }
             <div class="content">
                 <div class="author"><a href="#">@comment.User[0].UserName</a></div>
@@ -44,20 +21,50 @@
                     <p>@comment.ContentComment</p>
                 </div>
             </div>
+            @if (comment.Answer == true)
+            {
             <button class="answerComment btn btn-info" style="float:right;" value="@comment.Id" title="@comment.User[0].UserName ," onclick="location.href = '#ContentComment'"> Ответить</button>
+            }
             <div class="clearboth"></div>
         </div>
     </div>
     }
+
+
+    foreach (var Child in Model.Where(x => x.PareantId == comment.Id))
+    {
+
+        <div class="comment" style="margin-left:80px;">
+            <div class="inside">
+                @if (Child.User[0].Photo == null)
+                { <div class="avatar"><a href="#"><img src="~/img/Users/avatar.png" alt=""></a></div>}
+                else
+                {
+                    <div class="avatar"><a href="#"><img src="~/img/Users/@Child.User[0].Id/@Child.User[0].Photo" alt=""></a></div>
+                }
+                <div class="content">
+                    <div class="author"><a href="#">@Child.User[0].UserName</a></div>
+                    <div class="info">@Child.DateAddPost.ToLongDateString()</div>
+                    <div class="text">
+                        <p>@Child.ContentComment</p>
+                    </div>
+                </div>
+
+                <div class="clearboth"></div>
+            </div>
+        </div>
+
+
+    }
     <script>
 
         $('.answerComment').click(function () {
-            var PareantId = $(this).attr('value');
-            var userNamePareant = $(this).attr('title');
+    var PareantId = $(this).attr('value');
+    var userNamePareant = $(this).attr('title');
             $('#ContentComment').val(userNamePareant);
-            var ContentComment = document.getElementById('ContentComment');
-            ContentComment.setAttribute('title', PareantId);
-        });
+    var ContentComment = document.getElementById('ContentComment');
+    ContentComment.setAttribute('title', PareantId);
+});
     </script>
 
 }

@@ -159,7 +159,7 @@ namespace Blog.Controllers
         public ActionResult AjaxComment(int Id)
         {
             var comment = Services.Post.Comment(Id);
-            return View(comment);
+            return View(comment.OrderByDescending(x=>x.DateAddPost));
         }
         /// <summary>
         /// Число комментарий

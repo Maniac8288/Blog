@@ -46,8 +46,8 @@ namespace Blog
                                                         "~/Scripts/mediaelementplayer.min.js",
                                                         "~/Scripts/jquery.sort.min.min.js",
                                                         "~/Scripts/jquery.prettyPhoto.js",
-
-
+                                                          "~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js",
+                                                       
 
                            "~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js",
                             "~/Scripts/jquery.color.js",
@@ -61,6 +61,7 @@ namespace Blog
                         "~/Content/delays.css",
                          "~/Content/animation_delays.css",
                           "~/Content/flexslider.css",
+                           "~/Scripts/jquery-ui-1.12.1/jquery-ui.min.css",
                               "~/Content/prettyPhoto.css",   
                             "~/Content/mediaelementplayer.css",
                              "~/Content/mediaelementplayer.min.css",

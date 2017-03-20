@@ -37,5 +37,6 @@ namespace DataModel.Models
         /// Время добавления поста
         /// </summary>
         public DateTime DateAddComment { get; set;}
+        public bool Answer { get; set; }
     }
 }

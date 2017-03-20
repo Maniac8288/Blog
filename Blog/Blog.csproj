@@ -320,7 +320,9 @@
     <Folder Include="Areas\Admin\Views\Ajax\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\jquery-ui-1.12.1\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

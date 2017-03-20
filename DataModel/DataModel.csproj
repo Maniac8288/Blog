@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201703170920382_comment3.Designer.cs">
       <DependentUpon>201703170920382_comment3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703191815562_answer.cs" />
+    <Compile Include="Migrations\201703191815562_answer.Designer.cs">
+      <DependentUpon>201703191815562_answer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -188,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703170920382_comment3.resx">
       <DependentUpon>201703170920382_comment3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703191815562_answer.resx">
+      <DependentUpon>201703191815562_answer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

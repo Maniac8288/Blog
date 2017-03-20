@@ -50,5 +50,6 @@ namespace IServices.Models.Post
         /// Дата добавление поста
         /// </summary>
         public DateTime DateAddPost { get; set; }
+        public bool Answer { get; set; }
     }
 }

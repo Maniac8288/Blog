@@ -157,6 +157,22 @@ namespace Services
                 return categories;
             }
         }
+        /// <summary>
+        /// Вывод комментарий
+        /// </summary>
+        /// <param name="PostID">Ид поста</param>
+        /// <returns>List&lt;ModelComment&gt;.</returns>
+        public List<ModelComment> Comment(int PostID)
+        {
+            using (var db = new DataContext())
+            {
+
+                var commentCollection = db.Comments.Where(x => x.Post.FirstOrDefault(c => c.PostID == PostID).PostID == PostID);
+                var comment = commentCollection.Select(ConvertComment()).ToList();
+                return comment;
+
+            }
+        }
 
         /// <summary>
         /// Ставил лайк
@@ -248,6 +264,7 @@ namespace Services
                     comment.DateAddComment = DateTime.Now;
                     comment.Post.Add(post);
                     comment.User.Add(user);
+                    comment.Answer = true;
                     db.SaveChanges();
                 }
                 else
@@ -255,7 +272,8 @@ namespace Services
                   
                     var user = db.Users.FirstOrDefault(x => x.Id == UserId);
                     var post = db.Posts.FirstOrDefault(x => x.PostID == PostId);
-                    
+                    var Pareant = db.Comments.FirstOrDefault(x => x.Id == PareantId);
+                    Pareant.Answer = false;
                     var comment = db.Comments.Add(ConvertComment(model));
                     comment.Child.Where(_ => _.PareantId == PareantId);
                     comment.PareantId = PareantId;
@@ -267,23 +285,7 @@ namespace Services
             }
         }
      
-        /// <summary>
-        /// Вывод комментарий
-        /// </summary>
-        /// <param name="PostID">Ид поста</param>
-        /// <returns>List&lt;ModelComment&gt;.</returns>
-        public List<ModelComment> Comment(int PostID)
-        {
-            using (var db = new DataContext())
-            {
-                
-                var commentCollection = db.Comments.Where(x=>x.Post.FirstOrDefault(c=>c.PostID==PostID).PostID==PostID);
-                var comment = commentCollection.Select(ConvertComment()).ToList();
-               
-                return comment;
-
-            }
-        }
+    
         /// <summary>
         /// Подсчитывает количество комментарий данного поста
         /// </summary>
@@ -308,7 +310,9 @@ namespace Services
                 PareantId = comment.PareantId,
                 ContentComment = comment.ContetntComment,
                 DateAddPost = comment.DateAddComment,
-                User = comment.User.Select(u => new ModelUserComment { Id = u.Id, UserName = u.UserName, Photo = u.Photo }).ToList()
+                Answer = comment.Answer,
+                User = comment.User.Select(u => new ModelUserComment { Id = u.Id, UserName = u.UserName, Photo = u.Photo }).ToList(),
+              
             };
         }
         public static Expression<Func<User, ModelUserComment>> ConvertUsers()
@@ -341,6 +345,7 @@ namespace Services
             return new Comment
             {
                 ContetntComment = comment.ContentComment,
+                Answer = comment.Answer,
                 DateAddComment= comment.DateAddPost,
                 Child = new List<Comment> { },
                 Post = new List<Post>{ },
