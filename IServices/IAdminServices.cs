@@ -28,5 +28,9 @@ namespace IServices
         /// Управление постами
         /// </summary>
         IAdminPostsServices ControlPosts { get; set; }
+        /// <summary>
+        /// Управление комментариями
+        /// </summary>
+        IAdminCommentServices Comments { get; set; }
     }
 }

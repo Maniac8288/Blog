@@ -49,5 +49,6 @@ namespace IServices.Sublntefac.Admin
         /// <param name="nameChild">Имя дочерний категории</param>
         /// <param name="newName">Новое имя</param>
         void ChangeNameChild(string NamePareant, string nameChild, string newName);
+
     }
 }

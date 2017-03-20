@@ -22,6 +22,7 @@ namespace Services
             Users = new AdminUsersServices();
             Categories = new AdminCategoriesServices();
             ControlPosts = new AdminPostsServices();
+            Comments = new AdminCommentServices();
         }
         /// <summary>
         /// Управление пользователями
@@ -35,6 +36,10 @@ namespace Services
         /// Управление постами
         /// </summary>
         public IAdminPostsServices ControlPosts { get; set; }
+        /// <summary>
+        /// Управление комментариями
+        /// </summary>
+        public IAdminCommentServices Comments { get; set; }
 
 
 

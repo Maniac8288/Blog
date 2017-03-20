@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="PanelComments"></div>
+
+@section scripts{
+    <script>
+      
+            $(document).ready(function () {
+                $('#PanelComments').load("@Url.Action("AjaxComment", "Comment")");
+
+
+            });
+
+
+    </script>
+}

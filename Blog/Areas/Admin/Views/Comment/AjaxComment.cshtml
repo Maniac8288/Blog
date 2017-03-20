@@ -1,0 +1,228 @@
+﻿@model IEnumerable<IServices.Models.Post.ModelComment>
+@{    
+    Layout=null;
+}
+
+<div class="col-md-10">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box purple">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>Управление комментариями
+            </div>
+            <div class="actions">
+           
+                
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div id="the-basics" class="col-md-4">
+               
+            </div>
+            <div class="form-group">
+                <table class="table table-striped table-bordered table-hover" id="sample_3">
+                    <thead>
+                        <tr>
+                            <th class="table-checkbox">
+
+                            </th>
+                            <th>
+                                Содержимое комментария
+                            </th>
+                            <th>
+                                Пост
+                            </th>
+                            <th>
+                                Дата создания комментария
+                            </th>
+                            <th>
+                                Пользователь
+                            </th>
+                            <th class="table-checkbox">
+
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var comment in Model)
+                        {
+                            <tr class="odd gradeX">
+                                <td>
+                                    <a data-toggle="modal" data-target="#EditComment" style="text-decoration: none; " class="editComment" alt="@comment.Id" name="@comment.ContentComment" title="Редактировать содержимое">
+                                        <span class="glyphicon glyphicon-cog">
+
+                                        </span>
+                                    </a>
+                                </td>
+
+                                <td>
+                                    <a data-toggle="modal" data-target="#EditComment" style="text-decoration: none; " class="editComment" alt="@comment.Id" name="@comment.ContentComment" title="Редактировать содержимое">
+                                        @comment.ContentComment
+                                    </a>
+
+
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Index","Posts")">@comment.Post[0].NamePost</a>
+                                </td>
+                                <td>
+                                    @comment.DateAddPost.ToLongDateString()
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("Index","Users")">@comment.User[0].UserName</a>
+                                </td>
+
+                                <td>
+                                    <a data-toggle="modal" data-target="#deleteCommentModal" style="text-decoration: none; " class="deleteComment" alt="@comment.Id" title="@comment.PareantId">
+                                        <span class="glyphicon glyphicon-trash">
+
+                                        </span>
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+                <div >
+                    <label for="Search">Поиск по пользователю</label>
+                </div>
+                <div class="col-md-2">
+                 
+                    <input type="text" name="Search" id="inputSearch" class="form-control" data-autocomplete-source='@Url.Action("AutocompleteSearch", "Comment")'   />
+          
+                </div>
+                <input type="submit" class="btn btn-default" value="Поиск" id="search"/>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+</div>
+
+<script>
+    $(function () {
+        $("[data-autocomplete-source]").each(function () {
+            var target = $(this);
+            target.autocomplete({ source: target.attr("data-autocomplete-source") });
+        });
+    });
+</script>
+
+<!-- Начало модальных окн-->
+
+<!--Удаление комментария-->
+<div id="deleteCommentModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Вы действительно хотите удалить данный комментарий?</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" align="center">
+                    <button class="btn btn-danger" data-dismiss="modal" id="deleteCommentYes">Да</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Нет</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Конец удаление комментария-->
+
+<!--Редактирование комментария-->
+<div id="EditComment" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">×</button>
+                <h4 class="modal-title">Редактирование коментария</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                   
+                    <div class="col-md-10" align="center">
+                        <textarea maxlength="150" rows="4"  id="editCommentArea" class="form-control" style="margin-bottom:25px;"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" id="EditCommentSave">Сохранить</button>
+                    <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Конец редактирование комментария-->
+
+<!--Конец модальных окн-->
+<script>
+
+    $(document).ready(function () {
+        var deleteComment;
+        var PareantId;
+        var editCommentId;
+        var editContentComment;
+        $('#search').click(function () {
+            var inputSearch = $('#inputSearch').val();
+            var url = '@Url.Action("AjaxComment", "Comment")?user=' + inputSearch;
+            $('#PanelComments').load(url);
+            $('.deleteComment').click(function () {
+                deleteComment = $(this).attr('alt');
+                PareantId = $(this).attr('title');
+            })
+            $('#deleteCommentYes').click(function () {
+
+                var data = new FormData();
+                data.append("id", deleteComment);
+                data.append("PareantId", PareantId);
+                $.ajax({
+                    url: 'Comment/DeleteComment',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    beforeSend: function () { console.log(deleteComment); },
+                    success: function (data) {
+                        upPosts();
+                        console.log(data);
+                    }
+                });
+            });
+            $('.editComment').click(function () {
+                editCommentId = $(this).attr('alt');
+                editContentComment = $(this).attr('name');
+                document.getElementById('editCommentArea').value = editContentComment;
+            })
+            $('#EditCommentSave').click(function () {
+                var content = $('#editCommentArea').val();
+                var data = new FormData();
+                data.append("id", editCommentId);
+                data.append("content", content);
+                $.ajax({
+                    url: 'Comment/EditComment',
+                    type: 'post',
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    beforeSend: function () { console.log(editCommentId); },
+                    success: function (data) {
+                        upPosts();
+                        console.log(data);
+                    }
+                });
+
+            });
+            function upPosts() {
+
+                $('#PanelComments').load("@Url.Action("AjaxComment", "Comment")");
+            };
+        });
+    });
+</script>
+
