@@ -108,7 +108,7 @@
                     processData: false,
                     data: data,
                     success: function (data) {
-                        window.location.href = "http://localhost:62712/Admin/Posts/Posts";
+                        document.location.href = "@Url.Action("Index","Posts")";
                         console.log(data);
                     }
                 });

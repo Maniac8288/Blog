@@ -40,7 +40,7 @@ namespace Blog.Areas.Admin.Controllers
             string map = Server.MapPath("~/img/");
             AdminServices.ControlPosts.Image(Upload, map, model);
             AdminServices.ControlPosts.AddPost(model, IdCategory,User);
-            return RedirectToAction("Posts");
+            return RedirectToAction("Index");
         }
         /// <summary>
         /// Создает перемнную в которой находится путь для сохранения файла и далее выполняет метод сохраняющий изображения 
@@ -100,7 +100,7 @@ namespace Blog.Areas.Admin.Controllers
             string map = Server.MapPath("~/img/");
             AdminServices.ControlPosts.Image(Upload, map, model);
             AdminServices.ControlPosts.EditPost(model, IdCategory);
-            return RedirectToAction("Posts");
+            return RedirectToAction("Index");
 
         }
         /// <summary>
@@ -111,6 +111,13 @@ namespace Blog.Areas.Admin.Controllers
         {
             var posts = AdminServices.ControlPosts.PostPreview();
             return View(posts);
+        }
+        public ActionResult AutocompleteSearch(string term)
+        {
+            var model = AdminServices.Comments.Search(term);
+            var models = model.Select(x => new { value = x.UserName }).Distinct().ToList();
+            return Json(models, JsonRequestBehavior.AllowGet);
+
         }
         #endregion
     }

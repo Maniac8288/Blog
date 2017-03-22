@@ -88,14 +88,32 @@ namespace Blog.Controllers
         {
 
             var posts = Services.Post.PostDetails();
-            var post = posts.FirstOrDefault(x => x.PostID == id);
-            post.CollectionTags = post.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                var post = posts.FirstOrDefault(x => x.PostID == id);
+                post.CollectionTags = post.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                if (post != null)
+                {
+                    Services.Post.GetView(id);
+                    return View(post);
+                }
+                return View("Error");
+        }
+        public ActionResult PostFound(string Name)
+        {
+
+            var posts = Services.Post.PostDetails();
+                var post = posts.FirstOrDefault(x => x.NamePost == Name);
             if (post != null)
             {
-                Services.Post.GetView(id);
-                return View(post);
+                post.CollectionTags = post.Tags.Split(new string[] { ",", " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                if (post != null)
+                {
+                    Services.Post.GetView(post.PostID);
+                    return View(post);
+                }
             }
-            return View("Error");
+                return View("Error");
+
         }
         /// <summary>
         /// Вывод древо категорий
@@ -171,10 +189,31 @@ namespace Blog.Controllers
             int count = Services.Post.CountComment(id);
             return View(count);
         }
+        /// <summary>
+        /// Последние комментарии
+        /// </summary>
+        /// <returns></returns>
         public ActionResult LatestComments()
         {
             var comments = Services.Post.LatestComments();
             return View(comments);
+        }
+        /// <summary>
+        /// Поиск постов
+        /// </summary>
+        /// <param name="term">Ввод текста в поиск</param>
+        /// <returns></returns>
+        public ActionResult AutocompleteSearch(string term)
+        {
+            var model = Services.Post.Search(term);
+            var models = model.Select(x => new { value = x.NamePost, name =x.NamePost}).Distinct().ToList();
+            return Json(models, JsonRequestBehavior.AllowGet);
+
+        }
+        public ActionResult MostCommented()
+        {
+            var model = Services.Post.MostCommented();
+            return View(model.OrderByDescending(x=>x.Comments.Count()));
         }
 
     }

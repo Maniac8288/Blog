@@ -40,15 +40,14 @@ namespace Blog
                             "~/Scripts/html5.js",
                             "~/Scripts/settings.js",
                              "~/Scripts/jquery.flexslider-min.js",
-                                      "~/Scripts/custom.js",
-                                               "~/Scripts/mediaelement.min.js",
-                                                        "~/Scripts/mediaelement-and-player.min.js",
-                                                        "~/Scripts/mediaelementplayer.min.js",
-                                                        "~/Scripts/jquery.sort.min.min.js",
-                                                        "~/Scripts/jquery.prettyPhoto.js",
-                                                          "~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js",
-                                                       
-
+                               "~/Scripts/custom.js",
+                                 "~/Scripts/mediaelement.min.js",
+                                    "~/Scripts/mediaelement-and-player.min.js",
+                                     "~/Scripts/mediaelementplayer.min.js",
+                                     "~/Scripts/jquery.sort.min.min.js",
+                                      "~/Scripts/jquery.prettyPhoto.js",
+                                        "~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js",
+                                            "~/Scripts/jquery-ui-1.12.1.js",                             
                            "~/Jcrop-v0.9.12/js/jquery.Jcrop.min.js",
                             "~/Scripts/jquery.color.js",
                             "~/Scripts/jquery.tools.min.js", 
@@ -66,7 +65,9 @@ namespace Blog
                             "~/Content/mediaelementplayer.css",
                              "~/Content/mediaelementplayer.min.css",
                          "~/Content/athemes-symbols.css",
+                          "~/Content/themes/base/all.css",
                          "~/Jcrop-v0.9.12/css/jquery.Jcrop.min.css"));
         }
     }
 }
+  

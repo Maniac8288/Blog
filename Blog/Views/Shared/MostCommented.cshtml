@@ -1,0 +1,18 @@
+﻿@model IEnumerable<IServices.Models.Post.ModelPost>
+@{
+    Layout = null;
+}
+@foreach (var post in Model)
+{
+<article>
+    <a href="@Url.Action("Post","Home", new {id = post.PostID })">
+        <span class="num">@post.Comments.Count()<span class="tail"></span></span>
+        <span class="title">@post.NamePost</span>
+    </a>
+</article>
+
+}
+<div class="block_search">
+    <input type="text" name="Search" id="inputSearch" class="w_focus_mark" data-autocomplete-source='@Url.Action("AutocompleteSearch", "Home")' />
+</div>
+

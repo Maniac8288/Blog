@@ -46,8 +46,12 @@
                 <hr />
                 <div class="form-group">
                     <label for="Tags" class="col-sm-2 control-label">Тэги</label>
-                    <div class="col-md-10">
-                        <textarea cols="150" rows="3" class="form-control" id="Tags" name="Tags" required placeholder="Введите тэги через запятую" style="margin:10px;"></textarea>
+                    <div class="col-md-10" >
+                       <div style="margin:10px;">
+                           <select multiple data-role="tagsinput" id="Tags" name="Tags">
+                               
+                           </select></div>
+                        
                     </div>
 
                 </div>
@@ -60,7 +64,7 @@
                 <div class="form-group">
                     <label for="File" class="col-sm-2 control-label" >Прикрепить файл для Preview</label>
                     <div class="col-md-10">
-                        <input type="file" class="form-control " name="Upload" id="Upload" style="margin:10px; width:400px; "/>
+                        <input type="file" class="form-control " name="Upload" id="Upload" style="margin:10px; width:400px; " required/>
                     </div>
                 </div>
 
@@ -75,10 +79,22 @@
 </div>
 
 
+
 @section scripts {
     <script>
         var files;
+   
+    $(function () {
+        $("[data-autocomplete-source]").each(function () {
+            var target = $(this);
+            target.autocomplete({ source: target.attr("data-autocomplete-source") });
+        });
+    });
+
         $(document).ready(function () {
+
+            $("#Tags").tagsinput('items');
+         
             $('#addNewPost').click(function () {
                 for (instance in CKEDITOR.instances) {
                     CKEDITOR.instances[instance].updateElement();
@@ -109,7 +125,7 @@
                     processData: false,
                     data: data,
                     success: function (data) {
-                        window.location.reload();
+                        document.location.href = "@Url.Action("Index","Posts")";
                         console.log(data);
                     }
                 });

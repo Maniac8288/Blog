@@ -72,6 +72,16 @@ namespace IServices.Sublntefac.Public
         /// </summary>
         /// <returns></returns>
         List<ModelComment> LatestComments();
-
+        /// <summary>
+        /// Выполняет поиск постов
+        /// </summary>
+        /// <param name="term">Ввод</param>
+        /// <returns></returns>
+        List<ModelPostPreview> Search(string term);
+        /// <summary>
+        /// Вывод самых комментируемых постов
+        /// </summary>
+        /// <returns></returns>
+        List<ModelPost> MostCommented();
     }
 }

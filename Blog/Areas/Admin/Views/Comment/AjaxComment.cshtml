@@ -172,6 +172,7 @@
             var inputSearch = $('#inputSearch').val();
             var url = '@Url.Action("AjaxComment", "Comment")?user=' + inputSearch;
             $('#PanelComments').load(url);
+        });
             $('.deleteComment').click(function () {
                 deleteComment = $(this).attr('alt');
                 PareantId = $(this).attr('title');

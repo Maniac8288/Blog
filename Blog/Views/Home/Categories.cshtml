@@ -12,7 +12,7 @@
                     @foreach (var categories in Model.GetParents())
                     {
                         <li>
-                            <a href="index.html"><h3>@categories.Name</h3></a>
+                            <a><h3>@categories.Name</h3></a>
 
                             <ul style="display: none;" >
                                 @foreach (var Child in Model.GetChild(categories.Id))

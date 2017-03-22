@@ -20,7 +20,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/site")
-
+ 
 
 </head>
 
@@ -47,12 +47,35 @@
                                     </ul>
                        
                             </nav>
-                         
+                          
                         </div>
 
                         @Html.Partial("_LoginPartial")
-                 
+                        <div class="block_search">
+                             <input type="text" name="Search" id="inputSearch" class="w_focus_mark" data-autocomplete-source='@Url.Action("AutocompleteSearch", "Home")' />
+                        </div>
 
+                        <script>
+                     $(function () {
+                    $("[data-autocomplete-source]").each(function () {
+                    var target = $(this);
+                    target.autocomplete({
+                        source: target.attr("data-autocomplete-source")
+                        
+                        
+                    });
+                                    });
+                     });
+                     $('#inputSearch').keydown(function (e) {
+                         if (e.keyCode == 13) {
+                             var inputSearch = $('#inputSearch').val();
+                             var url = '@Url.Action("PostFound", "Home")?Name=' + inputSearch;
+                             document.location.href = url;
+                         }
+                     });
+                        </script>
+
+                      
                         <div class="clearboth"></div>
                     </div>
                 </section>

@@ -188,6 +188,7 @@
     <Content Include="Content\animate.css" />
     <Content Include="Content\animation_delays.css" />
     <Content Include="Content\athemes-symbols.css" />
+    <Content Include="Content\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\calendar.css" />
@@ -248,6 +249,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\images\Logo.png" />
     <Content Include="img\Users\avatar.png" />
+    <Content Include="Scripts\bootstrap-tagsinput.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -354,7 +356,9 @@
     <Content Include="Views\Shared\_LayoutAccount.cshtml" />
     <Content Include="Views\Shared\AjaxComment.cshtml" />
     <Content Include="Views\Shared\AjaxCountComment.cshtml" />
-    <Content Include="Views\Home\LatestComments.cshtml" />
+    <Content Include="Views\Shared\LatestComments.cshtml" />
+    <Content Include="Views\Home\PostFound.cshtml" />
+    <Content Include="Views\Shared\MostCommented.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

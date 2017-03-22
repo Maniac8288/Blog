@@ -67,7 +67,7 @@ namespace IServices.Models.Post
         /// <value>Категория.</value>
         public ModelCategory Category { get; set; }
         public List<ModelUser> User { get; set; }
-      
+        public List<ModelComment> Comments { get; set; }
 
 
     }

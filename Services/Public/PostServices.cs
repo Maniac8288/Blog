@@ -58,6 +58,20 @@ namespace Services
             }
         }
         /// <summary>
+        /// Вывод самых комментируемых постов
+        /// </summary>
+        /// <returns></returns>
+        public List<ModelPost> MostCommented()
+        {
+            using (var db = new DataContext())
+            {
+                var postCollection = db.Posts.Select(Details()).ToList();
+                
+                var comment = postCollection.OrderByDescending(x => x.Comments.Count(c => c.Id == x.PostID)).ToList();
+                return comment;
+            }
+        }
+        /// <summary>
         /// Последние комментарии
         /// </summary>
         /// <returns></returns>
@@ -299,6 +313,22 @@ namespace Services
                 return commentCollection.Count();
             }
         }
+
+        /// <summary>
+        /// Выполняет поиск постов
+        /// </summary>
+        /// <param name="term">Ввод</param>
+        /// <returns></returns>
+        public List<ModelPostPreview> Search(string term)
+        {
+            using (var db = new DataContext())
+            {
+
+                var post = db.Posts.Select(Preview());
+                var models = post.Where(a => a.NamePost.Contains(term)).ToList();
+                return models;
+            }
+        }
         #region Конверт модели
         public static Expression<Func<Comment, ModelComment>> ConvertComment()
         {
@@ -427,10 +457,12 @@ namespace Services
                 Description = post.Description,
                 CountLike = post.CountLike,
                 CountViews = post.CountViews,
-                AuthorID = post.AuthorID
-            
-                
-                
+                AuthorID = post.AuthorID,
+                Comments = post.Comments.Select(u => new ModelComment { Id = u.Id, ContentComment = u.ContetntComment }).ToList()
+
+                  
+
+
 
             };
         }
