@@ -35,7 +35,7 @@
         <div class="form-group">
             <label for="dateAddPost" class="col-sm-4 control-label">Дата рождения</label>
             <div class="col-sm-6">
-                <p>Дата: <input type="text" id="datepicker"></p>
+                <input type="date" id="datepicker" name="dataBird">
             </div>
         </div>
 
@@ -53,20 +53,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
       
-        $("#datepicker").datepicker({ changeMonth: true, changeYear: true });
-        $("#datepicker").datepicker({
-            minDate: new Date(2007, 1 - 1, 1)
-        });
-        // Getter
-        var minDate = $("#datepicker").datepicker("option", "minDate");
 
-        // Setter
-        $("#datepicker").datepicker("option", "minDate", new Date(1900, 1 - 1, 1));
-        $.datepicker.setDefaults($.datepicker.regional[""]);
-        $("#datepicker").datepicker($.datepicker.regional["ru"]);
-        $("#locale").change(function () {
-            $("#datepicker").datepicker("option", $.datepicker.regional[$(this).val()]);
-        });
     $(function () {
         $('[type=button]').click(function () {
             if (($('#login').val().length) < 4) {
@@ -93,7 +80,5 @@
 
             })
         });
-
-
     </script>
 }
